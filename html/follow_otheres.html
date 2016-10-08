@@ -1,0 +1,32 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="Content-Script-Type" content="text/javascript">
+	<script type="text/javascript" src="../javaScript/follow_user_get.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+	<nav class="navbar navbar-inverse navbar-static-top">
+  		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="./tweet_main.html">つついたー</a>
+    		</div>
+			<div class="collapse navbar-collapse" id="nav_target">
+      			<ul class="nav navbar-nav">
+					<li><a href="./tweet_main.html">tweet</a></li>
+          			<li><a href="./follow_main.html">search</a></li>
+					<li class="active"><a href="./follow_otheres.html">followUser</a></li>
+					<li><a href="./login.html">LogOut</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div class="item">フォローユーザー一覧</div>
+	<div>フォロ-ユーザー一覧</div>
+	<table class="table-striped table">
+		<tbody id="user">
+		</tbody>
+	</table>
+</body>
+</html>

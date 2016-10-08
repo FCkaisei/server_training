@@ -1,0 +1,42 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="Content-Script-Type" content="text/javascript">
+	<script type="text/javascript" src="../javaScript/tweet_get.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+	<nav class="navbar navbar-inverse navbar-static-top">
+  		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="./tweet_main.html">つついたー</a>
+    		</div>
+			<div class="collapse navbar-collapse" id="nav_target">
+      			<ul class="nav navbar-nav">
+					<li class="active"><a href="./tweet_main.html">tweet</a></li>
+          			<li><a href="./follow_main.html">search</a></li>
+					<li><a href="./follow_otheres.html">followUser</a></li>
+					<li><a href="./login.html">LogOut</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li>
+						<button type="button" class="btn btn-primary" onClick="getTweet()">getTweet</button>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+<!--ここをPOSTで送るようにする。-->
+<div class="item">ツイート内容：</div>
+<input type="text" name="tweet_text" id="tweetText" size="40">
+<button type="button" class="btn btn-primary" onClick="execPost()">POST送信</button>
+
+	<div>ツイート一覧</div>
+	<table class="table-striped table">
+		<tbody id="tweet">
+
+		</tbody>
+	</table>
+ </body>
+</html>
