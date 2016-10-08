@@ -1,6 +1,9 @@
 <?php
-//セッション作成
-session_start();
+ini_set("display_errors", On);
+error_reporting(E_ALL);
+?>
+
+<?php
 if(!isset($_POST['login'])) {
   //ログインフォームを表示
   inputForm();
@@ -11,14 +14,13 @@ else {
   $formPassword = $_POST['formPassword'];
   //ID, PASWORDが未入力の場合
   if(($formUserId == "") || ($formPassword == "")) {
-
 	  //エラー関数の呼び出し
 	  error(1);
   }
   else {
   //ID,PASSWORD 入力アリ
   //データベースへ接続
-  require_once("connect_db.php");
+  require_once("baseDB/connect_db.php");
 
   //memberテーブルのデータを取得
   $query = "select * from members";
@@ -45,10 +47,12 @@ else {
 	  error(3);
 	} else {
 	  //ID,パスワードどちらも一致
-	  //セッション変数を作成→セッション変数に　$formUserID を登録
-	  $_SESSION['loginUser'] = $formUserId;
-	  //header("Location:test.php");
-	  echo("オールクリア！お疲れ様でした");
+      //セッション作成
+      session_start();
+      //セッション変数を作成→セッション変数に　$formUserID を登録
+	  $_SESSION['user'] = $formUserId;
+	  header("Location:./tweet/tweetManager.php");
+      exit();
 	  }
 	}
   }
@@ -75,7 +79,7 @@ else {
 	  		<br>
 	  		<input type="submit" name="login" value="ログイン" />
 		</form>
-		<input type="button" value="登録画面へ" onclick="location.href='http://ec2-54-245-28-75.us-west-2.compute.amazonaws.com/server/register/registerManager.php'">
+		<input type="button" value="登録画面へ" onclick="location.href='http://ec2-54-245-28-75.us-west-2.compute.amazonaws.com/server_training/register/registerManager.php'">
 	</body>
 </html>
 <?php

@@ -1,6 +1,7 @@
 <?php
+DisplayErrorMessage();
 // メールアドレス取得
-$email = $_POST["email"];
+$tweet_text = $_POST["tweet_text"];
 
 //エラーメッセージ配列
 $error = array();
@@ -8,31 +9,19 @@ $error = array();
 //データ・ベースに接続
 require_once("../baseDB/connect_db.php");
 
-if($email == ""){
-	array_push($error, "メールアドレスが入力されていません");
+if($tweet_text == ""){
+	array_push($error, "ツイートを入力しよう！");
 }
 else{
-	$pre_user_id = uniqid(rand(100,999));
-	//仮のユーザーID作成
-	$query = "insert into members(pre_userid,email)value('$pre_user_id','$email')";
+	$now = date('Y-m-d H:i:s');
+	$query = "insert into tweets(user_id,tweet_text,time)value('".$_SESSION['loginUser']."','$tweet_text','$now')";
 	$result = mysql_query($query);
 
 	if($result == false){
-		array_push($error, "DBに登録できません");
+		array_push($error, "tweetが登録できませんでした");
 	}
 	else{
-		mb_language("ja");
-		mb_internal_encoding("utf-8");
-
-		$to = $email;
-		$subject = "先輩クラブ会員登録URL";
-		$message = "以下のURLにより、先輩クラブ会員に登録してください。\n".
-		"http://ec2-54-245-28-75.us-west-2.compute.amazonaws.com/server/register/regist_form.php?pre_userid=$pre_user_id";
-		$header = "From:c011343171@edu.teu.ac.jp";
-
-		if(!mb_send_mail($to, $subject, $message, $header)){
-			array_push($error, "メールが送信できませんした");
-		}
+		print("OK");
 	}
 }
 
@@ -40,7 +29,7 @@ if(count($error)){
 	foreach($error as $value){
 		?>
 		<table>
-			<caption>メールアドレス登録エラーらしいよ</caption>
+			<caption>ツイートエラーらしいよ</caption>
 			<tr>
 				<td class = "item">Error:</td>
 				<td>
@@ -56,9 +45,9 @@ if(count($error)){
 else{
 	?>
 	<table>
-		<caption>メール送信成功</caption>
+		<caption>ツイート送信成功</caption>
 		<tr>
-			<td class = "item">メールを確認してください</td>
+			<td class = "item">ツイート成功だよ</td>
 		</tr>
 	</table>
 	<?php
