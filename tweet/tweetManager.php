@@ -1,15 +1,19 @@
 <?php
+require_once "../debug/debug.php";
 require_once('../chromephp/ChromePhp.php');
-ChromePhp::Log('include');
+DisplayErrorMessage();
+session_start();
+if(!isset($_SESSION['user'])){
+    $userid = $_SESSION['user'];
+}
 
 /* 登録処理（終了を知らせる値）によって読み込むファイルを変える */
 $mode = $_POST["mode"];
-ChromePhp::Log($mode);
 
 switch($mode) {
   // メールアドレスの登録と仮ID送信
-  case"email_regist":
-  $module = "email_regist.php";
+  case"tweet_regist":
+  $module = "tweet_regist.php";
   break;
 
   //メールアドレス登録（初期画面）
