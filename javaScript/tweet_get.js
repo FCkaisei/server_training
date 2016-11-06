@@ -28,22 +28,24 @@ req.onreadystatechange = function() {
 				var tweetBox = document.getElementById("tweet");
 				tweetBox.innerHTML = "";
 				for(var i = 0; i < jsonObject.length; i++){
-					tweetBox.innerHTML += "<tr>";
-					tweetBox.innerHTML += "<td>" + jsonObject[i]['id'];
-					tweetBox.innerHTML += "</td>";
-					tweetBox.innerHTML += "<td>" + jsonObject[i]['id'];
-					tweetBox.innerHTML += "</td>";
-					tweetBox.innerHTML += "<td>" + jsonObject[i]['id'];
-					tweetBox.innerHTML += "</td>";
-					tweetBox.innerHTML += "</tr>";
-					tweetBox.innerHTML += "<tr>";
-					tweetBox.innerHTML += "<td>ツイート内容:" +jsonObject[i]['tweet_text'];
-					tweetBox.innerHTML += "</td>";
-					tweetBox.innerHTML += "</tr>";
-					tweetBox.innerHTML += "<tr>";
-					tweetBox.innerHTML += "<td>" + jsonObject[i]['tweet_text'];
-					tweetBox.innerHTML +="</td>";
-					tweetBox.innerHTML +="</tr>";
+					tweetBox.innerHTML += "<tr>"
+					+"<td>"
+					+jsonObject[i]['id']
+					+"</td>"
+					+jsonObject[i]['id']
+					+"</td>"
+					+"<td>"
+					+ jsonObject[i]['id']
+					+"</td>"
+					+"</tr>"
+					+"<tr>"
+					+"<td>ツイート内容:" +jsonObject[i]['tweet_text']
+					+"</td>"
+					+"</tr>"
+					+"<tr>"
+					+"<td>" + jsonObject[i]['tweet_text']
+					+"</td>"
+					+"</tr>";
 				}
             } else {
                 console.log( 'Failed. HttpStatus: '+req.statusText );
