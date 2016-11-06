@@ -34,13 +34,18 @@ print('hoge');
 		}
 	}
 	if(!isset($dbPassword)){
+		error(2);
 	}else {
-	  if($dbPassword != $user_pass){
-	  } else {
-		session_start();
-		$_SESSION['user'] = $user_id;
-		//header('location:./html/tweet_main.html');
-		//exit();
 	}
+// 	//フォームのパスワードとデータベース内のパスワードが不一致
+// 	  if($dbPassword != $user_pass){
+// 		error(3);
+// 	  } else {
+// 		//セッション作成
+// 		session_start();
+// 		$_SESSION['user'] = $user_id;
+// 		header('location:./html/tweet_main.html');
+// 		exit();
+// 	}
 }
 ?>
