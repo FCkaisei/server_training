@@ -1,5 +1,5 @@
 <?php
-echo "korehaderu";
+print("korehaderu");
 $user_data = $POST["user_data"];
 $user_id = $user_data;
 $user_pass = $user_data;
