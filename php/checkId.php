@@ -39,6 +39,7 @@ else{
 
 	}
 	else {
+		echo "43333333";
 		session_start();
 		$_SESSION['user'] = $user_id;
 		echo "crea";
