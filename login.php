@@ -64,7 +64,7 @@ foreach($sqlResult as $data){
       session_start();
       //セッション変数を作成→セッション変数に　$formUserID を登録
 	  $_SESSION['user'] = $formUserId;
-	  header("Location:./tweet/tweetManager.php");
+	  header("Location:./html/tweet_main.html");
       exit();
 	  }
 	}
@@ -92,6 +92,7 @@ foreach($sqlResult as $data){
 	  		<br>
 	  		<input type="submit" name="login" value="ログイン" />
 		</form>
+
 		<input type="button" value="登録画面へ" onclick="location.href='http://ec2-54-245-28-75.us-west-2.compute.amazonaws.com/server_training/register/registerManager.php'">
 	</body>
 </html>

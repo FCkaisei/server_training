@@ -30,18 +30,18 @@ req.onreadystatechange = function() {
                 var data = req.responseText; // responseXML もあり
                 console.log( 'COMPLETE! :'　+　data );
 
-				var contact = JSON.parse(data,function(k,v){
+				JSON.parse(data,function(k,v){
 					console.log(k);
 					console.log(v);
 					return v;
 				});
+
 				console.log( 'COMPLETE! :'　+　contact );
 				document.getElementById("tweet").value = "<table>";
 				var i = 0;
 				for(var tmpData in contact){
 					console.log(tmpData);
-					console.log(tmpData[i].id);
-					i++;
+					console.log(tmpData.id);
 				}
 				document.getElementById("tweet").value = "</table>";
             } else {
