@@ -28,7 +28,7 @@ req.onreadystatechange = function() {
         case 4: // データ受信完了.
             if( req.status == 200 || req.status == 304 ) {
                 var jsonData = req.responseText; // responseXML もあり
-				var data = jsonData+'';
+				var data = "'"+jsonData+"'";
 				console.log( 'COMPLETE! :'　+　data );
 
 				var con = JSON.parse(data);
