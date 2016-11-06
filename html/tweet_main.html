@@ -48,7 +48,7 @@ function execPost() {
 	req.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
 
 	req.send(param);
-	req.abort(); // 再利用する際にも abort() しないと再利用できないらしい.
+	//req.abort(); // 再利用する際にも abort() しないと再利用できないらしい.
 }
 
 
