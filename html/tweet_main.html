@@ -7,36 +7,55 @@
 <!--ここをPOSTで送るようにする。-->
 
 <script>
+var req = new XMLHttpRequest();
+
+// ハンドラの登録.
+req.onreadystatechange = function() {
+    switch ( req.readyState ) {
+        case 0:
+            // 未初期化状態.
+            console.log( 'uninitialized!' );
+            break;
+        case 1: // データ送信中.
+            console.log( 'loading...' );
+            break;
+        case 2: // 応答待ち.
+            console.log( 'loaded.' );
+            break;
+        case 3: // データ受信中.
+            console.log( 'interactive... '+req.responseText.length+' bytes.' );
+            break;
+        case 4: // データ受信完了.
+            if( req.status == 200 || req.status == 304 ) {
+                var data = req.responseText; // responseXML もあり
+                console.log( 'COMPLETE! :'+data );
+            } else {
+                console.log( 'Failed. HttpStatus: '+req.statusText );
+            }
+            break;
+		}
+	}
+}
+
+
+
 function displayTweet(){
 
 	var arrayTweet = JSON.parse('<?php echo $jsonResult; ?>');
 }
 
-function execPost(action, data) {
-	// フォームの生成
-	var form = document.createElement("form");
-	form.setAttribute("action", action);
-	//GETはあかんでしょ
-	form.setAttribute("method", "post");
-	form.style.display = "none";
-	document.body.appendChild(form);
-	// パラメ-タ-
-	if (data !== undefined) {
-		for (var paramName in data) {
-			var input = document.createElement('input');
-			input.setAttribute('type', 'hidden');
-			input.setAttribute('name', paramName);
-			input.setAttribute('value', data[paramName]);
-			form.appendChild(input);
-		}
-		//送信開始
-		form.submit();
-	}
+function execPost() {
+	req.open( 'POST', 'http://ec2-54-245-28-75.us-west-2.compute.amazonaws.com/server_training/tweet/tweet_regist.php', false );
+	// POST 送信の場合は Content-Type は固定.
+	req.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
+	req.send( 'tweet_text=seinoyorokobi' );
+	req.abort(); // 再利用する際にも abort() しないと再利用できないらしい.
 }
+
 
 </script>
 
-<a onclick="execPost('../tweet/tweet_regist.php', {'tweet_text':'OK'});return false;">POST送信</a>
+<a onClick="execPost()">POST送信</a>
 	<form action="tweetManager.php" method="post">
 	    <input type="hidden" name="mode" value="tweet_regist">
 	    <table>
