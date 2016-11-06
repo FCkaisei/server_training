@@ -6,22 +6,25 @@ $user_data = $POST["user_data"];
 $user_id = $user_data;
 $user_pass = $user_data;
 if(($user_id == "") || ($user_pass == "")) {
+	echo "1";
 }
 else{
+	echo "2";
 	require_once("../baseDB/connect_db.php");
 	$dsn = 'mysql:dbname=UserLoginDB;host=localhost';
 	$user = "root";
 	$password = "";
 	try{
+		echo "3";
 		$pdo = new PDO($dsn, $user, $password);
 		print("DB->PDO接続成功");
 		$pdo->query('SET NAMES utf8');
 	}
 	catch(PDOException $e){
+		echo "4";
 		print('ERROR:'.$e->getMessage());
 		die();
 	}
-
 	$sql = "select * from members";
 	$sth = $pdo->prepare($sql);
 	$sth->execute();
