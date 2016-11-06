@@ -2,10 +2,8 @@
 ini_set("display_errors", On);
 error_reporting(E_ALL);
 
-session_start();
 if(!isset($_POST['login'])) {
-	$_SESSION['loginUser'] = $_POST['login'];
-	$_SESSION['user'] = $_POST['login'];
+  //ログインフォームを表示
   inputForm();
 }
 else {
@@ -21,7 +19,6 @@ else {
   //ID,PASSWORD 入力アリ
   //データベースへ接続
   require_once("baseDB/connect_db.php");
-
 
   $dsn = 'mysql:dbname=UserLoginDB;host=localhost';
   $user = "root";
@@ -47,13 +44,10 @@ foreach($sqlResult as $data){
     }
   }
 
-  //MySQLデータベースを閉じる
-  //mysql_close($conn);
-
   //$dbPasswordという変数に値が格納されていない場合→formUserIdとデータベースのIDが不一致
-  if(!isset($dbPassword)) {
+  if(!isset($dbPassword)){
     error(2);
-  } else {
+  }else {
   //formUserIdとデータベースのIDが一致
   //フォームのパスワードとデータベース内のパスワードが不一致
     if($dbPassword != $formPassword){
@@ -63,7 +57,7 @@ foreach($sqlResult as $data){
       //セッション作成
       session_start();
       //セッション変数を作成→セッション変数に　$formUserID を登録
-	  $_SESSION['user'] = $formUserId;
+	  $_SESSION['user'] = "aaaaaa";
 	  header("Location:./html/tweet_main.html");
       exit();
 	  }
