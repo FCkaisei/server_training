@@ -8,8 +8,6 @@ try{
 	$pdo->query('SET NAMES utf8');
 }
 catch(PDOException $e){
-	print('ERROR:'.$e->getMessage());
 	die();
 }
-
  ?>
