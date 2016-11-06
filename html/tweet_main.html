@@ -29,10 +29,11 @@ function execPost(action, data) {
 			input.setAttribute('value', data[paramName]);
 			form.appendChild(input);
 		}
+		//送信開始
+		form.submit();
 	}
 }
-//送信開始
-form.submit();
+
 </script>
 
 <a onclick="execPost('../tweet/tweet_regist.php', {'tweet_text':'OK'});return false;">POST送信</a>
