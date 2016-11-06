@@ -12,16 +12,17 @@ else{
 	$dsn = 'mysql:dbname=UserLoginDB;host=localhost';
 	$user = "root";
 	$password = "";
+	try{
+		$pdo = new PDO($dsn, $user, $password);
+		print("DB->PDO接続成功");
+		$pdo->query('SET NAMES utf8');
+	}
+	catch(PDOException $e){
+		print('ERROR:'.$e->getMessage());
+		die();
+	}
 }
-// 	try{
-// 		$pdo = new PDO($dsn, $user, $password);
-// 		print("DB->PDO接続成功");
-// 		$pdo->query('SET NAMES utf8');
-// 	}
-// 	catch(PDOException $e){
-// 		print('ERROR:'.$e->getMessage());
-// 		die();
-// 	}
+print('hoge');
 // 	$sql = "select * from members";
 // 	$sth = $pdo->prepare($sql);
 // 	$sth->execute();
