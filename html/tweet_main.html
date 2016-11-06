@@ -29,7 +29,12 @@ req.onreadystatechange = function() {
             if( req.status == 200 || req.status == 304 ) {
                 var data = req.responseText; // responseXML もあり
                 console.log( 'COMPLETE! :'　+　data );
-				var contact = JSON.parse(data);
+
+				var contact = JSON.parse(data,function(k,v){
+					console.log(k);
+					console.log(v);
+					return v;
+				});
 				console.log( 'COMPLETE! :'　+　contact );
 				document.getElementById("tweet").value = "<table>";
 				for(var tmpData in contact){
