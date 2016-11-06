@@ -1,14 +1,9 @@
 <?php
 $user_id = $_POST["user_id"];
 $user_pass = $_POST["user_pass"];
-
 if(($user_id == "") || ($user_pass == "")) {
-	//エラー関数の呼び出し
-	error(1);
 }
 else{
-	//ID,PASSWORD 入力アリ
-	//データベースへ接続
 	require_once("../baseDB/connect_db.php");
 	$dsn = 'mysql:dbname=UserLoginDB;host=localhost';
 	$user = "root";
@@ -33,7 +28,6 @@ else{
 			break;
 		}
 	}
-
 	//$dbPasswordという変数に値が格納されていない場合→formUserIdとデータベースのIDが不一致
 	if(!isset($dbPassword)){
 	  error(2);
@@ -46,7 +40,7 @@ else{
 		session_start();
 		//セッション変数を作成→セッション変数に　$formUserID を登録
 		$_SESSION['user'] = $user_id;
-		header("Location:./html/tweet_main.html");
+		header("Location:../html/tweet_main.html");
 		exit();
 	}
 }
