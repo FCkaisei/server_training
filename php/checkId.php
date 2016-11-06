@@ -5,13 +5,14 @@ error_reporting(E_ALL);
 $user_data = $POST["user_data"];
 $user_id = $user_data;
 $user_pass = $user_data;
-// if(($user_id == "") || ($user_pass == "")) {
-// }
-// else{
-// 	require_once("../baseDB/connect_db.php");
-// 	$dsn = 'mysql:dbname=UserLoginDB;host=localhost';
-// 	$user = "root";
-// 	$password = "";
+if(($user_id == "") || ($user_pass == "")) {
+}
+else{
+	require_once("../baseDB/connect_db.php");
+	$dsn = 'mysql:dbname=UserLoginDB;host=localhost';
+	$user = "root";
+	$password = "";
+}
 // 	try{
 // 		$pdo = new PDO($dsn, $user, $password);
 // 		print("DB->PDO接続成功");
