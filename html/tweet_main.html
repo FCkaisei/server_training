@@ -30,12 +30,12 @@ req.onreadystatechange = function() {
 				var jsonData = '[{"id":"24"},{"id":"23"},{"id":"22"},{"id":"21"},{"id":"20"},{"id":"19"},{"id":"18"},{"id":"17"},{"id":"16"},{"id":"15"},{"id":"14"},{"id":"13"},{"id":"12"},{"id":"10"},{"id":"9"},{"id":"8"},{"id":"7"},{"id":"6"},{"id":"5"},{"id":"4"}]';
 				//var jsonData = req.responseText; // responseXML もあり
 				console.log(jsonData);
-				var jsonString = jsonData+"";
 				var jsonObject = JSON.parse(jsonString);
-
+				
 				console.log( 'COMPLETE! :'　+　jsonObject );
 				document.getElementById("tweet").value = "<table>";
 				var i = 0;
+
 				for(var tmpData in con){
 					console.log(tmpData);
 					console.log(tmpData.id);
