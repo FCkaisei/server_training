@@ -23,26 +23,27 @@ req.onreadystatechange = function() {
             console.log( 'loaded.' );
             break;
         case 3: // データ受信中.
-            console.log( 'interactive... '+req.responseText.length+' bytes.' );
+            console.log('interactive... '+req.responseText.length+' bytes.' );
             break;
         case 4: // データ受信完了.
             if( req.status == 200 || req.status == 304 ) {
                 var data = req.responseText; // responseXML もあり
-                console.log( 'COMPLETE! :'+data );
+                console.log( 'COMPLETE! :'　+　data );
 				var contact = JSON.parse(data);
 				document.getElementById("tweet").value = "<table>";
 				for(var i =0; i< contact.length-1; i++){
 					var tmpData = contact[i];
+					console.log(tmpData);
 				 	document.getElementById("tweet").value += "<tr>";
-				    document.getElementById("tweet").value += "<td>" . tmpData.user_id;
+				    document.getElementById("tweet").value += "<td>" . tmpData[0];
 				    document.getElementById("tweet").value += "</td>";
-				    document.getElementById("tweet").value += "<td>" . tmpData.user_id;
+				    document.getElementById("tweet").value += "<td>" . tmpData[1];
 				    document.getElementById("tweet").value += "</td>";
-				    document.getElementById("tweet").value += "<td>" . tmpData.user_id;
+				    document.getElementById("tweet").value += "<td>" . tmpData[3];
 				    document.getElementById("tweet").value += "</td>";
 				    document.getElementById("tweet").value += "</tr>";
 				    document.getElementById("tweet").value += "<tr>";
-				    document.getElementById("tweet").value += "<td>ツイート内容:" . tmpData.tweet_text;
+				    document.getElementById("tweet").value += "<td>ツイート内容:" . tmpData[2];
 				    document.getElementById("tweet").value += "</td>";
 				    document.getElementById("tweet").value += "</tr>";
 				}
