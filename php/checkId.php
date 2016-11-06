@@ -21,18 +21,19 @@ else{
 		print('ERROR:'.$e->getMessage());
 		die();
 	}
-}
+
 print('hoge');
-// 	$sql = "select * from members";
-// 	$sth = $pdo->prepare($sql);
-// 	$sth->execute();
-// 	$sqlResult = $sth->fetchAll();
-// 	foreach($sqlResult as $data){
-// 		if($data['userid'] == $user_id) {
-// 			$dbPassword = $data['password'];
-// 			break;
-// 		}
-// 	}
+	$sql = "select * from members";
+	$sth = $pdo->prepare($sql);
+	$sth->execute();
+	$sqlResult = $sth->fetchAll();
+	foreach($sqlResult as $data){
+		if($data['userid'] == $user_id) {
+			$dbPassword = $data['password'];
+			break;
+		}
+	}
+}
 // 	if(!isset($dbPassword)){
 // 	  error(2);
 // 	}else {
