@@ -11,7 +11,6 @@ if($tweet_text == ""){
 }
 else{
 	$now = date('Y-m-d H:i:s');
-	$hoge = "gasdfasd";
 	$stmt = $pdo->prepare("INSERT INTO tweets(user_id,tweet_text,time)VALUES(:user_id, :tweet_text, :timer)");
 	$stmt->bindValue(':user_id',$_SESSION['loginUser'], PDO::PARAM_STR);
 	$stmt->bindValue(':tweet_text', $tweet_text, PDO::PARAM_STR);
@@ -23,6 +22,5 @@ else{
 	else{
 		console.Log("OK");
 	}
-	echo("ズンドコベロンチョ");
 }
 ?>
