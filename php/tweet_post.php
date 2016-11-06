@@ -1,9 +1,11 @@
 <?php
 $tweet_text = $_POST['tweet_text'];
-session_start();
-$loginUser = $_SESSION['user'];
 
-//データ・ベースに接続
+session_start();
+$loginUser = "aaaaaa";
+#$_SESSION['user'];
+
+#データ・ベースに接続
 require_once("../baseDB/connect_db.php");
 else{
 	$now = date('Y-m-d H:i:s');
