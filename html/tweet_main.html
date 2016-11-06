@@ -29,8 +29,9 @@ req.onreadystatechange = function() {
             if( req.status == 200 || req.status == 304 ) {
                 var data = req.responseText; // responseXML もあり
                 console.log( 'COMPLETE! :'+data );
-				var contact = JSON.parse(data);
-				console.log( 'COMPLETE! :'+contact );
+				var contact = JSON.parse(data, function(i, value){
+					console.log(i + value);
+				});
 				document.getElementById("tweet").value = "<table>";
 				for(var i =0; i< data.length-1; i++){
 					var tmpData = data[i];
