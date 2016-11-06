@@ -22,7 +22,6 @@ else{
 		die();
 	}
 
-print('hoge');
 	$sql = "select * from members";
 	$sth = $pdo->prepare($sql);
 	$sth->execute();
@@ -42,6 +41,7 @@ print('hoge');
 	else {
 		session_start();
 		$_SESSION['user'] = $user_id;
+		echo "crea";
 		header('../html/tweet_main.html');
 		exit();
 	}

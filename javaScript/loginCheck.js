@@ -17,6 +17,7 @@ req2.onreadystatechange = function() {
         case 4:
             if( req2.status == 200 || req2.status == 304 ) {
 				var jsonString = req2.responseText;
+				console.log(jsonString);
             } else {
                 console.log( 'Failed. HttpStatus: '+req2.statusText );
             }
