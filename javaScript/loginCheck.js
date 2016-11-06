@@ -1,5 +1,4 @@
 var req = new XMLHttpRequest();
-
 //idとpass送信
 function execPost() {
 	var userIdValue = document.getElementById('userId').value;
