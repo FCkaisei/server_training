@@ -35,19 +35,19 @@ req.onreadystatechange = function() {
 
 				for(var i = 0; i < jsonObject.length; i++){
 					document.getElementById("tweet").value += "<tr>";
-					document.getElementById("tweet").value += "<td>" . jsonObject[i]['id'];
+					document.getElementById("tweet").value += "<td>" + jsonObject[i]['id'];
 					document.getElementById("tweet").value += "</td>";
-					document.getElementById("tweet").value += "<td>" . jsonObject[i]['id'];
+					document.getElementById("tweet").value += "<td>" + jsonObject[i]['id'];
 					document.getElementById("tweet").value += "</td>";
-					document.getElementById("tweet").value += "<td>" . jsonObject[i]['id'];
+					document.getElementById("tweet").value += "<td>" + jsonObject[i]['id'];
 					document.getElementById("tweet").value += "</td>";
 					document.getElementById("tweet").value += "</tr>";
 					document.getElementById("tweet").value += "<tr>";
-					document.getElementById("tweet").value += "<td>ツイート内容:" . jsonObject[i]['tweet_text'];
+					document.getElementById("tweet").value += "<td>ツイート内容:" +jsonObject[i]['tweet_text'];
 					document.getElementById("tweet").value += "</td>";
 					document.getElementById("tweet").value += "</tr>";
 					document.getElementById("tweet").value("<tr>");
-					document.getElementById("tweet").value("<td>" . jsonObject[i]['tweet_text']);
+					document.getElementById("tweet").value("<td>" + jsonObject[i]['tweet_text']);
 					document.getElementById("tweet").value("</td>");
 					console.log(jsonObject[i]['id']);
 				}
