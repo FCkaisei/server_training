@@ -1,8 +1,8 @@
 <?php
+echo "korehaderu";
 $user_data = $POST["user_data"];
 $user_id = $user_data;
 $user_pass = $user_data;
-
 if(($user_id == "") || ($user_pass == "")) {
 }
 else{
@@ -19,6 +19,7 @@ else{
 		print('ERROR:'.$e->getMessage());
 		die();
 	}
+
 	$sql = "select * from members";
 	$sth = $pdo->prepare($sql);
 	$sth->execute();
