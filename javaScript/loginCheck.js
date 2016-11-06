@@ -1,6 +1,6 @@
 var req2 = new XMLHttpRequest();
 
-req.onreadystatechange = function() {
+req2.onreadystatechange = function() {
     switch ( req.readyState ) {
         case 0:
             console.log( 'uninitialized!' );
