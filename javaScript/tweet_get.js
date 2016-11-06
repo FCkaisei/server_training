@@ -30,24 +30,17 @@ req.onreadystatechange = function() {
 				for(var i = 0; i < jsonObject.length; i++){
 					tweetBox.innerHTML += "<tr>"
 					+"<td>"
-					+jsonObject[i]['id']
+					+jsonObject[i]['user_id']
 					+"</td>"
 					+"<td>"
-					+jsonObject[i]['id']
-					+"</td>"
-					+"<td>"
-					+ jsonObject[i]['id']
+					+jsonObject[i]['time']
 					+"</td>"
 					+"</tr>"
 					+"<tr>"
-					+"<td>ツイート内容:"
+					+"<td colspan=2>ツイート内容:"
 					+jsonObject[i]['tweet_text']
 					+"</td>"
 					+"</tr>"
-					+"<tr>"
-					+"<td>" + jsonObject[i]['tweet_text']
-					+"</td>"
-					+"</tr>";
 				}
             } else {
                 console.log( 'Failed. HttpStatus: '+req.statusText );
