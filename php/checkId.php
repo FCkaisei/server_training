@@ -1,4 +1,6 @@
 <?php
+header('Location: ../html/tweet_main.html');
+exit;
 $user_data = $_POST['user_data'];
 $user_id = $user_data;
 $user_pass = $user_data;
