@@ -32,8 +32,8 @@ req.onreadystatechange = function() {
 				var contact = JSON.parse(data);
 				console.log( 'COMPLETE! :'+contact );
 				document.getElementById("tweet").value = "<table>";
-				for(var i =0; i<contact.length-1; i++){
-					var tmpData = contact[i];
+				for(var i =0; i< data.length-1; i++){
+					var tmpData = data[i];
 				 	document.getElementById("tweet").value += "<tr>";
 				    document.getElementById("tweet").value += "<td>" . tmpData["id"];
 				    document.getElementById("tweet").value += "</td>";
