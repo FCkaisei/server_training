@@ -43,9 +43,9 @@ print('hoge');
 	else {
 		session_start();
 		$_SESSION['user'] = $user_id;
-// 		header('location:./html/tweet_main.html');
-// 		exit();
-}
+		header('../html/tweet_main.html');
+		exit();
+	}
 
 }
 ?>
