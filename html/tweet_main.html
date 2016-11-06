@@ -30,6 +30,7 @@ req.onreadystatechange = function() {
                 var data = req.responseText; // responseXML もあり
                 console.log( 'COMPLETE! :'+data );
 				var contact = JSON.parse(data);
+				console.log( 'COMPLETE! :'+contact );
 				document.getElementById("tweet").value = "<table>";
 				for(var i =0; i<contact.length-1; i++){
 					var tmpData = contact[i];
