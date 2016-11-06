@@ -36,7 +36,6 @@ print('hoge');
 	if(!isset($dbPassword)){
 		error(2);
 	}else {
-	}
 	if($dbPassword != $user_pass){
 
 	}
@@ -46,6 +45,7 @@ print('hoge');
 		header('../html/tweet_main.html');
 		exit();
 	}
+}
 
 }
 ?>
