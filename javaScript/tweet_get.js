@@ -32,6 +32,7 @@ req.onreadystatechange = function() {
 					+"<td>"
 					+jsonObject[i]['id']
 					+"</td>"
+					+"<td>"
 					+jsonObject[i]['id']
 					+"</td>"
 					+"<td>"
@@ -39,7 +40,8 @@ req.onreadystatechange = function() {
 					+"</td>"
 					+"</tr>"
 					+"<tr>"
-					+"<td>ツイート内容:" +jsonObject[i]['tweet_text']
+					+"<td>ツイート内容:"
+					+jsonObject[i]['tweet_text']
 					+"</td>"
 					+"</tr>"
 					+"<tr>"
