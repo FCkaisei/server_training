@@ -35,10 +35,13 @@ req.onreadystatechange = function() {
 					console.log(v);
 					return v;
 				});
-				console.log( 'COMPLETE! :'　+　data );
+				console.log( 'COMPLETE! :'　+　contact );
 				document.getElementById("tweet").value = "<table>";
+				var i = 0;
 				for(var tmpData in contact){
 					console.log(tmpData);
+					console.log(tmpData[i].id);
+					i++;
 				}
 				document.getElementById("tweet").value = "</table>";
             } else {
