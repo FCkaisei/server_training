@@ -33,7 +33,6 @@ req.onreadystatechange = function() {
 				console.log(jsonObject);
 
 				var tweetBox = document.getElementById("tweet");
-				tweetBox.innerHTML = "<table>";
 				for(var i = 0; i < jsonObject.length; i++){
 					tweetBox.innerHTML += "<tr>";
 					tweetBox.innerHTML += "<td>" + jsonObject[i]['id'];
@@ -51,7 +50,6 @@ req.onreadystatechange = function() {
 					tweetBox.innerHTML += "<td>" + jsonObject[i]['tweet_text'];
 					tweetBox.innerHTML +="</td>";
 				}
-				tweetBox.innerHTML += "</table>";
             } else {
                 console.log( 'Failed. HttpStatus: '+req.statusText );
             }
@@ -101,7 +99,9 @@ function getTweet(){
 	    <div><input type="submit" name="submit" value="送信"></div>
 	</form>
 	<div>ツイート一覧</div>
-	<div id="tweet">some text here</div>
+
+	<table id="tweet">
+	</table>
 
  </body>
 </html>
