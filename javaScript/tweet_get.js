@@ -23,6 +23,7 @@ req.onreadystatechange = function() {
 				console.log(jsonObject);
 
 				var tweetBox = document.getElementById("tweet");
+				tweetBox.innerHTML = "";
 				for(var i = 0; i < jsonObject.length; i++){
 					tweetBox.innerHTML += "<tr>";
 					tweetBox.innerHTML += "<td>" + jsonObject[i]['id'];
