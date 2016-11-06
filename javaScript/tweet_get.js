@@ -2,29 +2,25 @@ var req = new XMLHttpRequest();
 window.onload = function(){
 	getTweet();
 };
-// ハンドラの登録.
 req.onreadystatechange = function() {
     switch ( req.readyState ) {
         case 0:
-            // 未初期化状態.
             console.log( 'uninitialized!' );
             break;
-        case 1: // データ送信中.
+        case 1:
             console.log( 'loading...' );
             break;
-        case 2: // 応答待ち.
+        case 2:
             console.log( 'loaded.' );
             break;
-        case 3: // データ受信中.
+        case 3:
             console.log('interactive... '+req.responseText.length+' bytes.' );
             break;
-        case 4: // データ受信完了.
+        case 4:
             if( req.status == 200 || req.status == 304 ) {
-				var jsonString = req.responseText; // responseXML もあり
-				//var jsonString = '[{"id":"24"},{"id":"23"},{"id":"22"},{"id":"21"},{"id":"20"},{"id":"19"},{"id":"18"},{"id":"17"},{"id":"16"},{"id":"15"},{"id":"14"},{"id":"13"},{"id":"12"},{"id":"10"},{"id":"9"},{"id":"8"},{"id":"7"},{"id":"6"},{"id":"5"},{"id":"4"}]';
+				var jsonString = req.responseText;
 				var jsonObject = JSON.parse(jsonString);
 				console.log(jsonObject);
-
 				var tweetBox = document.getElementById("tweet");
 				tweetBox.innerHTML = "";
 				for(var i = 0; i < jsonObject.length; i++){
@@ -49,7 +45,6 @@ req.onreadystatechange = function() {
 		}
 	}
 
-//ツイート内容を送信
 function execPost() {
 	var textBoxValue = document.getElementById('tweetText').value;
 	var param = "tweet_text="+textBoxValue;

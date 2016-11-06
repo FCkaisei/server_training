@@ -1,11 +1,8 @@
 <?php
 #$loginUser = $_SESSION['loginUser']
 $loginUser = "aaaaaa";
-// メールアドレス取得
 $tweet_text = $_POST["tweet_text"];
-//エラーメッセージ配列
 $error = array();
-//データ・ベースに接続
 require_once("../baseDB/connect_db.php");
 
 if($tweet_text == ""){
