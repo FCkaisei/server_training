@@ -29,27 +29,12 @@ req.onreadystatechange = function() {
             if( req.status == 200 || req.status == 304 ) {
                 var data = req.responseText; // responseXML もあり
                 console.log( 'COMPLETE! :'　+　data );
-				var contact = JSON.parse(data,function(k,v){
-					console.log(k);
-					console.log(v);
-				});
+				var contact = JSON.parse(data);
+				console.log( 'COMPLETE! :'　+　contact );
 				document.getElementById("tweet").value = "<table>";
 				for(var tmpData in contact){
 					console.log(tmpData);
-				 	document.getElementById("tweet").value += "<tr>";
-				    document.getElementById("tweet").value += "<td>" . tmpData['tmpData'];
-				    document.getElementById("tweet").value += "</td>";
-				    document.getElementById("tweet").value += "<td>" . tmpData['tweet_text'];
-				    document.getElementById("tweet").value += "</td>";
-				    document.getElementById("tweet").value += "<td>" . tmpData['id'];
-				    document.getElementById("tweet").value += "</td>";
-				    document.getElementById("tweet").value += "</tr>";
-				    document.getElementById("tweet").value += "<tr>";
-				    document.getElementById("tweet").value += "<td>ツイート内容:" . tmpData['id'];
-				    document.getElementById("tweet").value += "</td>";
-				    document.getElementById("tweet").value += "</tr>";
 				}
-
 				document.getElementById("tweet").value = "</table>";
             } else {
                 console.log( 'Failed. HttpStatus: '+req.statusText );
