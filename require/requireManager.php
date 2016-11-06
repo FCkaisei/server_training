@@ -4,7 +4,6 @@ class DBRequire{
 		include("../baseDB/connect_db.php");
 	}
 }
-
 class DebugRequire{
 		public static function errorReport(){
 			include("../debug/debug.php");

@@ -29,6 +29,8 @@ req.onreadystatechange = function() {
             if( req.status == 200 || req.status == 304 ) {
                 var data = req.responseText; // responseXML もあり
                 console.log( 'COMPLETE! :'+data );
+				var keyCode = xmlHttpRequest.responseText;
+				console.log(keyCode);
             } else {
                 console.log( 'Failed. HttpStatus: '+req.statusText );
             }
@@ -48,7 +50,12 @@ function execPost() {
 	req.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
 
 	req.send(param);
-	//req.abort(); // 再利用する際にも abort() しないと再利用できないらしい.
+
+	// xmlHttpRequest.onreadystatechange = function() {
+	// 	// 受信！
+	// 	if ( xmlHttpRequest.readyState == 4 )
+	//
+	// };
 }
 
 

@@ -23,5 +23,6 @@ else{
 	else{
 		console.Log("OK");
 	}
+	echo("ズンドコベロンチョ");
 }
 ?>
