@@ -29,8 +29,22 @@ req.onreadystatechange = function() {
             if( req.status == 200 || req.status == 304 ) {
                 var data = req.responseText; // responseXML もあり
                 console.log( 'COMPLETE! :'+data );
-				var keyCode = xmlHttpRequest.responseText;
-				console.log(keyCode);
+				var contact = JSON.parse(data);
+				for(var i =0; i<contact.length; i++){
+					var tmpData = data[i];
+				 	document.write("<tr>");
+				    document.write("<td>" . tmpData[0]);
+				    document.write("</td>");
+				    document.write("<td>" . tmpData[1]);
+				    document.write("</td>");
+				    document.write("<td>" . tmpData[3]);
+				    document.write("</td>");
+				    document.write("</tr>");
+				    document.write("<tr>");
+				    document.write("<td>ツイート内容:" . tmpData[2]);
+				    document.write("</td>");
+				    document.write("</tr>");
+				}
             } else {
                 console.log( 'Failed. HttpStatus: '+req.statusText );
             }
@@ -38,29 +52,23 @@ req.onreadystatechange = function() {
 		}
 	}
 
-function displayTweet(){
-
-	var arrayTweet = JSON.parse('<?php echo $jsonResult; ?>');
-}
-
+//ツイート内容を送信
 function execPost() {
 	var param = "tweet_text=seinoyorokobi";
 	req.open('POST', '../php/tweet_post.php', true);
 	// POST 送信の場合は Content-Type は固定.
 	req.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
-
 	req.send(param);
-
-	// xmlHttpRequest.onreadystatechange = function() {
-	// 	// 受信！
-	// 	if ( xmlHttpRequest.readyState == 4 )
-	//
-	// };
+}
+function getTweet(){
+	req.open('POST', '../php/tweet_get.php', true);
+	req.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
+	req.send(null);
 }
 
 
 </script>
-
+<a onClick="getTweet()">getTweet</a>
 <a onClick="execPost()">POST送信</a>
 	<form action="tweetManager.php" method="post">
 	    <input type="hidden" name="mode" value="tweet_regist">
