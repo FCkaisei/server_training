@@ -30,20 +30,20 @@ req.onreadystatechange = function() {
                 var data = req.responseText; // responseXML もあり
                 console.log( 'COMPLETE! :'+data );
 				var contact = JSON.parse(data);
-				for(var i =0; i<contact.length; i++){
+				for(var i =0; i<contact.length-1; i++){
 					var tmpData = data[i];
-				 	document.write("<tr>");
-				    document.write("<td>" . tmpData[0]);
-				    document.write("</td>");
-				    document.write("<td>" . tmpData[1]);
-				    document.write("</td>");
-				    document.write("<td>" . tmpData[3]);
-				    document.write("</td>");
-				    document.write("</tr>");
-				    document.write("<tr>");
-				    document.write("<td>ツイート内容:" . tmpData[2]);
-				    document.write("</td>");
-				    document.write("</tr>");
+				 	document.getElementById("tweet").value("<tr>");
+				    document.getElementById("tweet").value("<td>" . tmpData[0]);
+				    document.getElementById("tweet").value("</td>");
+				    document.getElementById("tweet").value("<td>" . tmpData[1]);
+				    document.getElementById("tweet").value("</td>");
+				    document.getElementById("tweet").value("<td>" . tmpData[3]);
+				    document.getElementById("tweet").value("</td>");
+				    document.getElementById("tweet").value("</tr>");
+				    document.getElementById("tweet").value("<tr>");
+				    document.getElementById("tweet").value("<td>ツイート内容:" . tmpData[2]);
+				    document.getElementById("tweet").value("</td>");
+				    document.getElementById("tweet").value("</tr>");
 				}
             } else {
                 console.log( 'Failed. HttpStatus: '+req.statusText );
@@ -93,32 +93,8 @@ function getTweet(){
 	    </table>
 	    <div><input type="submit" name="submit" value="送信"></div>
 	</form>
+	<div>ツイート一覧</div>
+	<div id="tweet">some text here</div>
 
-
-	<table>
-		<caption>ツイート一覧</caption>
-		<!--javascript利用-->
-<!--
-	<?php
-	foreach($result as $data){
-	    echo "<tr>";
-	    echo "<td>" . $data[0];
-	    echo "</td>";
-	    echo "<td>" . $data[1];
-	    echo "</td>";
-	    echo "<td>" . $data[3];
-	    echo "</td>";
-	    echo "</tr>";
-	    echo "<tr>";
-	    echo "<td>ツイート内容:" . $data[2];
-	    echo "</td>";
-	    echo "</tr>";
-	}
-
-	//$query = "select * from tweets where user_id = '".$tmpSess."'";
-
-	 ?>
- -->
-	 </table>
  </body>
 </html>
