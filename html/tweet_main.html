@@ -42,7 +42,7 @@ function displayTweet(){
 }
 
 function execPost() {
-	req.open( 'POST', '../tweet/tweet_regist.php', true );
+	req.open('POST', '../tweet/tweet_regist.php', true);
 	// POST 送信の場合は Content-Type は固定.
 	req.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
 	req.send('tweet_text=seinoyorokobi');
