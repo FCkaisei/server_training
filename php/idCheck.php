@@ -1,7 +1,6 @@
 <?php
-require_once('../chromephp/ChromePhp.php');
-ChromePhp::Log('include');
-ChromePhp::Log('データ・ベース登録失敗');
+ini_set("display_errors", On);
+error_reporting(E_ALL);
 $user_data = $POST["user_data"];
 $user_id = $user_data;
 $user_pass = $user_data;
