@@ -50,9 +50,8 @@ req.onreadystatechange = function() {
 					tweetBox.innerHTML += "<tr>";
 					tweetBox.innerHTML += "<td>" + jsonObject[i]['tweet_text'];
 					tweetBox.innerHTML +="</td>";
-					console.log(jsonObject[i]['id']);
 				}
-				tweetBox.innerHTML = "</table>";
+				tweetBox.innerHTML += "</table>";
             } else {
                 console.log( 'Failed. HttpStatus: '+req.statusText );
             }
