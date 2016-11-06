@@ -44,7 +44,7 @@ function displayTweet(){
 }
 
 function execPost() {
-	req.open( 'POST', 'http://ec2-54-245-28-75.us-west-2.compute.amazonaws.com/server_training/tweet/tweet_regist.php', false );
+	req.open( 'POST', '../tweet/tweet_regist.php', false );
 	// POST 送信の場合は Content-Type は固定.
 	req.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
 	req.send( 'tweet_text=seinoyorokobi' );
