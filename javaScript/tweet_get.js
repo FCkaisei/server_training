@@ -1,4 +1,7 @@
 var req = new XMLHttpRequest();
+window.onload = function(){
+	getTweet();
+};
 // ハンドラの登録.
 req.onreadystatechange = function() {
     switch ( req.readyState ) {

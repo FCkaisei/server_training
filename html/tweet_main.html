@@ -1,19 +1,19 @@
 <html>
 <head>
+	<meta charset="utf-8">
 	<meta http-equiv="Content-Script-Type" content="text/javascript">
 	<script type="text/javascript" src="../javaScript/tweet_get.js"></script>
-	<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
 <!--ここをPOSTで送るようにする。-->
-<a onClick="getTweet()">getTweet</a>
-<a onClick="execPost()">POST送信</a>
-
+<button type="button" class="btn btn-primary" onClick="getTweet()">getTweet</button>
 <div class="item">ツイート内容：</div>
 <input type="text" name="tweet_text" id="tweetText" size="40">
-	<div>ツイート一覧</div>
-	<table id="tweet">
-	</table>
+<button type="button" class="btn btn-primary" onClick="execPost()">POST送信</button>
 
+	<div>ツイート一覧</div>
+	<table id="tweet" class="table-striped">
+	</table>
  </body>
 </html>
