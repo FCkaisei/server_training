@@ -1,4 +1,5 @@
 <?php
+echo "来てる";
 $user_data = $POST["user_data"]
 $user_id = $user_data[0];
 $user_pass = $user_data[1];
