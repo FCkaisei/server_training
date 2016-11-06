@@ -1,8 +1,7 @@
 <?php
 
-#$loginUser = $_SESSION['loginUser']
-$loginUser = "aaaaaa";
-
+$loginUser = $_SESSION['loginUser']
+#$loginUser = "aaaaaa";
 // メールアドレス取得
 $tweet_text = $_POST["tweet_text"];
 //エラーメッセージ配列

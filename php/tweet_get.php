@@ -1,8 +1,6 @@
 <?php
-echo($_SESSION['user']);
-
-#$tmpSess = $_SESSION['user'];
-$tmpSess = "aaaaaa";
+$tmpSess = $_SESSION['user'];
+#$tmpSess = "aaaaaa";
 require_once("../baseDB/connect_db.php");
 //$sql = "SELECT * FROM tweets WHERE user_id = :id ORDER BY id DESC";
 $stmt = $pdo->prepare("SELECT * FROM tweets WHERE user_id = ? ORDER BY id DESC");

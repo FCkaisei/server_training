@@ -3,15 +3,9 @@ ini_set("display_errors", On);
 error_reporting(E_ALL);
 
 session_start();
-if(!isset($_SESSION['user'])){
-    $userid = $_SESSION['user'];
-}
-
-?>
-
-<?php
 if(!isset($_POST['login'])) {
-  //ログインフォームを表示
+	$_SESSION['loginUser'] = $_POST['login'];
+	$_SESSION['user'] = $_POST['login'];
   inputForm();
 }
 else {
@@ -81,6 +75,7 @@ foreach($sqlResult as $data){
   //入力画面表示画面
   function inputForm() {
 ?>
+
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -102,6 +97,7 @@ foreach($sqlResult as $data){
 		<input type="button" value="登録画面へ" onclick="location.href='http://ec2-54-245-28-75.us-west-2.compute.amazonaws.com/server_training/register/registerManager.php'">
 	</body>
 </html>
+
 <?php
 }
 
