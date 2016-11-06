@@ -1,3 +1,4 @@
+window.onload = function(){
 var req2 = new XMLHttpRequest();
 
 req2.onreadystatechange = function() {
@@ -34,3 +35,4 @@ function execPost() {
 	req2.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
 	req2.send(param);
 }
+};
