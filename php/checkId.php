@@ -43,7 +43,7 @@ else{
 		session_start();
 		$_SESSION['user'] = $user_id;
 		echo "crea";
-		header('../html/tweet_main.html');
+		header('Location: ../html/tweet_main.html');
 		exit();
 	}
 }
