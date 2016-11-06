@@ -42,7 +42,7 @@ print('hoge');
 	}
 	else {
 		session_start();
-// 		$_SESSION['user'] = $user_id;
+		$_SESSION['user'] = $user_id;
 // 		header('location:./html/tweet_main.html');
 // 		exit();
 }
