@@ -27,14 +27,10 @@ req.onreadystatechange = function() {
             break;
         case 4: // データ受信完了.
             if( req.status == 200 || req.status == 304 ) {
-                var data = req.responseText; // responseXML もあり
+                var data = " +req.responseText+"; // responseXML もあり
                 console.log( 'COMPLETE! :'　+　data );
 
-				var con = JSON.parse(data,function(k,v){
-					console.log(k);
-					console.log(v);
-					return v;
-				});
+				var con = JSON.parse(data);
 
 				console.log( 'COMPLETE! :'　+　con );
 				document.getElementById("tweet").value = "<table>";
