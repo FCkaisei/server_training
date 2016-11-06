@@ -32,7 +32,7 @@ req.onreadystatechange = function() {
 				var contact = JSON.parse(data);
 				document.getElementById("tweet").value = "<table>";
 
-				for(var tmpData in contact[1]){
+				for(var tmpData in data){
 					console.log(tmpData);
 				 	document.getElementById("tweet").value += "<tr>";
 				    document.getElementById("tweet").value += "<td>" . tmpData['id'];
