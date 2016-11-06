@@ -7,29 +7,11 @@
 <!--ここをPOSTで送るようにする。-->
 <a onClick="getTweet()">getTweet</a>
 <a onClick="execPost()">POST送信</a>
-	<form action="tweetManager.php" method="post">
-	    <input type="hidden" name="mode" value="tweet_regist">
-	    <table>
-	        <caption>ツイート登録フォーム</caption>
-	        <tr>
-	            <td class="item">ツイート内容：</td>
-	            <td><input type="text" name="tweet_text" size="40"></td>
-	        </tr>
-	    </table>
-	    <div><input type="submit" name="submit" value="送信"></div>
-	</form>
 
-	<form action="tweetManager.php" method="post">
-	    <input type="hidden" name="mode" value="user_search">
-	    <table>
-	        <caption>ユーザー検索</caption>
-	        <tr>
-	            <td class="item">ユーザー名</td>
-	            <td><input type="text" name="user_id" size="40"></td>
-	        </tr>
-	    </table>
-	    <div><input type="submit" name="submit" value="送信"></div>
-	</form>
+<div class="item">ツイート内容：</div>
+<input type="text" name="tweet_text" id="tweetText" size="40">
+
+
 	<div>ツイート一覧</div>
 
 	<table id="tweet">

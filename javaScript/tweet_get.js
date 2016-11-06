@@ -49,12 +49,14 @@ req.onreadystatechange = function() {
 
 //ツイート内容を送信
 function execPost() {
-	var param = "tweet_text=seinoyorokobi";
+	var textBoxValue = document.getElementById('tweetText').value;
+	var param = "tweet_text="+textBoxValue;
 	req.open('POST', '../php/tweet_post.php', true);
 	// POST 送信の場合は Content-Type は固定.
 	req.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
 	req.send(param);
 }
+
 function getTweet(){
 	req.open('POST', '../php/tweet_get.php', true);
 	req.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
