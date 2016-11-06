@@ -42,10 +42,12 @@ function displayTweet(){
 }
 
 function execPost() {
+	var param = "tweet_text=seinoyorokobi";
 	req.open('POST', '../php/tweet_post.php', true);
 	// POST 送信の場合は Content-Type は固定.
 	req.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
-	req.send('tweet_text=seinoyorokobi');
+
+	req.send(param);
 	req.abort(); // 再利用する際にも abort() しないと再利用できないらしい.
 }
 
