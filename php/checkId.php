@@ -1,8 +1,9 @@
 <?php
-$user_data = $_POST['user_data'];
-$user_id = $user_data;
-$user_pass = $user_data;
+$user_id = $_POST['formUserid'];
+$user_pass = $_POST['formPassword'];
 if(($user_id == "") || ($user_pass == "")){
+	header('Location: ../html/login.html');
+	exit;
 }
 else{
 	require_once("../baseDB/connect_db.php");
@@ -14,6 +15,8 @@ else{
 		$pdo->query('SET NAMES utf8');
 	}
 	catch(PDOException $e){
+		header('Location: ../html/login.html');
+		exit;
 		die();
 	}
 	$sql = "select * from members";
@@ -27,10 +30,14 @@ else{
 		}
 	}
 	if(!isset($dbPassword)){
+		header('Location: ../html/login.html');
+		exit;
 		error(2);
 	}
 	else {
 		if($dbPassword != $user_pass){
+			header('Location: ../html/login.html');
+			exit;
 		}
 		else {
 			session_start();
