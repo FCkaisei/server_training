@@ -1,8 +1,6 @@
 <?php
-
 #$loginUser = $_SESSION['loginUser']
 $loginUser = "aaaaaa";
-
 // メールアドレス取得
 $tweet_text = $_POST["tweet_text"];
 //エラーメッセージ配列
@@ -13,6 +11,7 @@ require_once("../baseDB/connect_db.php");
 if($tweet_text == ""){
 	array_push($error, "ツイートを入力しよう！");
 }
+
 else{
 	$now = date('Y-m-d H:i:s');
 	$stmt = $pdo->prepare("INSERT INTO tweets(user_id,tweet_text,time)VALUES(:user_id, :tweet_text, :timer)");
