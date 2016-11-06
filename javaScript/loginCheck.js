@@ -1,7 +1,7 @@
 var req2 = new XMLHttpRequest();
 
 req2.onreadystatechange = function() {
-    switch ( req.readyState ) {
+    switch ( req2.readyState ) {
         case 0:
             console.log( 'uninitialized!' );
             break;
@@ -12,13 +12,13 @@ req2.onreadystatechange = function() {
             console.log( 'loaded.' );
             break;
         case 3:
-            console.log('interactive... '+req.responseText.length+' bytes.' );
+            console.log('interactive... '+req2.responseText.length+' bytes.' );
             break;
         case 4:
-            if( req.status == 200 || req.status == 304 ) {
-				var jsonString = req.responseText;
+            if( req2.status == 200 || req2.status == 304 ) {
+				var jsonString = req2.responseText;
             } else {
-                console.log( 'Failed. HttpStatus: '+req.statusText );
+                console.log( 'Failed. HttpStatus: '+req2.statusText );
             }
             break;
 		}
