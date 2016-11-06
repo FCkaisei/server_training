@@ -34,7 +34,7 @@ req.onreadystatechange = function() {
 				document.getElementById("tweet").value = "<table>";
 
 				for(var i = 0; i < jsonObject.length; i++){
-					console.log(tmpData[i].id);
+					console.log(tmpData[i]['id']);
 				}
 				document.getElementById("tweet").value = "</table>";
             } else {
