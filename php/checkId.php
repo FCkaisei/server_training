@@ -36,7 +36,7 @@ else{
 			session_start();
 			$_SESSION['user'] = $user_id;
 			header('Location: ../html/tweet_main.html');
-			exit();
+			exit;
 		}
 	}
 }
