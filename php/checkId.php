@@ -1,12 +1,9 @@
 <?php
-ini_set("display_errors", On);
-error_reporting(E_ALL);
-
 $user_data = $POST["user_data"];
 $user_id = $user_data;
 $user_pass = $user_data;
 if(($user_id == "") || ($user_pass == "")) {
-	echo "1";
+	echo "10";
 }
 else{
 	echo "2";
