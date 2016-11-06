@@ -1,4 +1,5 @@
 <?php
+session_start();
 $tmpSess = $_SESSION['user'];
 #$tmpSess = "aaaaaa";
 require_once("../baseDB/connect_db.php");

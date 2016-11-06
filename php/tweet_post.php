@@ -1,6 +1,6 @@
 <?php
-
-$loginUser = $_SESSION['loginUser']
+session_start();
+$loginUser = $_SESSION['user']
 #$loginUser = "aaaaaa";
 // メールアドレス取得
 $tweet_text = $_POST["tweet_text"];
