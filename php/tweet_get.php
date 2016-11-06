@@ -1,6 +1,6 @@
 <?php
-$tmpSess = $_SESSION['user'];
-#$tmpSess = "aaaaaa";
+#$tmpSess = $_SESSION['user'];
+$tmpSess = "aaaaaa";
 require_once("../baseDB/connect_db.php");
 $stmt = $pdo->prepare("SELECT * FROM tweets WHERE user_id = ? ORDER BY id DESC");
 $stmt->bindValue(1, $tmpSess, PDO::PARAM_STR);
