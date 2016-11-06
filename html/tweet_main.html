@@ -30,21 +30,24 @@ req.onreadystatechange = function() {
                 var data = req.responseText; // responseXML もあり
                 console.log( 'COMPLETE! :'+data );
 				var contact = JSON.parse(data);
+				document.getElementById("tweet").value = "<table>";
 				for(var i =0; i<contact.length-1; i++){
 					var tmpData = data[i];
-				 	document.getElementById("tweet").value("<tr>");
-				    document.getElementById("tweet").value("<td>" . tmpData[0]);
-				    document.getElementById("tweet").value("</td>");
-				    document.getElementById("tweet").value("<td>" . tmpData[1]);
-				    document.getElementById("tweet").value("</td>");
-				    document.getElementById("tweet").value("<td>" . tmpData[3]);
-				    document.getElementById("tweet").value("</td>");
-				    document.getElementById("tweet").value("</tr>");
-				    document.getElementById("tweet").value("<tr>");
-				    document.getElementById("tweet").value("<td>ツイート内容:" . tmpData[2]);
-				    document.getElementById("tweet").value("</td>");
-				    document.getElementById("tweet").value("</tr>");
+				 	document.getElementById("tweet").value += "<tr>";
+				    document.getElementById("tweet").value += "<td>" . tmpData[0];
+				    document.getElementById("tweet").value += "</td>";
+				    document.getElementById("tweet").value += "<td>" . tmpData[1];
+				    document.getElementById("tweet").value += "</td>";
+				    document.getElementById("tweet").value += "<td>" . tmpData[3];
+				    document.getElementById("tweet").value += "</td>";
+				    document.getElementById("tweet").value += "</tr>";
+				    document.getElementById("tweet").value += "<tr>";
+				    document.getElementById("tweet").value += "<td>ツイート内容:" . tmpData[2];
+				    document.getElementById("tweet").value += "</td>";
+				    document.getElementById("tweet").value += "</tr>";
 				}
+
+				document.getElementById("tweet").value = "</table>";
             } else {
                 console.log( 'Failed. HttpStatus: '+req.statusText );
             }
