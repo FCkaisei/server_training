@@ -1,5 +1,7 @@
 <?php
-print("korehaderu");
+require_once('../chromephp/ChromePhp.php');
+ChromePhp::Log('include');
+ChromePhp::Log('データ・ベース登録失敗');
 $user_data = $POST["user_data"];
 $user_id = $user_data;
 $user_pass = $user_data;
@@ -19,7 +21,6 @@ else{
 		print('ERROR:'.$e->getMessage());
 		die();
 	}
-
 	$sql = "select * from members";
 	$sth = $pdo->prepare($sql);
 	$sth->execute();
