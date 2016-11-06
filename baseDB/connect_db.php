@@ -1,8 +1,16 @@
 <?php
-	$server = "localhost";
+	$dsn = 'mysql:dbname=UserLoginDB;host=localhost';
 	$user = "root";
 	$password = "";
-	$dbname = "UserLoginDB";
-	$conn = mysql_connect($server, $user, $password);
-	mysql_select_db($dbname);
+try{
+	$pdo = new PDO($dsn, $user, $password);
+	print("DB->PDO接続成功");
+	$pdo->setAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, true);
+	$pdo->query('SET NAMES utf8');
+}
+catch(PDOException $e){
+	print('ERROR:'.$e->getMessage());
+	die();
+}
+
  ?>

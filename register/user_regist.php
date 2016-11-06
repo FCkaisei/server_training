@@ -16,13 +16,13 @@ foreach($formList as $value) {
 $error = array();
 
 /* データベース接続設定 */
-require_once('connect_db.php');
+require_once('../baseDB/connect_db.php');
 
 /* ユーザーIDチェック */
-$query = "select userid from members where userid = '$input_userid'";
-$resultId = mysql_query($query);
-chromephp::Log("同じIDがあるかチェック".$resultId);
-if(mysql_num_rows($resultId) > 0 ) { //ユーザーIDが存在
+$stmt = $pdo -> prepare("SELECT userid FROM members WHERE userid = ?");
+$stmt-> bindValue(1, $input_userid, PDO::PARAM_STR);
+$stmt-> execute();
+if($stmt->rowCount() > 0 ) { //ユーザーIDが存在
   array_push($error,"このユーザーIDはすでに登録されています。");
 }
 
@@ -31,19 +31,15 @@ if(count($error) == 0) {
 	//登録するデーターにエラーがない場合、memberテーブルにデータを追加する。
 	//トランザクション開始
 	mysql_query("begin");
-	ChromePhp::Log($input_userid);
-	ChromePhp::Log($input_password);
-	ChromePhp::Log($input_name);
-	ChromePhp::Log($input_email);
-	//$query = "INSERT INTO members VALUES ('$input_userid','$input_password','$input_name','$input_email','a')";
-	$query = "INSERT INTO members VALUES ('$input_userid','$input_password','$input_name','$input_email','sdfasasdf')";
-	$result = mysql_query($query);
-	ChromePhp::Log($result);
-	ChromePhp::Log(mysql_query($query) or die(mysql_error()));
-	if($result){  //登録完了
-		//トランザクション終わり
-		mysql_query("commit");
 
+
+    $stmt = $pdo -> prepare("INSERT INTO members VALUES(:user_id,:pass,:input_name,:email,'hoge')");
+	$stmt-> bindValue(':user_id', $input_userid, PDO::PARAM_STR);
+	$stmt-> bindValue(':pass', $input_password, PDO::PARAM_STR);
+	$stmt-> bindValue(':input_name', $input_name, PDO::PARAM_STR);
+	$stmt-> bindValue(':email', $input_email, PDO::PARAM_STR);
+	$result = $stmt-> execute();
+	if($result){  //登録完了
 		/* 登録完了メールを送信 */
 		mb_language("japanese");  //言語の設定
 		mb_internal_encoding("utf-8");//内部エンコーディングの設定
@@ -53,9 +49,8 @@ if(count($error) == 0) {
 		$message = "会員登録ありがとうございました。\n".
 		"登録いただいたユーザーIDは[$input_userid]です。\n".
 		"↓下記URLからログイン！".
-		"http://ec2-54-245-28-75.us-west-2.compute.amazonaws.com/server/login.php";
+		"http://ec2-54-245-28-75.us-west-2.compute.amazonaws.com/server_training/login.php";
 		$header = "From:test@test.com";
-
 		if(!mb_send_mail($to, $subject, $message, $header)) {  //メール送信に失敗したら
 			array_push($error,"メールが送信できませんでした。<br>ただしデータベースへの登録は完了しています。");
 		}

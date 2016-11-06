@@ -22,20 +22,33 @@ else {
   //データベースへ接続
   require_once("baseDB/connect_db.php");
 
-  //memberテーブルのデータを取得
-  $query = "select * from members";
-  $result = mysql_query($query);
 
-  //フォームから取得したUSERIDとデータベース内のUSERIDが一致したらデータベースのPASSWORDを変数に格納
-  while($data = mysql_fetch_array($result)) {
-    if($data['userid'] == $formUserId) {  //フォームから取得したUSERIDとデータベースのUSERIDが一致
-      $dbPassword = $data['password'];
+  $dsn = 'mysql:dbname=UserLoginDB;host=localhost';
+  $user = "root";
+  $password = "";
+try{
+  $pdo = new PDO($dsn, $user, $password);
+  print("DB->PDO接続成功");
+  $pdo->query('SET NAMES utf8');
+}
+catch(PDOException $e){
+  print('ERROR:'.$e->getMessage());
+  die();
+}
+$sql = "select * from members";
+$sth = $pdo->prepare($sql);
+$sth->execute();
+$sqlResult = $sth->fetchAll();
+//フォームから取得したUSERIDとデータベース内のUSERIDが一致したらデータベースのPASSWORDを変数に格納
+foreach($sqlResult as $data){
+      if($data['userid'] == $formUserId) {  //フォームから取得したUSERIDとデータベースのUSERIDが一致
+          $dbPassword = $data['password'];
       break;
     }
   }
 
   //MySQLデータベースを閉じる
-  mysql_close($conn);
+  //mysql_close($conn);
 
   //$dbPasswordという変数に値が格納されていない場合→formUserIdとデータベースのIDが不一致
   if(!isset($dbPassword)) {

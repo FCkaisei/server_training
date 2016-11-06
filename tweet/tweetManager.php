@@ -16,6 +16,13 @@ switch($mode) {
   $module = "tweet_regist.php";
   break;
 
+  case "user_search":
+  $module = "../follows/follow.php";
+  break;
+
+  case "user_follow":
+  $module = "../follows/followEnd.php";
+  break;
   //メールアドレス登録（初期画面）
   default:
   $module = "tweet_form.php";

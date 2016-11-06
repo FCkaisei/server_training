@@ -3,14 +3,16 @@ ini_set("display_errors", On);
 error_reporting(E_ALL);
 $pre_userid = $_GET['pre_userid'];
 $isErrorFlag = true;
-require_once("connect_db.php");
-$query = "select email from members where pre_userid = '$pre_userid'";
-$result = mysql_query($query);
+include("../baseDB/connect_db.php");
+
+$stmt = $pdo -> prepare("SELECT email FROM members WHERE pre_userid = ?");
+$stmt-> bindValue(1, $pre_userid, PDO::PARAM_STR);
+$stmt-> execute();
+$result = $stmt->fetchAll();
 //データ・ベースにより取得したメールアドレスを表示してみる
-if(mysql_num_rows($result) > 0){
+if($stmt->rowCount() > 0){
 	$isErrorFlag = false;
-	$data = mysql_fetch_array($result);
-	$email = $data['email'];
+	$email = $result[0][0];
 }
 if($isErrorFlag){
 ?>
