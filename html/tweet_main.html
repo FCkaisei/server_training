@@ -28,12 +28,10 @@ req.onreadystatechange = function() {
         case 4: // データ受信完了.
             if( req.status == 200 || req.status == 304 ) {
                 var jsonData = req.responseText; // responseXML もあり
-				var data = "'"+jsonData+"'";
-				console.log( 'COMPLETE! :'　+　data );
+				var jsonString = "'"+jsonData+"'";
+				var jsonObject = JSON.parse(jsonString);
 
-				var con = JSON.parse(data);
-
-				console.log( 'COMPLETE! :'　+　con );
+				console.log( 'COMPLETE! :'　+　jsonObject );
 				document.getElementById("tweet").value = "<table>";
 				var i = 0;
 				for(var tmpData in con){
