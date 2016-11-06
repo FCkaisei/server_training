@@ -1,14 +1,27 @@
 <?php
-
-echo($_SESSION['user']);
-$tmpSess = $_SESSION['user'];
+// メールアドレス取得
+$tweet_text = $_POST["tweet_text"];
+//エラーメッセージ配列
+$error = array();
+//データ・ベースに接続
 require_once("../baseDB/connect_db.php");
-$stmt = $pdo->prepare("SELECT * FROM tweets WHERE user_id = ? ORDER BY id DESC");
 
-$stmt->bindValue(1, $tmpSess, PDO::PARAM_STR);
-$stmt->execute();
-$result = $stmt->fetchAll();
-
-$jsonResult = json_encode($result);
-echo "document.write('" . $jsonResult . "');";
+if($tweet_text == ""){
+	array_push($error, "ツイートを入力しよう！");
+}
+else{
+	$now = date('Y-m-d H:i:s');
+	$hoge = "gasdfasd";
+	$stmt = $pdo->prepare("INSERT INTO tweets(user_id,tweet_text,time)VALUES(:user_id, :tweet_text, :timer)");
+	$stmt->bindValue(':user_id',$_SESSION['loginUser'], PDO::PARAM_STR);
+	$stmt->bindValue(':tweet_text', $tweet_text, PDO::PARAM_STR);
+	$stmt->bindValue(':timer', $now, PDO::PARAM_STR);
+	$stmt->execute();
+	if($stmt == false){
+		array_push($error, "tweetが登録できませんでした");
+	}
+	else{
+		console.Log("OK");
+	}
+}
 ?>
