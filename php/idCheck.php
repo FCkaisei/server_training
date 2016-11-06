@@ -1,6 +1,9 @@
 <?php
-$user_id = $_POST["user_id"];
-$user_pass = $_POST["user_pass"];
+$user_data = $POST["user_data"]
+$user_id = $user_data[0];
+$user_pass = $user_data[1];
+
+
 if(($user_id == "") || ($user_pass == "")) {
 }
 else{
