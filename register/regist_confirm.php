@@ -29,25 +29,23 @@ if(strlen($input_password) < 6 || strlen($input_password) > 16) {
 <div class="error-msg">
 <?php
 /* エラー 入力フォーム表示 $error */
-if(count($error) > 0) {
-
-	if(count($error)){
-		foreach($error as $value){
-			?>
-			<table>
-				<caption>メールアドレス登録エラー</caption>
-				<tr>
-					<td class = "item">Error:</td>
-					<td>
-						<?php
-						print $value;
-						?>
-					</td>
-				</tr>
-			</table>
-			<?php
-		}
+if(count($error)){
+	foreach($error as $value){
+		?>
+		<table>
+			<caption>メールアドレス登録エラー</caption>
+			<tr>
+				<td class = "item">Error:</td>
+				<td>
+					<?php
+					print $value;
+					?>
+				</td>
+			</tr>
+		</table>
+		<?php
 	}
+}
 
 
   //require_once("regist_form.php");
