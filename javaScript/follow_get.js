@@ -21,21 +21,11 @@ req.onreadystatechange = function() {
 				var tweetBox = document.getElementById("user");
 				tweetBox.innerHTML = "";
 				for(var i = 0; i < jsonObject.length; i++){
-					/*
-					ユーザーNAME,
-					フォローボタン
-					*/
-					var tmpOtherId = 'followOther(jsonObject[i]["userid"])';
-					tweetBox.innerHTML += "<tr>"
-					+"<td>"
-					+jsonObject[i]['userid']
-					+"</td>"
-					+"<td>"
-					//ボタンにしたろ\\
-					//"location.href='
-					+'<button onClick='+tmpOtherId+'></button>'
-					+"</td>"
-					+"</tr>"
+					var element = document.createElement('tr');
+
+					var buttonElement = document.createElement("button");
+					buttonElement.onclick =followOther(jsonObject[i]["userid"]);
+					element.appendChild(buttonElement);
 				}
             } else {
                 console.log( 'Failed. HttpStatus: '+req.statusText );
