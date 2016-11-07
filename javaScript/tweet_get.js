@@ -19,6 +19,9 @@ req.onreadystatechange = function() {
         case 4:
             if( req.status == 200 || req.status == 304 ) {
 				var jsonString = req.responseText;
+				if(jsonString == null || jsonString == "" || jsonString == undefined ){
+					return;
+				}
 				var jsonObject = JSON.parse(jsonString);
 				console.log(jsonObject);
 				var tweetBox = document.getElementById("tweet");
