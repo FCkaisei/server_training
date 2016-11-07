@@ -24,13 +24,17 @@ req.onreadystatechange = function() {
 					var element = document.createElement('tr');
 					var tdElement = document.createElement("td");
 					var buttonElement = document.createElement("button");
-					buttonElement.setAttribute('value','フォローボタン');
+					var buttonText = document.createTextNode("フォロー");
+					buttonElement.appendChild(buttonText);
 					var td2Element = document.createElement("td");
 					var userName = document.createElement("div");
 					var newtext = document.createTextNode(jsonObject[i]["userid"]);
 					userName.appendChild(newtext);
+
 					buttonElement.onclick = followOther;
 					buttonElement.setAttribute("data-userid",jsonObject[i]["userid"]);
+
+
 					element.appendChild(tdElement);
 					tdElement.appendChild(buttonElement);
 					element.appendChild(td2Element);
