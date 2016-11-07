@@ -6,25 +6,26 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
-	<nav class="navbar navbar-default ">
+	<nav class="navbar navbar-inverse navbar-static-top">
   		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="./login.html">つついたー</a>
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav_target">
-        
-	      		</button>
+				<a class="navbar-brand" href="./tweet_main.html">つついたー</a>
     		</div>
 			<div class="collapse navbar-collapse" id="nav_target">
       			<ul class="nav navbar-nav">
-					<li class="active"><a href="./login.html">tweet</a></li>
+					<li class="active"><a href="./tweet_main.html">tweet</a></li>
           			<li><a href="./follow_main.html">follow</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li>
+						<button type="button" class="btn btn-primary" onClick="getTweet()">getTweet</button>
+					</li>
 				</ul>
 			</div>
 		</div>
 	</nav>
 
 <!--ここをPOSTで送るようにする。-->
-<button type="button" class="btn btn-primary" onClick="getTweet()">getTweet</button>
 <div class="item">ツイート内容：</div>
 <input type="text" name="tweet_text" id="tweetText" size="40">
 <button type="button" class="btn btn-primary" onClick="execPost()">POST送信</button>
