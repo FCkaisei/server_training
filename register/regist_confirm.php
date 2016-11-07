@@ -30,7 +30,7 @@ if(strlen($input_password) < 6 || strlen($input_password) > 16) {
 <?php
 /* エラー 入力フォーム表示 $error */
 if(count($error) > 0) {
-  require_once("regist_form.php");
+  //require_once("regist_form.php");
 ?>
 </div>
 <?php
