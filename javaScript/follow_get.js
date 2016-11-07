@@ -29,6 +29,7 @@ req.onreadystatechange = function() {
 					var userName = document.createElement("div");
 					var newtext = document.createTextNode(jsonObject[i]["userid"]);
 					userName.appendChild(newtext);
+
 					buttonElement.onclick = followOther.bind(jsonObject[i]["userid"]);
 					element.appendChild(tdElement);
 					tdElement.appendChild(buttonElement);
@@ -53,6 +54,7 @@ function execPost() {
 }
 
 function followOther(other_id){
+	console.log(other_id);
 	var textBoxValue = other_id;
 	var param = "user_id="+textBoxValue;
 	req.open('POST', '../php/followEnd.php', true);
