@@ -29,11 +29,8 @@ req.onreadystatechange = function() {
 					var userName = document.createElement("div");
 					var newtext = document.createTextNode(jsonObject[i]["userid"]);
 					userName.appendChild(newtext);
-					var tmpUserId = jsonObject[i]["userid"];
-					buttonElement.onclick = function(){
-						followOther(tmpUserId);
-					}
-
+					buttonElement.onclick = followOther;
+					buttonElement.setAttribute("data-userid",jsonObject[i]["userid"]);
 					element.appendChild(tdElement);
 					tdElement.appendChild(buttonElement);
 					element.appendChild(td2Element);
@@ -47,6 +44,8 @@ req.onreadystatechange = function() {
 		}
 	}
 
+
+
 function execPost() {
 	var textBoxValue = document.getElementById('others_id').value;
 	var param = "others_id="+textBoxValue;
@@ -56,7 +55,8 @@ function execPost() {
 	req.send(param);
 }
 
-function followOther(other_id){
+function followOther(){
+	var other_id = this.getAttribute("data-userid");
 	console.log(other_id);
 	var textBoxValue = other_id;
 	var param = "user_id="+textBoxValue;
