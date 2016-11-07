@@ -1,22 +1,18 @@
 <?php
 ini_set("display_errors", On);
 error_reporting(E_ALL);
-/* 入力フォームからパラメータを取得 */
+$error = array();
 $formList = array('mode', 'input_userid', 'input_password', 'input_name', 'input_email');
-/* ポストデータを取得しパラメータと同名の変数に格納 */
 foreach($formList as $value) {
 	$$value = $_POST[$value];
 }
-/* エラーメッセージの初期化 */
-$error = array();
 
-/* データベース接続設定 */
 require_once('../baseDB/connect_db.php');
 
-/* ユーザーIDチェック */
 $stmt = $pdo -> prepare("SELECT userid FROM members WHERE userid = ?");
 $stmt-> bindValue(1, $input_userid, PDO::PARAM_STR);
 $stmt-> execute();
+
 if($stmt->rowCount() > 0 ) { //ユーザーIDが存在
 	array_push($error,"このユーザーIDはすでに登録されています。");
 }

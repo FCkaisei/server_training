@@ -1,42 +1,33 @@
 <?php
-/* 入力フォームからパラメータを取得 */
+$error = array();
 $formList = array('mode','pre_userid','input_userid','input_password','input_name','input_email');
-
-/* 必須項目 */
 $requireList = array('mode','input_userid','input_password','input_name');
 
-/* ポストデータを取得しパラメータと同名の変数に格納 */
 foreach($formList as $value) {
   $$value = $_POST[$value];
 }
 
-/* エラーメッセージの初期化 */
-$error = array();
-
 /* 必須項目入力チェック */
 foreach($requireList as $value) {
 	if($$value == "") {
-		array_push($error,"入力されていない項目があります。");
+		array_push($error,"入力データが足りません");
 		break;
 	}
 }
 
 /* パスワードチェック */
 if(strlen($input_password) < 6 || strlen($input_password) > 16) {
-  array_push($error,"パスワードは6文字以上16文字以下でおにゃしゃす");
+  array_push($error,"pass 6-16");
 }
 ?>
-<div class="error-msg">
+<div>
 <?php
-/* エラー 入力フォーム表示 $error */
 if(count($error) > 0) {
-	print "era";
-  //require_once("regist_form.php");
-?>
+	?>
 </div>
 <?php
-} else {
-?>
+}else {
+	?>
 <form method="post" action="./user_regist.php">
   <table>
     <caption>入力情報確認ページ</caption>
