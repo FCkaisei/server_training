@@ -52,7 +52,7 @@ if(count($error)){
 ?>
 </div>
 <?php
-} else {
+else {
 ?>
 <form method="post" action="./user_regist.php">
   <table>
