@@ -22,10 +22,16 @@ req.onreadystatechange = function() {
 				tweetBox.innerHTML = "";
 				for(var i = 0; i < jsonObject.length; i++){
 					var element = document.createElement('tr');
+					var tdElement = document.createElement("td");
 					var buttonElement = document.createElement("button");
-
+					var td2Element = document.createElement("td");
+					var userName = document.createElement("div");
+					userName.appendChild(jsonObject[i]["userid"]);
 					buttonElement.onclick = followOther.bind(jsonObject[i]["userid"]);
-					element.appendChild(buttonElement);
+					element.appendChild(tdElement);
+					tdElement.appendChild(buttonElement);
+					element.appendChild(td2Element);
+					td2Element.appendChild(userName);
 					tweetBox.appendChild(element);
 				}
             } else {
