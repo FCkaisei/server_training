@@ -33,7 +33,7 @@ req.onreadystatechange = function() {
 					+"<td>"
 					//ボタンにしたろ\\
 					//"location.href='
-					+'<button onClick="followOther("'+tmpOtherId+'")"></button>'
+					+'<button onClick="followOther('+tmpOtherId+')"></button>'
 					+"</td>"
 					+"</tr>"
 				}
