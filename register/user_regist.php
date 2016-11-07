@@ -39,7 +39,7 @@ if(count($error) == 0) {
 ?>
 <div>データベース登録完了</div>
 <div class="item">Thanks：</div>
-<div>登録ありがとうございます。<br>登録完了のお知らせをメールで送信しましたので、ご確認ください。</div>
+<div>登録ありがとうございます。</div>
 <?php
 }
 else {
