@@ -29,6 +29,10 @@ req.onreadystatechange = function() {
 					+"<td>"
 					+jsonObject[i]['userid']
 					+"</td>"
+					+"<td>"
+					//ボタンにしたろ
+					+"<button onClick='followOther("+jsonObject[i]['userid']+")' value='フォロー'></button>"
+					+"</td>"
 					+"</tr>"
 				}
             } else {
@@ -42,6 +46,15 @@ function execPost() {
 	var textBoxValue = document.getElementById('others_id').value;
 	var param = "others_id="+textBoxValue;
 	req.open('POST', '../php/user_search.php', true);
+	// POST 送信の場合は Content-Type は固定.
+	req.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
+	req.send(param);
+}
+
+function followOther(other_id){
+	var textBoxValue = other_id;
+	var param = "user_id="+textBoxValue;
+	req.open('POST', '../php/followEnd.php', true);
 	// POST 送信の場合は Content-Type は固定.
 	req.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
 	req.send(param);
