@@ -5,7 +5,6 @@ error_reporting(E_ALL);
 $pre_userid = $_GET['pre_userid'];
 $isErrorFlag = true;
 include("../baseDB/connect_db.php");
-
 $stmt = $pdo -> prepare("SELECT email FROM members WHERE pre_userid = ?");
 $stmt-> bindValue(1, $pre_userid, PDO::PARAM_STR);
 $stmt-> execute();
@@ -69,7 +68,6 @@ else{
 					E-mail：
 				</td>
 				<td>
-					<?php print $email; ?>
 					<input type="hidden" name="input_email" value="<?php print $email; ?>">
 				</td>
 			</tr>
