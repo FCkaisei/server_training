@@ -30,8 +30,8 @@ req.onreadystatechange = function() {
 					+jsonObject[i]['userid']
 					+"</td>"
 					+"<td>"
-					//ボタンにしたろ
-					+"<button onClick='followOther('"+jsonObject[i]['userid']+"')' value='フォロー'></button>"
+					//ボタンにしたろ\\
+					+"<button onClick='followOther(\""+jsonObject[i]['userid']+"\")' value='フォロー'></button>"
 					+"</td>"
 					+"</tr>"
 				}
