@@ -1,6 +1,7 @@
 <?php
 ini_set("display_errors", On);
 error_reporting(E_ALL);
+print($_GET['pre_userid']);
 $pre_userid = $_GET['pre_userid'];
 $isErrorFlag = true;
 include("../baseDB/connect_db.php");
