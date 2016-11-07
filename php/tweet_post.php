@@ -1,4 +1,5 @@
 <?php
+	session_start();
 	$loginUser = $_SESSION['user'];
 
 	$tweet_text = $_POST["tweet_text"];
