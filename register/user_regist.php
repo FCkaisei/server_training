@@ -49,7 +49,7 @@ if(count($error) == 0) {
 		$message = "会員登録ありがとうございました。\n".
 		"登録いただいたユーザーIDは[$input_userid]です。\n".
 		"↓下記URLからログイン！".
-		"http://ec2-54-245-28-75.us-west-2.compute.amazonaws.com/server_training/login.php";
+		"http://ec2-54-245-28-75.us-west-2.compute.amazonaws.com/server_training/html/login.html";
 		$header = "From:test@test.com";
 		if(!mb_send_mail($to, $subject, $message, $header)) {  //メール送信に失敗したら
 			array_push($error,"メールが送信できませんでした。<br>ただしデータベースへの登録は完了しています。");

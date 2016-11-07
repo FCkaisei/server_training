@@ -36,8 +36,7 @@ if(count($error) > 0) {
 <?php
 } else {
 ?>
-<form method="post" action="registerManager.php">
-  <input type="hidden" name="mode" value="user_regist">
+<form method="post" action="./user_regist.php">
   <table>
     <caption>入力情報確認ページ</caption>
     <tr>

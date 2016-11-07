@@ -26,7 +26,7 @@ if($isErrorFlag){
 		<td>
 			このURLは利用できません<br>
 			もう一度メールアドレスの登録からお願いします。<br>
-			<a href="registerManager.php">会員登録ページ</a>
+			<a href="../html/email_form.html">会員登録ページ</a>
 		</td>
 	</tr>
 </table>
@@ -34,8 +34,7 @@ if($isErrorFlag){
 }
 else{
 	?>
-	<form method="post" action="registerManager.php">
-		<input type="hidden" name="mode" value="regist_confirm">
+	<form method="post" action="./regist_config.php">
 		<input type="hidden" name="pre_userid" value="<?php print $pre_userid; ?>">
 		<table>
 			<caption>会員情報登録フォーム</caption>
@@ -53,7 +52,6 @@ else{
 				</td>
 				<td>
 					<input type="text" size="30" name="input_password" value="">
-					&nbsp;&nbsp;※ 6文字以上16文字以下
 				</td>
 			</tr>
 			<tr>
