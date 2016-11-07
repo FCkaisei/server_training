@@ -27,15 +27,7 @@ req.onreadystatechange = function() {
 					*/
 					tweetBox.innerHTML += "<tr>"
 					+"<td>"
-					+jsonObject[i]['user_id']
-					+"</td>"
-					+"<td>"
-					+jsonObject[i]['time']
-					+"</td>"
-					+"</tr>"
-					+"<tr>"
-					+"<td colspan=2>ツイート内容:"
-					+jsonObject[i]['tweet_text']
+					+jsonObject[i]['userid']
 					+"</td>"
 					+"</tr>"
 				}
