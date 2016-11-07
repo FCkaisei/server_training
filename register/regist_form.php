@@ -34,7 +34,7 @@ if($isErrorFlag){
 }
 else{
 	?>
-	<form method="post" action="./regist_config.php">
+	<form method="post" action="./regist_confirm.php">
 		<input type="hidden" name="pre_userid" value="<?php print $pre_userid; ?>">
 		<table>
 			<caption>会員情報登録フォーム</caption>
