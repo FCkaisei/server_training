@@ -26,7 +26,8 @@ req.onreadystatechange = function() {
 					var buttonElement = document.createElement("button");
 					var td2Element = document.createElement("td");
 					var userName = document.createElement("div");
-					userName.createTextNode(jsonObject[i]["userid"]);
+					var newtext = document.createTextNode(jsonObject[i]["userid"]);
+					userName.appendChild(newtext);
 					buttonElement.onclick = followOther.bind(jsonObject[i]["userid"]);
 					element.appendChild(tdElement);
 					tdElement.appendChild(buttonElement);
