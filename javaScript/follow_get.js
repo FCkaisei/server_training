@@ -25,7 +25,7 @@ req.onreadystatechange = function() {
 					ユーザーNAME,
 					フォローボタン
 					*/
-					var tmpOtherId = jsonObject[i]["userid"];
+					var tmpOtherId = 'followOther(jsonObject[i]["userid"])';
 					tweetBox.innerHTML += "<tr>"
 					+"<td>"
 					+jsonObject[i]['userid']
@@ -33,7 +33,7 @@ req.onreadystatechange = function() {
 					+"<td>"
 					//ボタンにしたろ\\
 					//"location.href='
-					+'<button onClick="followOther('+tmpOtherId+')"></button>'
+					+'<button onClick="'+tmpOtherId+'"></button>'
 					+"</td>"
 					+"</tr>"
 				}
