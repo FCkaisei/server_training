@@ -17,6 +17,7 @@ req.onreadystatechange = function() {
             if( req.status == 200 || req.status == 304 ) {
 				var jsonString = req.responseText;
 				if(jsonString == null || jsonString == "" || jsonString == undefined ){
+					execPost();
 					return;
 				}
 				var jsonObject = JSON.parse(jsonString);
