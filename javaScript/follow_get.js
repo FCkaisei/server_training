@@ -23,8 +23,8 @@ req.onreadystatechange = function() {
 				for(var i = 0; i < jsonObject.length; i++){
 					var element = document.createElement('tr');
 					var buttonElement = document.createElement("button");
-					buttonElement.onclick = followOther(jsonObject[i]["userid"]);
-					element.appendChild(buttonElement);
+					//buttonElement.onclick = followOther(jsonObject[i]["userid"]);
+					//element.appendChild(buttonElement);
 					tweetBox.appendChild(element);
 				}
             } else {
