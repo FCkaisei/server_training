@@ -6,27 +6,27 @@ if($_GET['pre_userid'] !="") {
 }
 
 switch($mode) {
-	
+
   	case"email_regist":
-		header('Location: ../php/email_regist.php');
+		header('Location: ../register/email_regist.php');
     	exit;
 	break;
 	  //会員登録フォーム画面
 	  case"regist_form":
-		  header('Location: ../php/regist_form.php');
+		  header('Location: ../register/regist_form.php');
 		  exit;
 	  break;
 
 	  //登録内容確認画面
 	  case"regist_confirm":
-	  	header('Location: ../php/regist_confirm.php');
+	  	header('Location: ../register/regist_confirm.php');
 	  	exit;
 	  break;
 
 	  //会員登録画面
 	  case"user_regist":
 	  $module = "user_regist.php";
-	  header('Location: ../html/user_regist.php');
+	  header('Location: ../register/user_regist.php');
 	  exit;
 	  break;
 
