@@ -1,6 +1,6 @@
 <?php
-	#$loginUser = $_SESSION['loginUser']
-	$loginUser = "aaaaaa";
+	$loginUser = $_SESSION['user'];
+
 	$tweet_text = $_POST["tweet_text"];
 	$error = array();
 	require_once("../baseDB/connect_db.php");
