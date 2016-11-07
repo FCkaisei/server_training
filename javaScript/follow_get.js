@@ -24,7 +24,7 @@ req.onreadystatechange = function() {
 					var element = document.createElement('tr');
 					var buttonElement = document.createElement("button");
 
-					buttonElement.onclick = new function('followOther(jsonObject[i]["userid"]);');
+					buttonElement.onclick = followOther.bind(jsonObject[i]["userid"]);
 					element.appendChild(buttonElement);
 					tweetBox.appendChild(element);
 				}
