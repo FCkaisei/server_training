@@ -1,7 +1,7 @@
 <?php
 // メールアドレス取得
-$email = $_POST["email"];
-
+$email = $_POST['email'];
+echo $email;
 //エラーメッセージ配列
 $error = array();
 
