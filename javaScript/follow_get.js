@@ -24,6 +24,7 @@ req.onreadystatechange = function() {
 					var element = document.createElement('tr');
 					var tdElement = document.createElement("td");
 					var buttonElement = document.createElement("button");
+					buttonElement.setAttribute('value','フォローボタン');
 					var td2Element = document.createElement("td");
 					var userName = document.createElement("div");
 					var newtext = document.createTextNode(jsonObject[i]["userid"]);
