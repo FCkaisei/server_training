@@ -1,7 +1,7 @@
 <?php
 ini_set("display_errors", On);
 error_reporting(E_ALL);
-print($_GET['pre_userid']);
+
 $pre_userid = $_GET['pre_userid'];
 $isErrorFlag = true;
 include("../baseDB/connect_db.php");
@@ -36,6 +36,7 @@ if($isErrorFlag){
 else{
 	?>
 	<form method="post" action="./regist_confirm.php">
+		<input type="hidden" name="mode" value="regist_confirm">
 		<input type="hidden" name="pre_userid" value="<?php print $pre_userid; ?>">
 		<table>
 			<caption>会員情報登録フォーム</caption>
