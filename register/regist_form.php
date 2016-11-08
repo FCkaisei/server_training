@@ -32,7 +32,7 @@
 		</tr>
 		<tr>
 			<td class="item">E-mail：</td>
-			<td><input type="hidden" name="input_email" value="<?php print $email; ?>"></td>
+			<td><input type="hidden" name="input_email" value="<?php print $email; ?>"><?php print $email; ?></td>
 		</tr>
 	</table>
 	<div>

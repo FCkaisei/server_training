@@ -1,20 +1,13 @@
 <?php
-	ini_set("display_errors", On);
-	error_reporting(E_ALL);
-?>
-
-<?php
 	$error = array();
 	$userId = $_POST['input_userid'];
 	$userPass = $_POST['input_password'];
 	$userEmail = $_POST['input_email'];
 
-
 	//パスチェック.強化の必要あり
 	if(strlen($userPass) < 6 || strlen($userPass) > 16) {
 		array_push($error,"pass 6-16");
 	}
-
 ?>
 <div>
 <?php
