@@ -2,6 +2,7 @@
 	ini_set("display_errors", On);
 	error_reporting(E_ALL);
 ?>
+
 <?php
 
 	$error = array();
@@ -48,11 +49,11 @@
 	<div class="item">Error：</div>
 	<div>
 <?php
-	foreach($error as $value) {
-		print $value;
+		foreach($error as $value) {
+			print $value;
 ?>
 	</div>
 <?php
-	}
+		}
 	}
 ?>

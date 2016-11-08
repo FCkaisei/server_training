@@ -1,22 +1,24 @@
 <?php
-$pre_userid = $_GET['pre_userid'];
-$isErrorFlag = true;
-include("../baseDB/connect_db.php");
-$stmt = $pdo -> prepare("SELECT email FROM members WHERE pre_userid = ?");
-$stmt-> bindValue(1, $pre_userid, PDO::PARAM_STR);
-$stmt-> execute();
-$result = $stmt->fetchAll();
-//データ・ベースにより取得したメールアドレスを表示してみる
-if($stmt->rowCount() > 0){
-	$isErrorFlag = false;
-	$email = $result[0][0];
-}
-if($isErrorFlag){
-}
-else{
+	ini_set("display_errors", On);
+	error_reporting(E_ALL);
+	$pre_userid = $_GET['pre_userid'];
+	$isErrorFlag = true;
+	include("../baseDB/connect_db.php");
+	$stmt = $pdo -> prepare("SELECT email FROM members WHERE pre_userid = ?");
+	$stmt-> bindValue(1, $pre_userid, PDO::PARAM_STR);
+	$stmt-> execute();
+	$result = $stmt->fetchAll();
+
+	//データ・ベースにより取得したメールアドレスを表示してみる
+	if($stmt->rowCount() > 0){
+		$isErrorFlag = false;
+		$email = $result[0][0];
+	}
+	if($isErrorFlag){
+	}
+	else{
 ?>
-<form method="post" action="./regist_confirm.php">
-	<input type="hidden" name="mode" value="regist_confirm">
+<form method="post" action="../register/regist_confirm.php">
 	<input type="hidden" name="pre_userid" value="<?php print $pre_userid; ?>">
 	<table>
 		<caption>会員情報登録フォーム</caption>
@@ -38,5 +40,5 @@ else{
 	</div>
 </form>
 <?php
-}
+	}
 ?>
