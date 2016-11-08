@@ -29,10 +29,6 @@ else{
 			<td><input type="text" size="30" name="input_password" value=""></td>
 		</tr>
 		<tr>
-			<td class="item">名前：</td>
-			<td><input type="text" size="30" name="input_name" value=""></td>
-		</tr>
-		<tr>
 			<td class="item">E-mail：</td>
 			<td><input type="hidden" name="input_email" value="<?php print $email; ?>"></td>
 		</tr>

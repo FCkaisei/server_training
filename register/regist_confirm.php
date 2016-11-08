@@ -1,7 +1,7 @@
 <?php
 	$error = array();
 	$userId = $_POST['input_userid'];
-	$userPass = $_POST['input_userpassword'];
+	$userPass = $_POST['input_password'];
 	$userEmail = $_POST['input_email'];
 
 	//データ入力チェック
