@@ -9,9 +9,8 @@
 	$userPass = $_POST['input_password'];
 	$userEmail = $_POST['input_email'];
 
-	//データ入力チェック
-	if($userId == ""　|| $userPass == "" || $userEmail == ""){
-		array_push($error, "入力データが不足");
-	}
-
+	print $userId;
+	print $userPass;
+	print $userPass;
+	print $userEmail;
 ?>
