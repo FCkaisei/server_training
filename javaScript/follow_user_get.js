@@ -62,3 +62,14 @@ function getFollowUser(){
 	req.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
 	req.send(null);
 }
+
+function followOther(){
+	var other_id = this.getAttribute("data-userid");
+	console.log(other_id);
+	var textBoxValue = other_id;
+	var param = "user_id="+textBoxValue;
+	req.open('POST', '../php/followEnd.php', true);
+	// POST 送信の場合は Content-Type は固定.
+	req.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
+	req.send(param);
+}
