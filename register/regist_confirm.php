@@ -3,6 +3,17 @@ $error = array();
 $formList = array('mode','pre_userid','input_userid','input_password','input_name','input_email');
 $requireList = array('mode','input_userid','input_password','input_name');
 
+foreach($formList as $value) {
+  $$value = $_POST[$value];
+}
+
+foreach($requireList as $value) {
+	if($$value == "") {
+		array_push($error,"入力データが足りません");
+		break;
+	}
+}
+
 /* パスワードチェック */
 if(strlen($input_password) < 6 || strlen($input_password) > 16) {
   array_push($error,"pass 6-16");
