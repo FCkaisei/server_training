@@ -1,54 +1,46 @@
 <?php
-$error = array();
-$formList = array('mode','pre_userid','input_userid','input_password','input_name','input_email');
-$requireList = array('mode','input_userid','input_password','input_name');
+	$error = array();
+	$userId = $_POST['input_userid'];
+	$userPass = $_POST['input_userpassword'];
+	$userEmail = $_POST['input_email'];
 
-foreach($formList as $value) {
-  $$value = $_POST[$value];
-}
-
-foreach($requireList as $value) {
-	if($$value == "") {
-		array_push($error,"入力データが足りません");
-		break;
+	//データ入力チェック
+	if($userId == "",$userPass == "", $userEmail == ""){
+		array_push($error, "入力データが不足");
 	}
-}
 
-/* パスワードチェック */
-if(strlen($input_password) < 6 || strlen($input_password) > 16) {
-  array_push($error,"pass 6-16");
-}
+	//パスチェック.強化の必要あり
+	if(strlen($input_password) < 6 || strlen($input_password) > 16) {
+		array_push($error,"pass 6-16");
+	}
+
 ?>
 <div>
 <?php
-if(count($error) > 0) {
-	?>
+	if(count($error) > 0) {
+?>
 </div>
 <?php
-}else {
-	?>
+	}else {
+?>
 <form method="post" action="./user_regist.php">
-  <table>
-    <caption>入力情報確認ページ</caption>
-    <tr>
-      <td class="item">ユーザー名：</td>
-      <td><?php print $input_userid;?><input type="hidden" name="input_userid" value="<?php print $input_userid;?>"></td>
-    </tr>
-    <tr>
-      <td class="item">パスワード：</td>
-      <td><?php print $input_password;?><input type="hidden" name="input_password" value="<?php print $input_password;?>"></td>
-    </tr>
-    <tr>
-      <td class="item">名前：</td>
-      <td><?php print $input_name;?><input type="hidden" name="input_name" value="<?php print $input_name;?>"></td>
-    </tr>
-    <tr>
-      <td class="item">メールアドレス：</td>
-      <td><?php print $input_email;?><input type="hidden" name="input_email" value="<?php print $input_email;?>"></td>
-    </tr>
-  </table>
-  <div><input type="submit" value=" 登 録 "></div>
+	<table>
+		<caption>入力情報確認ページ</caption>
+		<tr>
+			<td class="item">ユーザー名：</td>
+			<td><?php print $userId;?><input type="hidden" name="input_userid" value="<?php print $userId;?>"></td>
+		</tr>
+		<tr>
+			<td class="item">パスワード：</td>
+			<td><?php print $userPass;?><input type="hidden" name="input_password" value="<?php print $userPass;?>"></td>
+		</tr>
+		<tr>
+			<td class="item">メールアドレス：</td>
+			<td><?php print $userEmail;?><input type="hidden" name="input_email" value="<?php print $userEmail;?>"></td>
+		</tr>
+	</table>
+	<div><input type="submit" value=" 登 録 "></div>
 </form>
 <?php
-}
+	}
 ?>
