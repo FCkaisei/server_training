@@ -1,4 +1,10 @@
+window.onload = function(){
+		getFollowUser();
+};
+
 var req = new XMLHttpRequest();
+
+
 req.onreadystatechange = function() {
     switch ( req.readyState ) {
         case 0:
