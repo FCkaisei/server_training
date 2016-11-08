@@ -28,7 +28,7 @@
 		</tr>
 		<tr>
 			<td class="item">パスワード：</td>
-			<td><input type="text" size="30" name="input_password" value=""></td>
+			<td><input type="password" size="30" name="input_password" value=""></td>
 		</tr>
 		<tr>
 			<td class="item">E-mail：</td>
