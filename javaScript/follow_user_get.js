@@ -69,7 +69,6 @@ function followOther(){
 	var textBoxValue = other_id;
 	var param = "unfollow_id="+textBoxValue;
 	req.open('POST', '../php/unfollow.php', true);
-	// POST 送信の場合は Content-Type は固定.
 	req.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
 	req.send(param);
 }
