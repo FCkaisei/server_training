@@ -20,3 +20,15 @@
 	}
 
 ?>
+<div>
+<?php
+	if(count($error) > 0) {
+?>
+</div>
+<?php
+	}else {
+?>
+
+<?php
+	}
+?>
