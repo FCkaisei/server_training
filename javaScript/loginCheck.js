@@ -1,37 +1,16 @@
-var req2 = new XMLHttpRequest();
+var req = new XMLHttpRequest();
+var callBack = function(tex) {
+}
 
-req2.onreadystatechange = function() {
-    switch ( req2.readyState ) {
-        case 0:
-            console.log( 'uninitialized!' );
-            break;
-        case 1:
-            console.log( 'loading...' );
-            break;
-        case 2:
-            console.log( 'loaded.' );
-            break;
-        case 3:
-            console.log('interactive... '+req2.responseText.length+' bytes.' );
-            break;
-        case 4:
-            if( req2.status == 200 || req2.status == 304 ) {
-				var jsonString = req2.responseText;
-				console.log(jsonString);
-            } else {
-                console.log( 'Failed. HttpStatus: '+req2.statusText );
-            }
-            break;
-		}
-	}
-
+req.onreadystatechange = function() {
+	StateChange(req,callBack);
+}
 
 function execPost() {
 	var userIdValue = document.getElementById('userId').value;
 	var userPassValue = document.getElementById('userPass').value;
-	var userData = userIdValue;
-	var param = "user_data="+userData;
-	req2.open('POST', '../php/checkId.php',true);
-	req2.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
-	req2.send(param);
+	var param = "user_data="+userIdValue;
+	req.open('POST', '../php/login.php',true);
+	req.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
+	req.send(param);
 }

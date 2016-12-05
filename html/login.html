@@ -1,19 +1,42 @@
 <html>
 	<head>
+		<link rel="stylesheet" type="text/css" href="../CSS/main.css">
+		<meta charset="utf-8">
+		<script type="text/javascript" src="../javaScript/Convenient/onreadystatechange.js"></script>
 		<script type="text/javascript" src="../javaScript/loginCheck.js"></script>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>ログイン</title>
 	</head>
 	<body>
-  		<h1>つついたー</h1>
-		<form action="../php/checkId.php" method="post">
-			<label for="userid">ユーザーID</label>：
-			<input type="text" name="formUserid" id="userId" value="aaaaaa">
-	  		<br>
-	  		<label for="password">パスワード</label>：
-	  		<input type="text" name="formPassword" id="userPass" value="aaaaaa">
-			<input type="submit" name="login" value="ログイン" />
-		</form>
-		<input type="button" value="登録画面へ" onclick="location.href='http://localhost:9097/server_training/register/registerManager.php'">
+
+		<!--ヘッダー-->
+		<div class="flex-container-noheight">
+			<div class="flex-item3">
+				<div class="m-title">
+					ほーむ
+				</div>
+			</div>
+		</div>
+
+
+		<div class="flex-container-center">
+			<!--ツイートメイン-->
+			<div class="flex-item-center">
+				<div class="flex-container-center">
+					<form action="../php/login.php" method="post" class="flex-formReSize">
+						<label for="userid" class="center">ユーザーID</label>
+						<br>
+						<input type="text" name="formUserid" id="userId" value="aaaaaa" class="center">
+				  		<br>
+				  		<label for="password">パスワード</label>
+						<br>
+				  		<input type="text" name="formPassword" id="userPass" value="aaaaaa" class="center">
+						<br>
+						<input type="button" value="登録画面へ" onclick="location.href='../html/email_form.html'">
+						<input type="submit" name="login" value="ログイン" class="center">
+					</form>
+				</div>
+			</div>
+		</div>
 	</body>
 </html>

@@ -1,19 +1,38 @@
 <html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="../CSS/main.css">
+	<meta http-equiv="Content-Script-Type" content="text/javascript">
+	<script type="text/javascript" src="../javaScript/Convenient/onreadystatechange.js"></script>
+	<script type="text/javascript" src="../javaScript/mail_regist.js"></script>
+</head>
 	<body>
-		<form action="../register/email_regist.php" method="post">
-		    <input type="hidden" name="mode" value="email_regist">
-		    <table>
-				<caption>メールアドレス登録フォーム</caption>
-				<tr>
-			      	<td class="item">E-mail：</td>
-			      	<td>
-						<input type="text" name="email" size="40">
-					</td>
-			    </tr>
-		  </table>
-		  <div>
-			  <input type="submit" name="submit" value="送信">
-		  </div>
-		</form>
+		<!--ヘッダー-->
+		<div class="flex-container-noheight">
+			<div class="flex-item3">
+				<div class="m-title">
+					仮登録
+				</div>
+			</div>
+		</div>
+		<div class="flex-container-center">
+			<!--ツイートメイン-->
+			<div class="flex-item-center">
+				<div class="flex-container-center">
+					<form action="../php/register/email_regist.php" method="post" class="flex-formReSize">
+						<input type="hidden" name="mode" value="email_regist">
+						<div>
+						メールアドレス登録フォーム
+							<input type="text" name="mail_address" id="mail_address" size="40">
+						</div>
+						<div>
+							 <button type="button" class="btn btn-primary" onClick="execPost()">POST送信</button>
+						</div>
+					</form>
+					<div id="res">
+					</div>
+				</div>
+			</div>
+		</div>
 	</body>
 </html>

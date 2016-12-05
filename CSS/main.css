@@ -1,0 +1,252 @@
+p {
+    margin: 0px;
+    font-size: 15px;
+}
+
+video {
+    width: 480px;
+    height: 350px;
+}
+
+a {
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+}
+
+html {
+    height: 100%;
+    background-position: fixed;
+
+    background-size: repeat;
+    min-width: 800px;
+}
+
+body {
+    margin: 0;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    font-size: 100%;
+}
+
+.heddaTitle {
+    width: 20%;
+}
+
+
+.menu {
+    font-size: 40%;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.menuBottan {
+    width: 96%;
+    height: 40px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+	margin: 2%;
+    border: 1px solid black;
+    background-color: rgb(255, 255, 255);
+}
+.nul{
+	width: 100%;
+	height: 40px;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+
+	background-color: rgb(255, 255, 255);
+}
+
+.title {
+    margin-top: 0%;
+    margin-bottom: 0%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.m-title{
+	color:rgb(255, 255, 255);
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+margin: auto;
+width: 120px;
+height: 100px;
+}
+
+
+
+//センタに寄せる
+.main {
+	margin-top: 0%;
+	margin-bottom: 0%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.mainBox {
+    width: 100%;
+    display: flex;
+    flex-flow: warp;
+    margin: 5px 5% 5px 5%;
+}
+
+
+/* チャットレイアウト */
+.chat-box {
+	width: 100%;
+	height: auto;
+	overflow: hidden;
+	margin-bottom: 20px;
+}
+.chat-face {
+	float: left;
+	margin-right: -120px;
+}
+.chat-face img{
+	border-radius: 30px;
+	border: 1px solid #ccc;
+	box-shadow: 0 0 4px #ddd;
+}
+.chat-area {
+	width: 100%;
+	float: right;
+}
+.chat-hukidashi {
+	display: inline-block;
+	padding: 15px 20px;
+	margin-left: 120px;
+	margin-top: 8px;
+	max-width: 320px;
+	border-radius: 10px;
+	position: relative;
+	background-color: rgb(190, 241, 140);
+}
+.chat-hukidashi:after {
+	content: "";
+	position: absolute;
+	top: 50%; left: -10px;
+	margin-top: -10px;
+	display: block;
+	width: 0px;
+	height: 0px;
+	border-style: solid;
+	border-width: 10px 10px 10px 0;
+	border-color: transparent rgb(190, 241, 140); transparent transparent;
+}
+.someone {
+	background-color: rgb(190, 241, 140);
+}
+.someone:after {
+	border-color: transparent rgb(190, 241, 140) transparent transparent;
+}
+
+.blue{
+
+	background-color: rgb(190, 241, 140);
+}
+
+.btn {
+	background: #EEE;
+	border: 1px solid #DDD;
+	border-radius: 8px;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	color: #111;
+	width: 100px;
+	padding: 10px 0;
+}
+
+.merginSet {
+	margin-top: 5%;
+    margin-bottom: 0%;
+}
+
+
+/*段組み*/
+.flex-container {
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-flow: row wrap;
+	flex-flow: row wrap center;
+	height:100%;
+}
+
+/*段組み*/
+.flex-container-center {
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-flow: row wrap;
+	flex-flow: row wrap;
+	justify-content: center;
+	height:300px;
+}
+
+
+.flex-container-noheight{
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-flow: row wrap;
+	flex-flow: row wrap center;
+}
+
+textarea{
+	margin: 5%;
+
+	width:90%;
+	height:120px;
+}
+
+/*段組み*/
+.flex-container-column {
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-flow: row wrap;
+	flex-flow: column wrap center;
+}
+
+.flex-item {
+	background-color: rgb(244,244,244);
+	width:300px;
+	-webkit-justify-content: flex-start; /* Safari */
+	justify-content: flex-start;
+}
+
+.flex-item-center{
+	background-color: rgb(244,244,244);
+	width:400px;
+	-webkit-justify-content: center; /* Safari */
+	justify-content:center;
+	text-align:center;
+}
+
+.flex-item2{
+	flex: 1;
+	background-color: rgb(255,255,255);
+}
+
+.flex-item3{
+	flex: 1;
+	flex-flow: center;
+	height:50px;
+	background-color: rgb(45,54,73);
+	color:rgba(255,255,255);
+	width: 80%;
+    margin: 0 auto;
+}
+
+.flex-formReSize{
+	justify-content:center;
+	height:80%;
+	width:80%;
+}
