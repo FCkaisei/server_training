@@ -1,4 +1,5 @@
 <?php
+error_log("エラーログを表示テスト", 0);
 $user_id = $_POST['formUserid'];
 $user_pass = $_POST['formPassword'];
 if(($user_id == "") || ($user_pass == "")){
