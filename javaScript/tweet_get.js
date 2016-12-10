@@ -19,7 +19,7 @@ var callBack2 = function(tex) {
 		//カウント数だけボタンを作る。１，２，３，４，５，６
 		console.log(pageMax);
 		var page_list = document.getElementById("page_list");
-		page_list = innerHTML = "";
+		page_list.innerHTML = "";
 		pageMax = pageMax/5;
 		for(var i = 1; i < pageMax; i++){
 			var buttonElement = document.createElement("button");
@@ -27,6 +27,7 @@ var callBack2 = function(tex) {
 			buttonElement.appendChild(buttonText);
 			buttonElement.onclick = getTweet;
 			buttonElement.setAttribute("data-pageNumber",i);
+
 			page_list.appendChild(buttonElement);
 		}
 
