@@ -17,7 +17,7 @@ var callBack2 = function(tex) {
 		console.log(jsonObject);
 		pageMax = jsonObject[0]["count"];
 		//カウント数だけボタンを作る。１，２，３，４，５，６
-		console.Log(pageMax);
+		console.log(pageMax);
 	}
 }
 
