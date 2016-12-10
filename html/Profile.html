@@ -2,40 +2,12 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="Content-Script-Type" content="text/javascript">
-
-	<style>
-
-	</style>
 </head>
 <body>
-	<div class="chat-box">
-  <div class="chat-face">
-    <img src="&#91;自分の画像URL&#93;" alt="自分のチャット画像です。" width="90" height="90">
-  </div>
-  <div class="chat-area">
-    <div class="chat-hukidashi">
-      ふきだしなのですーふきだしですーふきだー
-    </div>
-  </div>
-</div>
-
-<div class="chat-box">
-  <div class="chat-face">
-    <img src="&#91;相手の画像URL&#93;" alt="誰かのチャット画像です。" width="90" height="90">
-  </div>
-  <div class="chat-area">
-    <div class="chat-hukidashi someone">
-      ふきだしだよ<br>
-      へへへ
-    </div>
-  </div>
-</div>
-
-
-	<form method="post" enctype="multipart/form-data" accept-charset="utf-8" action="../php/img_in.php">
-		<input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
-		画像ファイル<input type="file" name="pic" />
-		<input type="submit" name="botan" value="send" />
-	</form>
+	<form enctype="multipart/form-data" action="../php/img_in.php" method="POST">
+    	<input type="hidden" name="MAX_FILE_SIZE" value="300000" />
+    	<input name="image" type="file" />
+    	<p><input type="submit" name="save" value="Submit" /><p>
+</form>
 </body>
 </html>
