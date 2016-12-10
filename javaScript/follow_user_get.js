@@ -2,60 +2,73 @@ window.onload = function(){
 		getFollowUser();
 };
 
-var req = new XMLHttpRequest();
+var callBack = function(tex) {
+	if(!tex){
+		getFollowUser();
+	}
+	else{
+		var jsonObject = JSON.parse(tex);
+		console.log(jsonObject);
+		var tweetBox = document.getElementById("tweet");
+		tweetBox.innerHTML = "";
+		for(var i = 0; i < jsonObject.length; i++){
+
+			var div_title = document.createElement('div');
+			div_title.className = "title";
+
+			var div_mainBox = document.createElement('div');
+			div_mainBox.className = "mainBox";
+
+			var div = document.createElement('div');
+
+			var div_chat_box = document.createElement('div');
+			div_chat_box.className = "chat-box";
 
 
-req.onreadystatechange = function() {
-    switch ( req.readyState ) {
-        case 0:
-            console.log( 'uninitialized!' );
-            break;
-        case 1:
-            console.log( 'loading...' );
-            break;
-        case 2:
-            console.log( 'loaded.' );
-            break;
-        case 3:
-            console.log('interactive... '+req.responseText.length+' bytes.' );
-            break;
-        case 4:
-            if( req.status == 200 || req.status == 304 ) {
-				var jsonString = req.responseText;
-				if(jsonString == null || jsonString == "" || jsonString == undefined ){
-					getFollowUser();
-					return;
-				}
-				var jsonObject = JSON.parse(jsonString);
-				console.log(jsonObject);
-				var tweetBox = document.getElementById("user");
-				tweetBox.innerHTML = "";
-				for(var i = 0; i < jsonObject.length; i++){
-					var element = document.createElement('tr');
-					var tdElement = document.createElement("td");
-					var buttonElement = document.createElement("button");
-					var buttonText = document.createTextNode("アンフォロー");
-					buttonElement.appendChild(buttonText);
-					var td2Element = document.createElement("td");
-					var userName = document.createElement("div");
-					var newtext = document.createTextNode(jsonObject[i]["follow_id"]);
-					userName.appendChild(newtext);
+			var div_chat_face = document.createElement('div');
+			div_chat_face.className = "chat-face";
 
-					buttonElement.onclick = followOther;
-					buttonElement.setAttribute("data-userid",jsonObject[i]["follow_id"]);
+			var div_img = document.createElement('img');
+			 div_img.setAttribute("src", "../CSS/bg_1.jpg");
+			 div_img.setAttribute("width","90");
+			 div_img.setAttribute("height","90");
 
-					element.appendChild(tdElement);
-					tdElement.appendChild(buttonElement);
-					element.appendChild(td2Element);
-					td2Element.appendChild(userName);
-					tweetBox.appendChild(element);
-				}
-            } else {
-                console.log( 'Failed. HttpStatus: '+req.statusText );
-            }
-            break;
+
+			 var div_chat_area = document.createElement('div');
+			 div_chat_area.className = "chat-area";
+
+			 var div_chat_hukidashi = document.createElement('div');
+			 div_chat_hukidashi.className = "chat-hukidashi someone";
+
+			 var user_id = document.createTextNode(jsonObject[i]["user_id"]);
+			 var buttonElement = document.createElement("button");
+			 var buttonText = document.createTextNode("アンフォロー");
+			 buttonElement.appendChild(buttonText);
+			 buttonElement.onclick = followOther;
+			 buttonElement.setAttribute("data-userid",jsonObject[i]["user_follow_id"]);
+
+			 div_chat_hukidashi.appendChild(user_id);
+			 div_chat_hukidashi.appendChild(buttonElement);
+
+			 div_chat_area.appendChild(div_chat_hukidashi);
+
+			 div_chat_face.appendChild(div_img);
+
+			 div_chat_box.appendChild(div_chat_face);
+			 div_chat_box.appendChild(div_chat_area);
+
+			 div.appendChild(div_chat_box);
+			 div_mainBox.appendChild(div);
+			 div_title.appendChild(div_mainBox);
+			 tweetBox.appendChild(div_title);
 		}
 	}
+}
+
+var req = new XMLHttpRequest();
+req.onreadystatechange = function() {
+	StateChange(req,callBack);
+}
 
 function getFollowUser(){
 	req.open('POST', '../php/follow_get.php', true);
