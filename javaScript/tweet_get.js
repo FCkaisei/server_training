@@ -44,6 +44,8 @@ var callBack = function(tex) {
 		var tweetBox = document.getElementById("tweet");
 		tweetBox.innerHTML = "";
 		for(var i = 0; i < jsonObject.length; i++){
+			//受け取ったバイナリデータをほげほげしたい
+			
 			var div_title = document.createElement('div');
 			div_title.className = "title";
 

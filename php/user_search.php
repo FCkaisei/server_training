@@ -11,6 +11,7 @@
 
 	$stmt->execute();
 	$result = $stmt->fetchAll();
+	error_log(var_export($result, true));
 	$resultJson = json_encode($result);
 	echo $resultJson;
 ?>
