@@ -25,7 +25,7 @@ var callBack2 = function(tex) {
 			var buttonElement = document.createElement("button");
 			var buttonText = document.createTextNode(i);
 			buttonElement.appendChild(buttonText);
-			buttonElement.onclick = getTweet;
+			buttonElement.onclick = get_bTweet;
 			buttonElement.setAttribute("data-pageNumber",i);
 
 			page_list.appendChild(buttonElement);
