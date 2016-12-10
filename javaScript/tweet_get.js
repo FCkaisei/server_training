@@ -115,14 +115,21 @@ function execPost() {
 }
 
 function getTweet(){
-	if(this.getAttribute("data-userid")){
-		pageCount = this.getAttribute("data-userid");
-	}
+
 	var page = "page="+pageCount;
 
 	req.open('POST', '../php/tweet_get.php', true);
 	req.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
 	req.send(page);
+}
+
+function get_bTweet(){
+	pageCount = this.getAttribute("data-userid");
+	var page = "page="+pageCount;
+	req.open('POST', '../php/tweet_get.php', true);
+	req.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
+	req.send(page);
+
 }
 
 function getLimit(){
