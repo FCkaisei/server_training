@@ -30,7 +30,6 @@ var callBack2 = function(tex) {
 
 			page_list.appendChild(buttonElement);
 		}
-
 	}
 }
 
@@ -39,8 +38,6 @@ var callBack = function(tex) {
 		getTweet()
 	}
 	else{
-
-	  	console.log(jsonObject);
 		var jsonObject = JSON.parse(tex);
 		console.log(jsonObject);
 
