@@ -18,7 +18,7 @@ var callBack2 = function(tex) {
 		pageMax = jsonObject[0][0];
 		//カウント数だけボタンを作る。１，２，３，４，５，６
 		console.log(pageMax);
-		var page_list = document.getElementById('page_list');
+		var page_list = document.getElementById("page_list");
 		page_list = innerHTML = "";
 		pageMax = pageMax/5;
 		for(var i = 1; i < pageMax; i++){
