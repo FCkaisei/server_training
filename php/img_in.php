@@ -27,7 +27,7 @@ if(!empty($_POST)){
    // MySQL登録（改造しよう)
    require_once("../baseDB/connect_db.php");
    $stmt = $pdo -> prepare("UPDATE user_data SET img_blob = :user_img, mime = :mime WHERE user_id = :user_id");
-   $stmt-> bindValue(':user_img', $imgdat, PDO::PARAM_INT);
+   $stmt-> bindValue(':user_img', $imgdat, PDO::PARAM_LOB);
    $stmt-> bindValue(':mine', $mime, PDO::PARAM_STR);
    $stmt-> bindValue(':user_id', $user_id, PDO::PARAM_STR);
    $stmt->execute();
