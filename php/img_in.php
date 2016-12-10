@@ -19,15 +19,17 @@ if(!empty($_POST)){
    else if( $extension == "gif" ) $mime = "image/gif";
    else if ( $extension == "png" ) $mime = "image/png";
 
+
+	  error_log("--------------".$imgdat."--------------",0);
+
+   	   error_log("-------------".$mime."--------------",0);
+	   error_log("-------------".$user_id."--------------",0);
    // MySQL登録（改造しよう)
    require_once("../baseDB/connect_db.php");
-
    $stmt = $pdo -> prepare("UPDATE user_data SET img_blob = :user_img, mime = :mime WHERE user_id = :user_id");
    $stmt-> bindValue(':user_img', $imgdat, PDO::PARAM_INT);
    $stmt-> bindValue(':mine', $mime, PDO::PARAM_STR);
    $stmt-> bindValue(':user_id', $user_id, PDO::PARAM_STR);
-
-
    $stmt->execute();
 
    if($stmt == false){
