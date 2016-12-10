@@ -1,18 +1,36 @@
 var req = new XMLHttpRequest();
+var req2 = new XMLHttpRequest();
+var pageMax = 0;
+var pageCount = 1;
 window.onload = function(){
 	getTweet();
+	getLimit();
 };
 
 
-var callBack = function(tex) {
 
+var callBack2 = function(tex) {
+	if(!tex){
+	}
+	else{
+		var jsonObject = JSON.parse(tex);
+		console.log(jsonObject);
+		pageMax = jsonObject[0]["count"];
+		//カウント数だけボタンを作る。１，２，３，４，５，６
+		console.Log(pageMax);
+	}
+}
+
+var callBack = function(tex) {
 	if(!tex){
 		getTweet()
 	}
 	else{
+
 	  	console.log(jsonObject);
 		var jsonObject = JSON.parse(tex);
 		console.log(jsonObject);
+
 		var tweetBox = document.getElementById("tweet");
 		tweetBox.innerHTML = "";
 		for(var i = 0; i < jsonObject.length; i++){
@@ -62,35 +80,16 @@ var callBack = function(tex) {
 			 div_mainBox.appendChild(div);
 			 div_title.appendChild(div_mainBox);
 			 tweetBox.appendChild(div_title);
-
-
-
-			//tweetBox.innerHTML +=
-			//
-			// '<div class="title">'
-			// +'<div class= "mainBox">'
-			// +'<div>'
-			// +'<div class="chat-box">'
-			// +'<div class="chat-face">'
-			// +'<img src="../CSS/bg_1.jpg" alt="誰かのチャット画像です。" width="90" height="90">'
-			// +'</div>'
-			// +'<div class="chat-area">'
-			// +'<div class="chat-hukidashi someone">'
-			// +jsonObject[i]['user_id']
-			// +'<br>'
-			// +jsonObject[i]['user_tweet']
-			// +'</div>'
-			// +'</div>'
-			// +'</div>'
-			// +'</div>'
-			// +'</div>'
-			// +'</div>'
 		}
 	}
 }
 
 req.onreadystatechange = function() {
 	StateChange(req,callBack);
+}
+
+req2.onreadystatechange = function() {
+	StateChange(req2,callBack2);
 }
 
 function execPost() {
@@ -104,8 +103,14 @@ function execPost() {
 }
 
 function getTweet(){
-	var page = "page=1";
+	var page = "page="+pageCount;
 	req.open('POST', '../php/tweet_get.php', true);
 	req.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
 	req.send(page);
+}
+
+function getLimit(){
+	req2.open('POST', '../php/limit_get.php', true);
+	req2.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
+	req2.send(null);
 }
