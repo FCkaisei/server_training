@@ -122,7 +122,7 @@ function getTweet(){
 }
 
 function get_bTweet(){
-	pageCount = this.getAttribute("data-userid");
+	pageCount = this.getAttribute("data-pageNumber");
 	var page = "page="+pageCount;
 	req.open('POST', '../php/tweet_get.php', true);
 	req.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
