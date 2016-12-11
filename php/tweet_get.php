@@ -14,7 +14,7 @@
 
 	$lowLim = $page * 4 - 4;
 	$highLim = 5;
-	$stmt = $pdo->prepare("SELECT * FROM tweet_data LEFT JOIN user_data ON tweet_data.user_id = user_data.user_id IN (SELECT user_id FROM follow_data WHERE user_follow_id LIKE ?) ORDER BY user_tweet_time DESC LIMIT ?,?");
+	$stmt = $pdo->prepare("SELECT * FROM tweet_data IN (SELECT user_id FROM follow_data WHERE user_follow_id LIKE ?) ORDER BY user_tweet_time DESC LIMIT ?,? LEFT JOIN user_data ON tweet_data.user_id = user_data.user_id");
 	$stmt->bindValue(1, $tmpSess, PDO::PARAM_STR);
 	$stmt->bindValue(2, $lowLim, PDO::PARAM_INT);
 	$stmt->bindValue(3, $highLim, PDO::PARAM_INT);
