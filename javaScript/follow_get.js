@@ -10,6 +10,9 @@ var callBack = function(tex) {
 	  	tweetBox.innerHTML = "";
 	  	for(var i = 0; i < jsonObject.length; i++){
 
+			Base64ToImage(jsonObject[i]["img_base"],jsonObject[i]["mime"],function(img) {
+
+			});
 
 
 			var div_title = document.createElement('div');
@@ -26,13 +29,12 @@ var callBack = function(tex) {
 
 			var div_chat_face = document.createElement('div');
 			div_chat_face.className = "chat-face";
-
-			var div_img = document.createElement('img');
-			var image_data_url = Base64ToImage(jsonObject[i]["img_base"],jsonObject[i]["mime"]);
-			 div_img.setAttribute("src", div_img);
-			 div_img.setAttribute("width","90");
-			 div_img.setAttribute("height","90");
-
+			var img = new Image();
+			alert("w=" + img.width + " h=" + img.height);
+			document.getElementById('div_chat_face').appendChild(img);
+			img.src = "data:image/"+jsonObject[i]['mime']+";base64,"+jsonObject[i]['img_base'];
+			img.setAttribute("width","90");
+			img.setAttribute("height","90");
 
 			 var div_chat_area = document.createElement('div');
 			 div_chat_area.className = "chat-area";
@@ -52,7 +54,6 @@ var callBack = function(tex) {
 
 			 div_chat_area.appendChild(div_chat_hukidashi);
 
-			 div_chat_face.appendChild(div_img);
 
 			 div_chat_box.appendChild(div_chat_face);
 			 div_chat_box.appendChild(div_chat_area);
@@ -91,8 +92,6 @@ function followOther(){
 	req.send(param);
 }
 
-function Base64ToImage(base64img, mimeImg) {
-	console.log("data:image/"+mimeImg+";base64,"+base64img);
-    return "data:image/"+mimeImg+";base64,"+base64img;
+function Base64ToImage(base64img, mimeImg, callback) {
 
 }
