@@ -9,13 +9,6 @@ var callBack = function(tex) {
 	  	var tweetBox = document.getElementById("tweet");
 	  	tweetBox.innerHTML = "";
 	  	for(var i = 0; i < jsonObject.length; i++){
-
-			Base64ToImage(jsonObject[i]["img_base"],jsonObject[i]["mime"],function(img) {
-    			// <img>要素にすることで幅・高さがわかります
-
-    			alert("w=" + img.width + " h=" + img.height);
-    			document.getElementById('tweet').appendChild(img);
-			});
 			var div_title = document.createElement('div');
 			div_title.className = "title";
 
@@ -32,9 +25,10 @@ var callBack = function(tex) {
 			div_chat_face.className = "chat-face";
 
 			var div_img = document.createElement('img');
-			 div_img.setAttribute("src", "../CSS/bg_1.jpg");
-			 div_img.setAttribute("width","90");
-			 div_img.setAttribute("height","90");
+			
+			div_img.setAttribute("src","data:image/"+jsonObject[i]["mime"]+";base64,"+div_img,jsonObject[i]["img_base"])
+			div_img.setAttribute("width","90");
+			div_img.setAttribute("height","90");
 
 
 			 var div_chat_area = document.createElement('div');
@@ -92,13 +86,4 @@ function followOther(){
 	// POST 送信の場合は Content-Type は固定.
 	req.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
 	req.send(param);
-}
-
-function Base64ToImage(base64img, mimeImg, callback) {
-    var img = new Image();
-    img.onload = function() {
-        callback(img);
-    };
-    img.src = "data:image/"+mimeImg+";base64,"+base64img;
-	console.log("data:image/"+mimeImg+";base64,"+base64img);
 }
