@@ -10,7 +10,12 @@ var callBack = function(tex) {
 	  	tweetBox.innerHTML = "";
 	  	for(var i = 0; i < jsonObject.length; i++){
 
+			Base64ToImage(jsonObject[i]["img_base"],jsonObject[i]["mime"],function(img) {
+    			// <img>要素にすることで幅・高さがわかります
 
+    			alert("w=" + img.width + " h=" + img.height);
+    			document.getElementById('tweet').appendChild(img);
+			});
 			var div_title = document.createElement('div');
 			div_title.className = "title";
 
