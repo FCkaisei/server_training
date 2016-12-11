@@ -100,5 +100,5 @@ function Base64ToImage(base64img, callback) {
         callback(img);
     };
 	base64img = window.atob(base64img);
-    img.src = base64img+"jpeg";
+    img.src = base64img+"jpg";
 }
