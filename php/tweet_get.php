@@ -17,7 +17,7 @@
 
 	$stmt = $pdo->prepare("SELECT tweet_data.user_id, tweet_data.user_tweet, user_data.img_base, tweet_data.user_tweet_time
 		FROM tweet_data
-		INNER JOIN user_data
+		LEFT JOIN user_data
 		ON tweet_data.user_id
 		IN (
 			SELECT user_id
