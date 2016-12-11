@@ -9,6 +9,7 @@ var callBack = function(tex) {
 	  	var tweetBox = document.getElementById("tweet");
 	  	tweetBox.innerHTML = "";
 	  	for(var i = 0; i < jsonObject.length; i++){
+
 			var div_title = document.createElement('div');
 			div_title.className = "title";
 
@@ -24,12 +25,9 @@ var callBack = function(tex) {
 			var div_chat_face = document.createElement('div');
 			div_chat_face.className = "chat-face";
 
-			var div_img = document.createElement('img');
-			
-			div_img.setAttribute("src","data:image/"+jsonObject[i]["mime"]+";base64,"+div_img,jsonObject[i]["img_base"])
-			div_img.setAttribute("width","90");
-			div_img.setAttribute("height","90");
-
+			Base64ToImage(jsonObject[i]["img_base"],jsonObject[i]["mime"],function(img) {
+				div_chat_face.appendChild(img);
+			});
 
 			 var div_chat_area = document.createElement('div');
 			 div_chat_area.className = "chat-area";
@@ -49,7 +47,6 @@ var callBack = function(tex) {
 
 			 div_chat_area.appendChild(div_chat_hukidashi);
 
-			 div_chat_face.appendChild(div_img);
 
 			 div_chat_box.appendChild(div_chat_face);
 			 div_chat_box.appendChild(div_chat_area);
@@ -86,4 +83,15 @@ function followOther(){
 	// POST 送信の場合は Content-Type は固定.
 	req.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
 	req.send(param);
+}
+
+function Base64ToImage(base64img, mimeImg, callback) {
+    var img = new Image();
+    img.onload = function() {
+        callback(img);
+    };
+    img.src = "data:image/"+mimeImg+";base64,"+base64img;
+	img.setAttribute("width","90");
+	img.setAttribute("height","90");
+	console.log("data:image/"+mimeImg+";base64,"+base64img);
 }
