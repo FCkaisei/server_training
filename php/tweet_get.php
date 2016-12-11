@@ -4,6 +4,7 @@
 	require_once("../baseDB/connect_db.php");
 	$page = $_POST["page"];
 	//ページング処理追加
+	error_log($page, 0);
 	if($page == ""){
 		$page = 1;
 	}
