@@ -94,7 +94,7 @@ function followOther(){
 	req.send(param);
 }
 
-function Base64ToImage(base64img, mimeImg callback) {
+function Base64ToImage(base64img, mimeImg, callback) {
     var img = new Image();
     img.onload = function() {
         callback(img);
