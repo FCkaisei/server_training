@@ -3,6 +3,7 @@ var callBack = function(tex) {
 		execPost();
 	}
 	else{
+		console.log(tex);
 		var jsonObject = JSON.parse(tex);
 	  	console.log(jsonObject);
 	  	var tweetBox = document.getElementById("tweet");
