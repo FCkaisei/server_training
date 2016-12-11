@@ -29,8 +29,7 @@ var callBack = function(tex) {
 
 			var div_chat_face = document.createElement('div');
 			div_chat_face.className = "chat-face";
-			var img = document.createElement('img');
-			document.getElementById('div_chat_face').appendChild(img);
+			var imge = document.createElement('img');
 			img.setAttribute("src","data:image/"+jsonObject[i]['mime']+";base64,"+jsonObject[i]['img_base']);
 			img.setAttribute("width","90");
 			img.setAttribute("height","90");
@@ -53,6 +52,7 @@ var callBack = function(tex) {
 
 			 div_chat_area.appendChild(div_chat_hukidashi);
 
+			 div_chat_face.appendChild(imge);
 
 			 div_chat_box.appendChild(div_chat_face);
 			 div_chat_box.appendChild(div_chat_area);
