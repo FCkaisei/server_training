@@ -3,11 +3,11 @@
 error_log('一応入りはしているよね', 0);
 session_start();
 $user_id = $_SESSION['user'];
-$user_image = $_FILES["image"]["name"];
+$user_image = $_FILES["image"];
 echo(var_dump($user_image));
 if (!empty($_POST)) {
 
-	$img = base64_encode(file_get_contents($user_imge));
+	$img = base64_encode(file_get_contents($user_image));
     //バイナリデータ
     $fp     = fopen($_FILES['image']['tmp_name'], 'rb');
     $imgdat = fread($fp, filesize($_FILES['image']['tmp_name']));
