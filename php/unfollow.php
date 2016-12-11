@@ -4,7 +4,7 @@
 	$session_user_id = $_SESSION['user'];
 
 	$otherId = $_POST['unfollow_id'];
-
+	error_log("----------------------------UNFOLLOW".$otherId,0);
 	require_once("../baseDB/connect_db.php");
 	$stmt = $pdo->prepare("DELETE FROM follow_data WHERE user_id=? AND user_follow_id=?");
 	$stmt->bindValue(1,$session_user_id,PDO::PARAM_STR);

@@ -36,11 +36,69 @@ if (!empty($_POST)) {
     $stmt->bindValue(':mime', $mime, PDO::PARAM_STR);
     $stmt->bindValue(':user_id', $user_id, PDO::PARAM_STR);
     $stmt->execute();
+
+?>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="../CSS/main.css">
+	<meta http-equiv="Content-Script-Type" content="text/javascript">
+</head>
+<body link="rgb(175,175,175)" alink="rgb(175,175,175)" vlink="rgb(175,175,175)">
+	<!--ヘッダー-->
+	<div class="flex-container-noheight">
+		<div class="flex-item3">
+			<div class="m-title">
+				プロ画登録
+			</div>
+		</div>
+	</div>
+
+	<!--サイドバーとつぶやきメイン-->
+	<div class="flex-container">
+		<!--サイドバー-->
+		<div class="flex-item">
+			<div class="flex-container-column">
+				<div class="flex-item">
+					<a href="../html/tweet_main.html"><div class="menuBottan">画像編集</div></a>
+				</div>
+				<div class="flex-item">
+					<a href="../html/follow_main.html"><div class="menuBottan">みつける</div></a>
+				</div>
+				<div class="flex-item">
+					<a href="../html/follow_otheres.html"><div class="menuBottan">フォロー</div></a>
+				</div>
+				<div class="flex-item">
+					<a href="../html/Profile.html"><div class="menuBottan">画像変更</div></a>
+				</div>
+				<div class="flex-item">
+					<a href="./login.html"><div class="menuBottan">LOGOUT</div></a>
+				</div>
+			</div>
+		</div>
+<?PHP
     if ($stmt == false) {
-        error_log('--------------フォローできませんでした--------------', 0);
+?>
+
+				<!--ツイートメイン-->
+				<div class="flex-item2">
+					画像を登録できませんでした。。。
+				</div>
+
+<?PHP
+		error_log('--------------フォローできませんでした--------------', 0);
     } else {
+		?>
+		<div class="flex-item2">
+			画像登録完了！
+		</div>
+		<?PHP
         error_log('----------------GOOD! follow QED-----------------', 0);
     }
+	?>
+	</div>
+</body>
+<?PHP
 } else {
     error_log('ーーーーーーーーーー入れてないねーーーーーーーーーー', 0);
 }
+?>

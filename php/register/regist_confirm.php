@@ -52,29 +52,23 @@
 			<form method="post" action="./user_regist.php" class="flex-formReSize">
 				<table>
 					<caption>入力情報確認ページ</caption>
-					<tr>
-						<td class="item">preID：</td>
-						<td>
-							<?php print $userToken;?>
-							<input type="hidden" name="input_token" value="<?php print $userToken;?>">
-						</td>
-					</tr>
+						<input type="hidden" name="input_token" value="<?php print $userToken;?>">
+						<input type="hidden" name="input_password" value="<?php print $userPass;?>">
 					<tr>
 						<td class="item">ユーザーID：</td>
 						<td>
 							<?php print $userId;?>
-							<input type="hidden" name="input_userid" value="<?php print $userId;?>"></td>
-					</tr>
-					<tr>
-						<td class="item">パスワード：</td>
-						<td><?php print $userPass;?><input type="hidden" name="input_password" value="<?php print $userPass;?>"></td>
+							<input type="hidden" name="input_userid" value="<?php print $userId;?>">
+						</td>
 					</tr>
 					<tr>
 						<td class="item">メールアドレス：</td>
 						<td><?php print $userEmail;?><input type="hidden" name="input_email" value="<?php print $userEmail;?>"></td>
 					</tr>
 				</table>
-				<div><input type="submit" value=" 登 録 "></div>
+				<div>
+					<input type="submit" value=" 登 録 ">
+				</div>
 			</form>
 		</div>
 	</div>

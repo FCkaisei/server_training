@@ -23,10 +23,10 @@
 						<input type="hidden" name="mode" value="email_regist">
 						<div>
 						メールアドレス登録フォーム
-							<input type="text" name="mail" id="mail_address" size="40">
+							<input type="email" name="mail" id="mail_address" size="40" pattern=".+@.+\..+" title="colopl@example.comのような形式で記入してください。">
 						</div>
 						<div>
-							 <button type="button" class="btn btn-primary" onClick="execPost()">POST送信</button>
+							 <button type="button" class="btn btn-primary" onClick="execPost()">仮登録</button>
 						</div>
 					</form>
 					<div id="res">

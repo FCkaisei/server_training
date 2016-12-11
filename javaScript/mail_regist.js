@@ -3,10 +3,9 @@ var callBack = function(tex) {
 	if(!tex){
 	}
 	else{
-		console.log(tex);
 		var tweetBox = document.getElementById("res");
 		tweetBox.innerHTML = "";
-			tweetBox.innerHTML += "<a href='"+tex+"'>ID入力へ</div>";
+			tweetBox.innerHTML += tex;
 	}
 }
 

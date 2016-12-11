@@ -39,14 +39,19 @@ var callBack = function(tex) {
 
 			 var div_chat_hukidashi = document.createElement('div');
 			 div_chat_hukidashi.className = "chat-hukidashi someone";
+			 var user_id = document.createElement('div');
+			 var user_id_div = document.createTextNode(jsonObject[i]["user_follow_id"]);
+			 user_id.appendChild(user_id_div);
 
-			 var user_id = document.createTextNode(jsonObject[i]["user_id"]);
-			 var buttonElement = document.createElement("button");
+			 var buttonElement = document.createElement('div');
+
+			 var buttonElement_div = document.createElement("button");
 			 var buttonText = document.createTextNode("アンフォロー");
-			 buttonElement.appendChild(buttonText);
-			 buttonElement.onclick = followOther;
-			 buttonElement.setAttribute("data-userid",jsonObject[i]["user_follow_id"]);
-
+			 buttonElement_div.appendChild(buttonText);
+			 buttonElement_div.onclick = followOther;
+			 buttonElement_div.setAttribute("data-userid",jsonObject[i]["user_follow_id"]);
+			 buttonElement.appendChild(buttonElement_div);
+			 //div追加
 			 div_chat_hukidashi.appendChild(user_id);
 			 div_chat_hukidashi.appendChild(buttonElement);
 
