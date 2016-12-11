@@ -11,13 +11,6 @@
 
 	$stmt->execute();
 	$result = $stmt->fetchAll();
-
-	error_log(var_dump($result),0);
-
-
-
-
-
 	error_log($result[0]['img_blob'],0);
 
 	// for ($i = 0; $i <= count($result); $i++) {
