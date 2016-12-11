@@ -95,8 +95,8 @@ function Base64ToImage(base64img, mimeImg, callback) {
 	}
 	else{
     	img.src = "data:image/"+mimeImg+";base64,"+base64img;
-		img.setAttribute("width","90");
-		img.setAttribute("height","90");
 		console.log("data:image/"+mimeImg+";base64,"+base64img);
 	}
+	img.setAttribute("width","90");
+	img.setAttribute("height","90");
 }
