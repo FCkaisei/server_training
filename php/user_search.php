@@ -28,9 +28,8 @@
 	$stmt->bindValue(2, $tmpSess, PDO::PARAM_STR);
 
 	$stmt->execute();
-	header('Content-type: ' . $MIMETypes[$stmt['mime']]);
-
 	$result = $stmt->fetchAll();
+	header('Content-type: ' . $MIMETypes[$result['mime']]);
 
 	$resultJson = json_encode($result);
 	echo $resultJson;
