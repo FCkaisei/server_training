@@ -3,7 +3,7 @@
 error_log('一応入りはしているよね', 0);
 session_start();
 $user_id = $_SESSION['user'];
-$user_image = $_POST["image"];
+$user_image = $_FILES["image"];
 echo($user_image);
 if (!empty($_POST)) {
 
