@@ -28,7 +28,7 @@ var callBack = function(tex) {
 			div_chat_face.className = "chat-face";
 
 			var div_img = document.createElement('img');
-			var image_data_url = Base64ToImage(jsonObject[i]["img_base"],jsonObject[i]["mime"];
+			var image_data_url = Base64ToImage(jsonObject[i]["img_base"],jsonObject[i]["mime"]);
 			 div_img.setAttribute("src", div_img);
 			 div_img.setAttribute("width","90");
 			 div_img.setAttribute("height","90");
