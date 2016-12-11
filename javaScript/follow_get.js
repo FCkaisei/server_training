@@ -30,7 +30,13 @@ var callBack = function(tex) {
 			var div_chat_face = document.createElement('div');
 			div_chat_face.className = "chat-face";
 			var imge = document.createElement('img');
-			imge.setAttribute("src","data:image/"+jsonObject[i]['mime']+";base64,"+jsonObject[i]['img_base']);
+
+			if(!jsonObject[i]['img_base']){
+				imge.setAttribute("src","../CSS/bg_1.jpg");
+			}
+			else{
+				imge.setAttribute("src","data:image/"+jsonObject[i]['mime']+";base64,"+jsonObject[i]['img_base']);
+			}
 			imge.setAttribute("width","90");
 			imge.setAttribute("height","90");
 
