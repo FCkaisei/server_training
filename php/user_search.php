@@ -12,6 +12,7 @@
 	$stmt->execute();
 	$result = $stmt->fetchAll();
 	error_log($result[0]['img_blob'],0);
+	$result[0]["img_blob"] = string base64_encode($result[0]["img_blob"]);
 
 	// for ($i = 0; $i <= count($result); $i++) {
 	// 	$result[$i]["img_blob"] = string base64_encode($result[$i]["img_blob"]);
