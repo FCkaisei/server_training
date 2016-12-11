@@ -99,6 +99,6 @@ function Base64ToImage(base64img, mimeImg, callback) {
     img.onload = function() {
         callback(img);
     };
-    img.src = "data:image/"+mimeImg+":base64,"+base64img;
-	console.log("data:image/"+mimeImg+":base64,"+base64img);
+    img.src = "data:image/"+mimeImg+";base64,"+base64img;
+	console.log("data:image/"+mimeImg+";base64,"+base64img);
 }
