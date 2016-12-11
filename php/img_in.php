@@ -6,13 +6,13 @@ $user_id = $_SESSION['user'];
 
 if (!empty($_POST)) {
     //バイナリデータ
-    $fp = fopen($_FILES['image']['tmp_name'], 'rb');
+    $fp     = fopen($_FILES['image']['tmp_name'], 'rb');
     $imgdat = fread($fp, filesize($_FILES['image']['tmp_name']));
     fclose($fp);
     $imgdat = addslashes($imgdat);
 
     // 拡張子
-    $dat = pathinfo($_FILES['image']['name']);
+    $dat       = pathinfo($_FILES['image']['name']);
     $extension = $dat['extension'];
 
     // MIMEタイプ
@@ -24,13 +24,11 @@ if (!empty($_POST)) {
        $mime = 'image/png';
    }
 
-	error_log('--------------'.$imgdat.'--------------', 0);
+    $img_base64 = base64_encode($imgdat);
+    error_log('--------------'.$img_base64.'--------------', 0);
     error_log('-------------'.$mime.'--------------', 0);
     error_log('-------------'.$user_id.'--------------', 0);
 
-    $img_base64 = base64_encode($imgdat);
-
-       // MySQL登録（改造しよう)
    require_once '../baseDB/connect_db.php';
     $stmt = $pdo->prepare('UPDATE user_data SET img_base = :user_img, mime = :mime WHERE user_id = :user_id');
     $stmt->bindValue(':user_img', $img_base64, PDO::PARAM_STR);
