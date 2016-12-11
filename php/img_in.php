@@ -3,7 +3,7 @@
 error_log('一応入りはしているよね', 0);
 session_start();
 $user_id = $_SESSION['user'];
-$user_image = $_FILES["image"];
+$user_image = $_POST["image"];
 echo(var_dump($user_image));
 if (!empty($_POST)) {
 
@@ -28,7 +28,7 @@ if (!empty($_POST)) {
    }
 
     //$img_base64 = base64_encode($img);
-	error_log('--------------'.$img.'--------------', 0);
+	//error_log('--------------'.$img.'--------------', 0);
     error_log('--------------'.$img_base64.'--------------', 0);
     error_log('-------------'.$mime.'--------------', 0);
     error_log('-------------'.$user_id.'--------------', 0);
