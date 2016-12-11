@@ -30,9 +30,9 @@ var callBack = function(tex) {
 			var div_chat_face = document.createElement('div');
 			div_chat_face.className = "chat-face";
 			var imge = document.createElement('img');
-			img.setAttribute("src","data:image/"+jsonObject[i]['mime']+";base64,"+jsonObject[i]['img_base']);
-			img.setAttribute("width","90");
-			img.setAttribute("height","90");
+			imge.setAttribute("src","data:image/"+jsonObject[i]['mime']+";base64,"+jsonObject[i]['img_base']);
+			imge.setAttribute("width","90");
+			imge.setAttribute("height","90");
 
 			 var div_chat_area = document.createElement('div');
 			 div_chat_area.className = "chat-area";
