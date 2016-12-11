@@ -12,8 +12,8 @@
 	$stmt->execute();
 	$result = $stmt->fetchAll();
 
-	$result[0]["img_blob"] = base64_encode($result[0]["img_blob"].toString());
-	error_log(var_dump($result),0);
+	$result[0]["img_blob"] = base64_encode($result[0]["img_blob"]);
+	error_log('-------------------'.$result[0]["img_blob"].'--------------------',0);
 	$resultJson = json_encode($result);
 	echo $resultJson;
 ?>
