@@ -25,10 +25,6 @@ var callBack = function(tex) {
 			var div_chat_face = document.createElement('div');
 			div_chat_face.className = "chat-face";
 
-			Base64ToImage(jsonObject[i]["img_base"],jsonObject[i]["mime"],function(img) {
-				div_chat_face.appendChild(img);
-			});
-
 			 var div_chat_area = document.createElement('div');
 			 div_chat_area.className = "chat-area";
 
@@ -47,6 +43,9 @@ var callBack = function(tex) {
 
 			 div_chat_area.appendChild(div_chat_hukidashi);
 
+			 Base64ToImage(jsonObject[i]["img_base"],jsonObject[i]["mime"],function(img) {
+				 div_chat_face.appendChild(img);
+			 });
 
 			 div_chat_box.appendChild(div_chat_face);
 			 div_chat_box.appendChild(div_chat_area);
