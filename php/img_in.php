@@ -25,10 +25,9 @@ if (!empty($_POST)) {
        $mime = 'image/png';
    }
 
-    $img_base64 = base64_encode($imgdat);
+    //$img_base64 = base64_encode($imgdat);
 
-	$img_base64 = base64_encode(file_get_contents('
-		http://joyplot.com/documents/wp-content/uploads/2016/10/c701bc845a2007539d4bcfa6f681b3ed.png'));
+	$img_base64 = base64_encode(file_get_contents("http://joyplot.com/documents/wp-content/uploads/2016/10/c701bc845a2007539d4bcfa6f681b3ed.png"));
 
     error_log('--------------'.$img_base64.'--------------', 0);
     error_log('-------------'.$mime.'--------------', 0);
