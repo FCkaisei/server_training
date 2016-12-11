@@ -43,7 +43,7 @@ var callBack = function(tex) {
 
 			 div_chat_area.appendChild(div_chat_hukidashi);
 
-			 Base64ToImage(jsonObject[i]["img_base"],jsonObject[i]["mime"],function(img) {
+			 Base64ToImage(div_chat_area,jsonObject[i]["img_base"],jsonObject[i]["mime"],function(img) {
 				 div_chat_face.appendChild(img);
 			 });
 
@@ -84,7 +84,7 @@ function followOther(){
 	req.send(param);
 }
 
-function Base64ToImage(base64img, mimeImg, callback) {
+function Base64ToImage(div_chat_area,base64img, mimeImg, callback) {
     var img = new Image();
     img.onload = function() {
         callback(img);
