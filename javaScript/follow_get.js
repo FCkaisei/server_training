@@ -12,6 +12,7 @@ var callBack = function(tex) {
 
 			Base64ToImage(jsonObject[i]["img_base"], function(img) {
     			// <img>要素にすることで幅・高さがわかります
+
     			alert("w=" + img.width + " h=" + img.height);
     			document.getElementById('tweet').appendChild(img);
 			});
@@ -98,5 +99,6 @@ function Base64ToImage(base64img, callback) {
     img.onload = function() {
         callback(img);
     };
+	base64img = window.atob(base64img);
     img.src = base64img;
 }
