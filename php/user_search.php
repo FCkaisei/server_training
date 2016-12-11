@@ -12,7 +12,9 @@
 	$stmt->execute();
 	$result = $stmt->fetchAll();
 	for ($i = 0; $i <= count($result); $i++) {
-		$result[$i]["img_blob"] = base64_encode($result[$i]["img_blob"]);
+		if(result[$i]["img_blob"] != NULL){
+			$result[$i]["img_blob"] = base64_encode($result[$i]["img_blob"]);
+		}
 	}
 	error_log(var_dump($result),0);
 	$resultJson = json_encode($result);
