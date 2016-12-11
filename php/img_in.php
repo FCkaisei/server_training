@@ -3,13 +3,11 @@
 error_log('一応入りはしているよね', 0);
 session_start();
 $user_id = $_SESSION['user'];
-$image_data = $_POST['image'];
 if (!empty($_POST)) {
     //バイナリデータ
     $fp     = fopen($_FILES['image']['tmp_name'], 'rb');
     $imgdat = fread($fp, filesize($_FILES['image']['tmp_name']));
     fclose($fp);
-    $imgdat = addslashes($imgdat);
 
     // 拡張子
     $dat       = pathinfo($_FILES['image']['name']);
@@ -24,8 +22,8 @@ if (!empty($_POST)) {
    } elseif ($extension == 'png') {
        $mime = 'image/png';
    }
-   
-    $img_base64 = base64_encode($image_data);
+
+    $img_base64 = base64_encode($imgdat);
     error_log('--------------'.$img_base64.'--------------', 0);
     error_log('-------------'.$mime.'--------------', 0);
     error_log('-------------'.$user_id.'--------------', 0);
