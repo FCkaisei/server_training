@@ -3,7 +3,10 @@
 error_log('一応入りはしているよね', 0);
 session_start();
 $user_id = $_SESSION['user'];
+$user_image = $_POST["image"];
 if (!empty($_POST)) {
+
+	$img = base64_encode(file_get_contents($user_img));
     //バイナリデータ
     $fp     = fopen($_FILES['image']['tmp_name'], 'rb');
     $imgdat = fread($fp, filesize($_FILES['image']['tmp_name']));
@@ -23,7 +26,7 @@ if (!empty($_POST)) {
        $mime = 'image/png';
    }
 
-    $img_base64 = base64_encode($imgdat);
+    $img_base64 = base64_encode($img);
     error_log('--------------'.$img_base64.'--------------', 0);
     error_log('-------------'.$mime.'--------------', 0);
     error_log('-------------'.$user_id.'--------------', 0);
