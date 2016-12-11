@@ -10,14 +10,14 @@
     if ($page == '') {
         $page = 1;
     }
-	
+
 	//ページが一より小さい場合は1
     $page = max($page, 1);
     $lowLim  = $page * 4 - 4;
     $highLim = 5;
 
 	//ツイート呼び出し
-    $stmt = $pdo->prepare('SELECT * FROM tweet_data WHERE user_id IN (SELECT user_id FROM follow_data WHERE user_follow_id LIKE ?) ORDER BY user_tweet_time DESC LIMIT ?,?');
+    $stmt = $pdo->prepare('SELECT * FROM tweet_data WHERE user_id IN (SELECT user_follow_id FROM follow_data WHERE user_follow_id LIKE ?) ORDER BY user_tweet_time DESC LIMIT ?,?');
     $stmt->bindValue(1, $user_id, PDO::PARAM_STR);
     $stmt->bindValue(2, $lowLim, PDO::PARAM_INT);
     $stmt->bindValue(3, $highLim, PDO::PARAM_INT);
