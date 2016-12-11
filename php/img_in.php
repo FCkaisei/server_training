@@ -7,7 +7,7 @@ $user_image = $_FILES["image"];
 echo(var_dump($user_image));
 if (!empty($_POST)) {
 
-	$img = base64_encode(file_get_contents($user_img));
+	$img = base64_encode(file_get_contents($user_imge));
     //バイナリデータ
     $fp     = fopen($_FILES['image']['tmp_name'], 'rb');
     $imgdat = fread($fp, filesize($_FILES['image']['tmp_name']));
