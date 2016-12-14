@@ -1,7 +1,6 @@
 <?php
     $action = $_POST['action'];
     $Dao    = new DAO();
-
     switch ($action) {
 	    case 'setTweet':
 	        $Dao->setTweet();
@@ -41,10 +40,14 @@
     class DAO {
         private $error = array();
         public function __construct() {
-
-			error_log("_____________________________________________________________CONST",0);
+			if(empty($_POST)){
+				die();
+			}
+			else{
+				error_log("ポストに中身が入ってるね");
+			}
         }
-
+		//ツイートを取得
         public function setTweet() {
             require_once '../baseDB/connect_db.php';
             session_start();
@@ -145,8 +148,7 @@
             echo $resultJson;
         }
 
-        public function setFollowUser()
-        {
+        public function setFollowUser() {
             session_start();
             $user_id   = $_SESSION['user'];
             $follow_id = $_POST['user_id'];
@@ -162,8 +164,7 @@
             }
         }
 
-        public function setUnFollowUser()
-        {
+        public function setUnFollowUser() {
             session_start();
             $session_user_id = $_SESSION['user'];
             $otherId         = $_POST['unfollow_id'];
@@ -179,8 +180,7 @@
             }
         }
 
-        public function getUserSearch()
-        {
+        public function getUserSearch() {
             session_start();
             $user_id = $_SESSION['user'];
 
@@ -219,8 +219,7 @@
             echo $resultJson;
         }
 
-        public function Login()
-        {
+        public function Login() {
             $user_id   = $_POST['formUserid'];
             $user_pass = $_POST['formPassword'];
             $user_pass = hash('sha256', $user_pass)."\n";
@@ -278,8 +277,7 @@
             }
         }
 
-        public function setImage()
-        {
+        public function setImage() {
             session_start();
             $user_id = $_SESSION['user'];
             if (!empty($_POST)) {
@@ -363,7 +361,6 @@
 	</div>
 </body>
 <?PHP
-
             } else {
                 error_log('ーーーーーーーーーー入れてないねーーーーーーーーーー', 0);
             }
