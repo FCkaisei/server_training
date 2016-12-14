@@ -43,24 +43,29 @@
     class DAO {
         private $error = array();
 		private $pdo;
+		private $s_user_id;
         public function __construct() {
+			//ポストを受け取っているか
 			if(empty($_POST)){
 				exit;
 			}
+			//セッションを取得
+			session_start();
+			if(!$_SESSION['user']){
+				$this->s_user_id = $_SESSION['user'];
+			}
+			//DBとの接続
 			$dsn = 'mysql:dbname=Twitter;host=localhost';
 			$user = "develop";
 			$password = "welcomeMySQL";
+
 			try{
 				$this->pdo = new PDO($dsn, $user, $password);
 				$this->pdo->setAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, true);
 				$this->pdo->query('SET NAMES utf8');
+			} catch(PDOException $e){
+				exit;
 			}
-			catch(PDOException $e){
-				error_log("cant connect db",0);
-				die();
-			}
-
-
         }
 
 		private function CheckError($Error){
@@ -70,8 +75,6 @@
 		}
 		//ツイートを取得
         public function setTweet() {
-            session_start();
-            $session_user_id = $_SESSION['user'];
             $tweet_text      = $_POST['tweet_text'];
             if (empty($tweet_text)) {
                 array_push($error, 'ツイートを入力しよう！');
@@ -92,10 +95,8 @@
 		}
 
         public function getTweet() {
-            session_start();
-            $user_id = $_SESSION['user'];
             $page    = $_POST['page'];
-            if (empty($user_id)) {
+            if (empty($this->s_user_id)) {
                 array_push($error, 'user_idが入ってません');
             }
             if ($page == '') {
@@ -106,8 +107,8 @@
             $lowLim  = $page * 4 - 4;
             $highLim = 5;
             $stmt    = $this->pdo->prepare('SELECT tweet_data.user_tweet, tweet_data.user_id,user_data.img_base FROM tweet_data INNER JOIN user_data ON tweet_data.user_id = user_data.user_id WHERE tweet_data.user_id = ? OR tweet_data.user_id IN (SELECT user_follow_id FROM follow_data WHERE user_id LIKE ?) ORDER BY user_tweet_time DESC LIMIT ?,?');
-            $stmt->bindValue(1, $user_id, PDO::PARAM_STR);
-            $stmt->bindValue(2, $user_id, PDO::PARAM_STR);
+            $stmt->bindValue(1, $this->s_user_id, PDO::PARAM_STR);
+            $stmt->bindValue(2, $this->s_user_id, PDO::PARAM_STR);
             $stmt->bindValue(3, $lowLim, PDO::PARAM_INT);
             $stmt->bindValue(4, $highLim, PDO::PARAM_INT);
             $stmt->execute();
@@ -123,12 +124,9 @@
             }
         }
 
-        public function getLimit()
-        {
-            session_start();
-            $tmpSess = $_SESSION['user'];
+        public function getLimit() {
             $stmt = $this->pdo->prepare('SELECT COUNT(*) FROM tweet_data WHERE user_id IN (SELECT user_follow_id FROM follow_data WHERE user_id LIKE ?) ORDER BY user_tweet_time DESC');
-            $stmt->bindValue(1, $tmpSess, PDO::PARAM_STR);
+            $stmt->bindValue(1, $this->s_user_id, PDO::PARAM_STR);
             $stmt->execute();
             $result     = $stmt->fetchAll();
             $resultJson = json_encode($result);
@@ -142,10 +140,7 @@
             }
         }
 
-        public function getFollowUser()
-        {
-            session_start();
-            $userId = $_SESSION['user'];
+        public function getFollowUser() {
             $stmt = $this->pdo->prepare(
                 'SELECT follow_data.user_follow_id, user_data.img_base
 				FROM follow_data
@@ -153,7 +148,7 @@
 				ON follow_data.user_follow_id = user_data.user_id
 				WHERE follow_data.user_id LIKE ?'
             );
-            $stmt->bindValue(1, $userId, PDO::PARAM_STR);
+            $stmt->bindValue(1, $this->s_user_id, PDO::PARAM_STR);
             $stmt->execute();
             $result     = $stmt->fetchAll();
             $resultJson = json_encode($result);
@@ -162,26 +157,20 @@
 
         public function setFollowUser() {
             session_start();
-            $user_id   = $_SESSION['user'];
             $follow_id = $_POST['user_id'];
-            require_once '../baseDB/connect_db.php';
             $stmt = $this->pdo->prepare('INSERT INTO follow_data(user_id,user_follow_id)VALUES(:user_id,:follow_id)');
-            $stmt->bindValue(':user_id', $user_id, PDO::PARAM_STR);
+            $stmt->bindValue(':user_id', $this->s_user_id, PDO::PARAM_STR);
             $stmt->bindValue(':follow_id', $follow_id, PDO::PARAM_STR);
             $stmt->execute();
             if ($stmt == false) {
                 error_log('フォローできませんでした', 0);
-            } else {
             }
         }
 
         public function setUnFollowUser() {
-            session_start();
-            $session_user_id = $_SESSION['user'];
             $otherId         = $_POST['unfollow_id'];
-            require_once '../baseDB/connect_db.php';
             $stmt = $this->pdo->prepare('DELETE FROM follow_data WHERE user_id=? AND user_follow_id=?');
-            $stmt->bindValue(1, $session_user_id, PDO::PARAM_STR);
+            $stmt->bindValue(1, $this->s_user_id, PDO::PARAM_STR);
             $stmt->bindValue(2, $otherId, PDO::PARAM_STR);
             $stmt->execute();
             if ($stmt == false) {
@@ -192,19 +181,13 @@
         }
 
         public function getUserSearch() {
-            session_start();
-            $user_id = $_SESSION['user'];
-            if (empty($user_id)) {
+            if (empty($this->s_user_id)) {
                 array_push($error, 'セッション切れ');
-            }
-            if (empty($_POST)) {
-                array_push($error, 'POSTを受け取っていません');
             }
             $othersId = $_POST['others_id'];
             if (empty($_POST)) {
                 array_push($error, 'others_idが入力されていません');
             }
-            require_once '../baseDB/connect_db.php';
                 // 拡張子によってMIMEタイプを切り替えるための配列
             $MIMETypes = array(
                'png' => 'image/png',
@@ -216,8 +199,7 @@
 
             $stmt = $this->pdo->prepare('SELECT user_id,img_base,mime FROM user_data WHERE user_id LIKE ? AND user_id NOT IN (SELECT user_follow_id FROM follow_data WHERE user_id LIKE ?)');
             $stmt->bindValue(1, '%'.$othersId.'%', PDO::PARAM_STR);
-            $stmt->bindValue(2, $user_id, PDO::PARAM_STR);
-
+            $stmt->bindValue(2, $this->s_user_id, PDO::PARAM_STR);
             $stmt->execute();
             $result = $stmt->fetchAll();
             header('Content-type: '.$MIMETypes[$result['mime']]);
@@ -237,7 +219,6 @@
                 exit;
             } else {
                 error_log('user_idとuser_passが入力されています', 0);
-                require_once '../baseDB/connect_db.php';
                 try {
                     error_log('try in', 0);
                     $this->pdo = new PDO($dsn, $user, $password);
@@ -286,32 +267,28 @@
         }
 
         public function setImage() {
-            session_start();
-            $user_id = $_SESSION['user'];
-            if (!empty($_POST)) {
-                $fp     = fopen($_FILES['image']['tmp_name'], 'rb');
-                $imgdat = fread($fp, filesize($_FILES['image']['tmp_name']));
-                fclose($fp);
-                $imgdat = addslashes($imgdat);
-                // 拡張子
-                $dat       = pathinfo($_FILES['image']['name']);
-                $extension = $dat['extension'];
-                // MIMEタイプ
-                if ($extension == 'jpg' || $extension == 'jpeg') {
-                    $mime = 'image/jpeg';
-                } elseif ($extension == 'gif') {
-                    $mime = 'image/gif';
-                } elseif ($extension == 'png') {
-                    $mime = 'image/png';
-                }
-                $img_base64 = base64_encode(file_get_contents($_FILES['image']['tmp_name']));
-                require_once '../baseDB/connect_db.php';
-                $stmt = $this->pdo->prepare('UPDATE user_data SET img_base = :user_img, mime = :mime WHERE user_id = :user_id');
-                $stmt->bindValue(':user_img', $img_base64, PDO::PARAM_STR);
-                $stmt->bindValue(':mime', $mime, PDO::PARAM_STR);
-                $stmt->bindValue(':user_id', $user_id, PDO::PARAM_STR);
-                $stmt->execute();
-                ?>
+            $fp     = fopen($_FILES['image']['tmp_name'], 'rb');
+            $imgdat = fread($fp, filesize($_FILES['image']['tmp_name']));
+            fclose($fp);
+            $imgdat = addslashes($imgdat);
+            // 拡張子
+            $dat       = pathinfo($_FILES['image']['name']);
+            $extension = $dat['extension'];
+            // MIMEタイプ
+            if ($extension == 'jpg' || $extension == 'jpeg') {
+                $mime = 'image/jpeg';
+            } elseif ($extension == 'gif') {
+            $mime = 'image/gif';
+            } elseif ($extension == 'png') {
+                $mime = 'image/png';
+            }
+            $img_base64 = base64_encode(file_get_contents($_FILES['image']['tmp_name']));
+            $stmt = $this->pdo->prepare('UPDATE user_data SET img_base = :user_img, mime = :mime WHERE user_id = :user_id');
+            $stmt->bindValue(':user_img', $img_base64, PDO::PARAM_STR);
+            $stmt->bindValue(':mime', $mime, PDO::PARAM_STR);
+            $stmt->bindValue(':user_id', $this->s_user_id, PDO::PARAM_STR);
+            $stmt->execute();
+?>
 <head>
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="../CSS/main.css">
@@ -369,9 +346,6 @@
 	</div>
 </body>
 <?PHP
-            } else {
-                error_log('ーーーーーーーーーー入れてないねーーーーーーーーーー', 0);
-            }
         }
     }
  ?>
