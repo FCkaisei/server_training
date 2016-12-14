@@ -61,6 +61,7 @@ class ResistDAO {
 				array_push($this->error,"仮ID登録できず");
 			}
 		}
+
 		if(count($this->error)){
 			for ($i = 0 ; $i < count($this->error); $i++) {
 				echo("addressを正しく入力してください");
@@ -70,3 +71,4 @@ class ResistDAO {
 			echo("<a href='../php/register/regist_form.php?pre_userid=".$pre_user_id."'>ユーザー本登録へ</a>") ;
 		}
 	}
+}
