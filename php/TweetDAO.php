@@ -59,6 +59,10 @@
 				case "setUnFollowUser":
 					$this->setUnFollowUser();
 				break;
+
+				case "setFollowUser":
+					$this->setFollowUser();
+				break;
 			}
 		}
 
