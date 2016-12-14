@@ -4,11 +4,12 @@
 		private $error = array();
 		private $pdo;
 		private $s_user_id;
+
 		public function __construct($POS,$FUNC) {
 			$this->PostData = $POS;
 			switch($FUNC){
 				case "getTweet":
-					getTweet();
+					$this->getTweet();
 				break;
 			}
 			//ポストを受け取っているか
@@ -31,6 +32,7 @@
 				exit;
 			}
 		}
+
 		public function getTweet() {
 				$page    = $this->PostData['page'];
 				if (empty($this->s_user_id)) {
