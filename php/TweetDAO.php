@@ -117,7 +117,7 @@
 					}
 				}
 			}
-			
+
 	        private function getLimit() {
 	            $stmt = $this->pdo->prepare('SELECT COUNT(*) FROM tweet_data WHERE user_id IN (SELECT user_follow_id FROM follow_data WHERE user_id LIKE ?) ORDER BY user_tweet_time DESC');
 	            $stmt->bindValue(1, $this->s_user_id, PDO::PARAM_STR);
@@ -198,7 +198,7 @@
 	            $stmt->bindValue(2, $this->s_user_id, PDO::PARAM_STR);
 	            $stmt->execute();
 	            $result = $stmt->fetchAll();
-	            header('Content-type: '.$MIMETypes[$result['mime']]);
+	            //header('Content-type: '.$MIMETypes[$result['mime']]);
 
 	            $resultJson = json_encode($result);
 	            echo $resultJson;
