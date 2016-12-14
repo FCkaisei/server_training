@@ -128,7 +128,7 @@ function execPost() {
 		var param = "tweet_text="+textBoxValue;
 		var action = "action=setTweet";
 		document.getElementById('tweetText').value = "";
-		req.open('POST', '../php/tweet_post.php', true);
+		req.open('POST', '../php/DAO.php', true);
 		// POST 送信の場合は Content-Type は固定.
 		req.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
 		req.send(param,action);
