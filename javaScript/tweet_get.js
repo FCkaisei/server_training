@@ -125,13 +125,12 @@ req2.onreadystatechange = function() {
 function execPost() {
 	if(now_loading ==false){
 		var textBoxValue = document.getElementById('tweetText').value;
-		var param = "tweet_text="+textBoxValue;
-		var action = "action=setTweet";
+		var param = "action=setTweet&tweet_text="+textBoxValue;
 		document.getElementById('tweetText').value = "";
 		req.open('POST', '../php/DAO.php', true);
 		// POST 送信の場合は Content-Type は固定.
 		req.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
-		req.send(param,action);
+		req.send(param);
 	}
 }
 
