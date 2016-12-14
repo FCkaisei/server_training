@@ -68,11 +68,6 @@
 			}
         }
 
-		public function CheckError(){
-			for ($i = 0; $i < count($this->error); ++$i) {
-				error_log('ERROR:'.$this->error, 0);
-			}
-		}
 		//ツイートを取得
         public function setTweet() {
             $tweet_text      = $_POST['tweet_text'];
@@ -90,7 +85,9 @@
                 }
             }
 			if ($this->error) {
-				CheckError($this->error);
+				for ($i = 0; $i < count($this->error); ++$i) {
+					error_log('ERROR:'.$this->error, 0);
+				}
 			}
 		}
 
@@ -118,7 +115,9 @@
                 array_push($this->error, 'DBを操作できません');
             }
             if ($this->error) {
-				CheckError();
+				for ($i = 0; $i < count($this->error); ++$i) {
+					error_log('ERROR:'.$this->error, 0);
+				}
             } else {
                 echo $resultJson;
             }
@@ -134,7 +133,9 @@
                 array_push($this->error,'SQL ミスってるよ');
 			}
 			if(!empty($this->error)){
-				CheckError();
+				for ($i = 0; $i < count($this->error); ++$i) {
+					error_log('ERROR:'.$this->error, 0);
+				}
 			} else {
                 echo $resultJson;
             }
