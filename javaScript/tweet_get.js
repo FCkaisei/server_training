@@ -132,7 +132,7 @@ function execPost() {
 }
 
 function getTweet(){
-		var page = "action=getTweet&page="+pageCount;
+		var page = "action=Tweet-getTweet&page="+pageCount;
 		req.open('POST', '../php/DAO.php', true);
 		req.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
 		req.send(page);

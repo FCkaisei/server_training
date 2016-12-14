@@ -5,8 +5,14 @@
 	    case 'setTweet':
 	        $Dao->setTweet();
 	    break;
-	    case 'getTweet':
-	        $Dao->getTweet();
+	    case 'Tweet-getTweet':
+			$str_array = explode("-","Tweet-getTweet");
+			switch($str_array[0]){
+				case 'Tweet':
+				require_once('./TweetDAO.php');
+					$Tweet    = new Tweet($_POST,$str_array[1]);
+			}
+			$Dao->getTweet();
 	    break;
 	    case 'getLimit':
 	        $Dao->getLimit();
