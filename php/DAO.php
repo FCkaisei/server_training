@@ -51,9 +51,7 @@
 			}
 			//セッションを取得
 			session_start();
-			if(!$_SESSION['user']){
-				$this->s_user_id = $_SESSION['user'];
-			}
+			$this->s_user_id = $_SESSION['user'];
 			//DBとの接続
 			$dsn = 'mysql:dbname=Twitter;host=localhost';
 			$user = "develop";
