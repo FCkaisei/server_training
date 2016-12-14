@@ -15,11 +15,11 @@ switch($action){
 
 	class DAO{
 		private $error = array();
-		require_once("../baseDB/connect_db.php");
 		function __construct(){
 		}
 
 		public function setTweet(){
+			require_once("../baseDB/connect_db.php");
 			session_start();
 			$session_user_id = $_SESSION['user'];
 			$tweet_text = $_POST["tweet_text"];
@@ -46,6 +46,7 @@ switch($action){
 		}
 
 		public function getTweet(){
+			require_once("../baseDB/connect_db.php");
 			session_start();
 			$user_id = $_SESSION['user'];
 			$page = $_POST['page'];
