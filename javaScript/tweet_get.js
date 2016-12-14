@@ -126,11 +126,12 @@ function execPost() {
 	if(now_loading ==false){
 		var textBoxValue = document.getElementById('tweetText').value;
 		var param = "tweet_text="+textBoxValue;
+		var action = "action=setTweet";
 		document.getElementById('tweetText').value = "";
 		req.open('POST', '../php/tweet_post.php', true);
 		// POST 送信の場合は Content-Type は固定.
 		req.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
-		req.send(param);
+		req.send(param,action);
 	}
 }
 
