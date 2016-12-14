@@ -41,10 +41,11 @@
     class DAO {
         private $error = array();
         public function __construct() {
-			require_once '../baseDB/connect_db.php';
+			error_log("_____________________________________________________________CONST",0);
         }
 
         public function setTweet() {
+            require_once '../baseDB/connect_db.php';
             session_start();
             $session_user_id = $_SESSION['user'];
             $tweet_text      = $_POST['tweet_text'];
@@ -71,6 +72,7 @@
 
         public function getTweet()
         {
+            require_once '../baseDB/connect_db.php';
             session_start();
             $user_id = $_SESSION['user'];
             $page    = $_POST['page'];
@@ -108,6 +110,7 @@
         {
             session_start();
             $tmpSess = $_SESSION['user'];
+            require_once '../baseDB/connect_db.php';
             $stmt = $pdo->prepare('SELECT COUNT(*) FROM tweet_data WHERE user_id IN (SELECT user_follow_id FROM follow_data WHERE user_id LIKE ?) ORDER BY user_tweet_time DESC');
             $stmt->bindValue(1, $tmpSess, PDO::PARAM_STR);
             $stmt->execute();
@@ -126,6 +129,7 @@
         {
             session_start();
             $userId = $_SESSION['user'];
+            require_once '../baseDB/connect_db.php';
             $stmt = $pdo->prepare(
                 'SELECT follow_data.user_follow_id, user_data.img_base
 				FROM follow_data
