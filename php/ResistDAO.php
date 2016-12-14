@@ -30,13 +30,13 @@ class ResistDAO {
 			exit;
 		}
 		switch($FUNC){
-			case "registEmail":
-				$this->registEmail();
+			case "resistEmail":
+				$this->resistEmail();
 			break;
 		}
 	}
 
-	private function registEmail() {
+	private function resistEmail() {
 		$email = $this->$PostData['email'];
 		if (preg_match("/^([a-zA-Z0-9])+([a-zA-Z0-9\._-])*@([a-zA-Z0-9_-])+([a-zA-Z0-9\._-]+)+$/", $email)) {
 		}
