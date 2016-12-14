@@ -13,6 +13,10 @@ switch($action){
 	case "getLimit":
 		$Dao->getLimit();
 	break;
+
+	case "getFollowUser":
+		$Dao->getFollowUser();
+	break;
 }
 
 	class DAO{
@@ -102,6 +106,23 @@ switch($action){
 			}
 		}
 
+		public function getFollowUser(){
+			session_start();
+			$userId = $_SESSION['user'];
+			require_once("../baseDB/connect_db.php");
+			$stmt = $pdo->prepare(
+				"SELECT follow_data.user_follow_id, user_data.img_base
+				FROM follow_data
+				INNER JOIN user_data
+				ON follow_data.user_follow_id = user_data.user_id
+				WHERE follow_data.user_id LIKE ?"
+			);
+			$stmt->bindValue(1, $userId, PDO::PARAM_STR);
+			$stmt->execute();
+			$result = $stmt->fetchAll();
+			$resultJson = json_encode($result);
+			echo $resultJson;
+		}
 
 	}
  ?>

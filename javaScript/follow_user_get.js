@@ -82,9 +82,10 @@ req.onreadystatechange = function() {
 }
 
 function getFollowUser(){
-	req.open('POST', '../php/follow_get.php', true);
+	var param = "action=getFollowUser";
+	req.open('POST', '../php/DAO.php', true);
 	req.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
-	req.send(null);
+	req.send(param);
 }
 
 function followOther(){
