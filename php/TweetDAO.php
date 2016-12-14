@@ -35,11 +35,13 @@
 			}
 		}
 
-		public function getTweet() {
+		private function getTweet() {
 				$page    = $this->PostData['page'];
+
 				if (empty($this->s_user_id)) {
 					array_push($this->error,'user_idが入ってません');
 				}
+
 				if ($page == '') {
 					$page = 1;
 				}
@@ -65,6 +67,6 @@
 				} else {
 					echo $resultJson;
 				}
+			}
 		}
-	}
 ?>
