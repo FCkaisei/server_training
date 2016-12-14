@@ -69,15 +69,15 @@
         }
 
 		private function CheckError($Error){
-			for ($i = 0; $i < count($error); ++$i) {
-				error_log('ERROR:'.$error, 0);
+			for ($i = 0; $i < count($this->error); ++$i) {
+				error_log('ERROR:'.$this->error, 0);
 			}
 		}
 		//ツイートを取得
         public function setTweet() {
             $tweet_text      = $_POST['tweet_text'];
             if (empty($tweet_text)) {
-                array_push($error, 'ツイートを入力しよう！');
+                array_push($this->error, 'ツイートを入力しよう！');
             } else {
                 $now  = date('Y-m-d H:i:s');
                 $stmt = $this->pdo->prepare('INSERT INTO tweet_data(user_id,user_tweet,user_tweet_time)VALUES(:user_id, :tweet_text, :timer)');
@@ -86,18 +86,18 @@
                 $stmt->bindValue(':timer', $now, PDO::PARAM_STR);
                 $stmt->execute();
                 if ($stmt == false) {
-                    array_push($error, 'DBとの接続失敗');
+                    array_push($this->error, 'DBとの接続失敗');
                 }
             }
-			if ($error) {
-				CheckError($error);
+			if ($this->error) {
+				CheckError($this->error);
 			}
 		}
 
         public function getTweet() {
             $page    = $_POST['page'];
             if (empty($this->s_user_id)) {
-                array_push($error, 'user_idが入ってません');
+                array_push($this->error,'user_idが入ってません');
             }
             if ($page == '') {
                 $page = 1;
@@ -115,10 +115,10 @@
             $result     = $stmt->fetchAll();
             $resultJson = json_encode($result);
             if ($stmt == false) {
-                array_push($error, 'DBを操作できません');
+                array_push($this->error, 'DBを操作できません');
             }
-            if ($error) {
-				CheckError($error);
+            if ($this->error) {
+				CheckError($this->error);
             } else {
                 echo $resultJson;
             }
@@ -131,10 +131,10 @@
             $result     = $stmt->fetchAll();
             $resultJson = json_encode($result);
             if ($stmt == false) {
-                array_push($error,'SQL ミスってるよ');
+                array_push($this->error,'SQL ミスってるよ');
 			}
-			if(!empty($error)){
-				CheckError($error);
+			if(!empty($this->error)){
+				CheckError($this->error);
 			} else {
                 echo $resultJson;
             }
@@ -182,11 +182,11 @@
 
         public function getUserSearch() {
             if (empty($this->s_user_id)) {
-                array_push($error, 'セッション切れ');
+                array_push($this->error, 'セッション切れ');
             }
             $othersId = $_POST['others_id'];
             if (empty($_POST)) {
-                array_push($error, 'others_idが入力されていません');
+                array_push($this->error, 'others_idが入力されていません');
             }
                 // 拡張子によってMIMEタイプを切り替えるための配列
             $MIMETypes = array(
