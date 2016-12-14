@@ -74,7 +74,7 @@
             } else {
                 $now  = date('Y-m-d H:i:s');
                 $stmt = $this->pdo->prepare('INSERT INTO tweet_data(user_id,user_tweet,user_tweet_time)VALUES(:user_id, :tweet_text, :timer)');
-                $stmt->bindValue(':user_id', $s_user_id, PDO::PARAM_STR);
+                $stmt->bindValue(':user_id', $this->s_user_id, PDO::PARAM_STR);
                 $stmt->bindValue(':tweet_text', $tweet_text, PDO::PARAM_STR);
                 $stmt->bindValue(':timer', $now, PDO::PARAM_STR);
                 $stmt->execute();
