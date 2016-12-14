@@ -220,13 +220,10 @@
             } else {
                 error_log('user_idとuser_passが入力されています', 0);
                 try {
-                    error_log('try in', 0);
-                    $this->pdo = new PDO($dsn, $user, $password);
                     $this->pdo->query('SET NAMES utf8');
                 } catch (PDOException $e) {
                     error_log('tuusin_sippai', 0);
                     header('Location: ../html/login.html');
-                    exit;
                     exit;
                 }
 
