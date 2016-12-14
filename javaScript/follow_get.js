@@ -76,9 +76,8 @@ req.onreadystatechange = function() {
 
 function execPost() {
 	var textBoxValue = document.getElementById('others_id').value;
-	var param = "others_id="+textBoxValue;
-	req.open('POST', '../php/user_search.php', true);
-	// POST 送信の場合は Content-Type は固定.
+	var param = "action=getUserSearch&others_id="+textBoxValue;
+	req.open('POST', '../php/DAO.php', true);
 	req.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
 	req.send(param);
 }
