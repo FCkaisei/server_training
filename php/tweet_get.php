@@ -25,9 +25,11 @@
     $stmt->bindValue(3, $lowLim, PDO::PARAM_INT);
     $stmt->bindValue(4, $highLim, PDO::PARAM_INT);
     $stmt->execute();
+
     $result = $stmt->fetchAll();
     $resultJson = json_encode($result);
-    if ($stmt == false) {
+
+	if ($stmt == false) {
 		array_push($error, "DBを操作できません");
     }
 	if($error){
@@ -36,6 +38,6 @@
 		}
 	}
 	else {
-        echo $resultJson;
+		echo $resultJson;
 	}
 	?>
