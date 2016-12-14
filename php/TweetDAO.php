@@ -5,6 +5,7 @@
 		private $pdo;
 		private $s_user_id;
 		public function __construct($POS,$FUNC) {
+			error_log("入って入る",0);
 			$this->PostData = $POS;
 
 			//ポストを受け取っているか
@@ -236,6 +237,7 @@
 	        }
 
 	        private function Login() {
+				error_log("LOGIN",0);
 	            $user_id   = $this->PostData['formUserid'];
 	            $user_pass = $this->PostData['formPassword'];
 				//入力されたパスワードをハッシュ化

@@ -4,9 +4,8 @@
     switch ($action[0]) {
 	    case 'Tweet':
 			require_once('./TweetDAO.php');
-			$Tweet    = new TweetDAO($_POST,$str_array[1]);
+			$Tweet = new TweetDAO($_POST,$str_array[1]);
 	    break;
-
 		default:
 		exit;
 	}
