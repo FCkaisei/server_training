@@ -12,7 +12,9 @@
 				exit;
 			}
 			//セッションを取得
-			session_start();
+			if(!isset($_SESSION)){
+				session_start();
+			}
 			$this->s_user_id = $_SESSION['user'];
 			//DBとの接続
 			$dsn = 'mysql:dbname=Twitter;host=localhost';
