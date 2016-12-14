@@ -66,9 +66,6 @@ var callBack = function(tex) {
 			div_chat_face.className = "chat-face";
 
 
-
-
-
 			var div_imge = document.createElement('img');
 			if(!jsonObject[i]['img_base']){
 				div_imge.setAttribute("src","../CSS/bg_1.jpg");
@@ -144,15 +141,16 @@ function getTweet(){
 function get_bTweet(){
 	if(now_loading ==false){
 		pageCount = this.getAttribute("data-pageNumber");
-		var page = "page="+pageCount;
-		req.open('POST', '../php/tweet_get.php', true);
+		var page = "action=setTweet&page="+pageCount;
+		req.open('POST', '../php/DAO.php', true);
 		req.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
 		req.send(page);
 	}
 }
 
 function getLimit(){
-	req2.open('POST', '../php/limit_get.php', true);
+	var param = "action=getLimit";
+	req2.open('POST', '../php/DAO.php', true);
 	req2.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
-	req2.send(null);
+	req2.send(param);
 }
