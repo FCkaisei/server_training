@@ -10,7 +10,7 @@
 			switch($str_array[0]){
 				case 'Tweet':
 				require_once('./TweetDAO.php');
-					$Tweet    = new Tweet($_POST,$str_array[1]);
+					$Tweet    = new TweetDAO($_POST,$str_array[1]);
 			}
 			$Dao->getTweet();
 	    break;
