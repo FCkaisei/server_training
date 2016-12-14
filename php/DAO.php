@@ -11,10 +11,10 @@ switch($action){
 
 	class DAO{
 		function __construct(){
-			require_once("../baseDB/connect_db.php");
 		}
 
 		public function setTweet(){
+			require_once("../baseDB/connect_db.php");
 			session_start();
 			$session_user_id = $_SESSION['user'];
 			$tweet_text = $_POST["tweet_text"];
