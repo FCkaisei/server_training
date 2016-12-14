@@ -1,9 +1,18 @@
 <?php
 	$error = array();
+
 	$email = $_POST['email'];
+
 	require_once("../../baseDB/connect_db.php");
 
-	if($email == ""){
+	if (preg_match("/^([a-zA-Z0-9])+([a-zA-Z0-9\._-])*@([a-zA-Z0-9_-])+([a-zA-Z0-9\._-]+)+$/", $email)) {
+	}
+	else{
+		array_push($error,"ただいいメールアドレスを入力してください");
+	}
+
+	if(empty($email)){
+		array_push($error,"addressが入力されていません");
 		error_log("アドレスが入力されていません");
 	}
 	else{
@@ -17,12 +26,14 @@
 		$resultJson = json_encode($result);
 		if($stmt == false){
 			array_push($error,"仮ID登録できず");
-			error_log("仮IDを登録できませんでした ",0);
 		}
 	}
 	if(count($error)){
-		echo "アドレス登録エラー:";
-	} else{
-		echo "../php/register/regist_form.php?pre_userid=".$pre_user_id;
+		for ($i = 0 ; $i < count($error); $i++) {
+			echo("addressを正しく入力してください");
+		}
+	}
+	else{
+		echo("<a href='../php/register/regist_form.php?pre_userid=".$pre_user_id."'>ユーザー本登録へ</a>") ;
 	}
 ?>
