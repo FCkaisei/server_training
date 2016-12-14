@@ -213,7 +213,7 @@
             $user_pass = $_POST['formPassword'];
 			//入力されたパスワードをハッシュ化
             $user_pass = hash('sha256', $user_pass)."\n";
-            if (empty($user_id) || empty($user_pass == '')) {
+            if (empty($user_id) || empty($user_pass)) {
                 error_log('IDもしくはパスワードが未入力です', 0);
                 header('Location: ../html/login.html');
                 exit;
