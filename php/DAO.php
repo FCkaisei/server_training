@@ -40,12 +40,24 @@
 
     class DAO {
         private $error = array();
-        public function __construct() {
-			error_log("_____________________________________________________________CONST",0);
+		private $pdo;
+
+		public function __construct() {
+			//DBの設定
+			$dsn = 'mysql:dbname=Twitter;host=localhost';
+			$user = "develop";
+			$password = "welcomeMySQL";
+			try {
+				$pdo = new PDO($dsn, $user, $password);
+				$pdo->setAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, true);
+				$pdo->query('SET NAMES utf8');
+			} catch(PDOException $e){
+				error_log("cant connect db",0);
+				die();
+			}
         }
 
         public function setTweet() {
-            require_once '../baseDB/connect_db.php';
             session_start();
             $session_user_id = $_SESSION['user'];
             $tweet_text      = $_POST['tweet_text'];
@@ -70,9 +82,7 @@
             }
         }
 
-        public function getTweet()
-        {
-            require_once '../baseDB/connect_db.php';
+        public function getTweet() {
             session_start();
             $user_id = $_SESSION['user'];
             $page    = $_POST['page'];
@@ -106,11 +116,9 @@
             }
         }
 
-        public function getLimit()
-        {
+        public function getLimit() {
             session_start();
             $tmpSess = $_SESSION['user'];
-            require_once '../baseDB/connect_db.php';
             $stmt = $pdo->prepare('SELECT COUNT(*) FROM tweet_data WHERE user_id IN (SELECT user_follow_id FROM follow_data WHERE user_id LIKE ?) ORDER BY user_tweet_time DESC');
             $stmt->bindValue(1, $tmpSess, PDO::PARAM_STR);
             $stmt->execute();
