@@ -116,7 +116,7 @@
             }
             if ($this->error) {
 				for ($i = 0; $i < count($this->error); ++$i) {
-					error_log('ERROR:'.$this->error, 0);
+					error_log('ERROR:'.$this->error[$i], 0);
 				}
             } else {
                 echo $resultJson;
