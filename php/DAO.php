@@ -25,6 +25,10 @@ switch($action){
 	case "setUnFollowUser":
 		$Dao->setUnFollowUser();
 	break;
+
+	case "getUserSearch":
+		$Dao->getUserSearch();
+	break;
 }
 
 	class DAO{
