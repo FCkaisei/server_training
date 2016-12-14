@@ -23,7 +23,7 @@
 			<!--ツイートメイン-->
 			<div class="flex-item-center">
 				<div class="flex-container-center">
-					<form action="../php/login.php" method="post" class="flex-formReSize">
+					<form action="../php/DAO.php" method="post" class="flex-formReSize">
 						<label for="userid" class="center">ユーザーID</label>
 						<br>
 						<input type="text" name="formUserid" id="userId" value="" class="center">
@@ -32,8 +32,9 @@
 						<br>
 				  		<input type="password" name="formPassword" id="userPass" value="" class="center">
 						<br>
+						<input type="text" name="action" value="Login">
 						<input type="button" value="登録画面へ" onclick="location.href='../html/email_form.html'">
-						<input type="submit" name="login" value="ログイン" class="center">
+						<input type="submit" name="Login" value="Login" class="center">
 					</form>
 				</div>
 			</div>

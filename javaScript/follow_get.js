@@ -9,12 +9,6 @@ var callBack = function(tex) {
 	  	var tweetBox = document.getElementById("tweet");
 	  	tweetBox.innerHTML = "";
 	  	for(var i = 0; i < jsonObject.length; i++){
-
-			Base64ToImage(jsonObject[i]["img_base"],jsonObject[i]["mime"],function(img) {
-
-			});
-
-
 			var div_title = document.createElement('div');
 			div_title.className = "title";
 
@@ -82,24 +76,18 @@ req.onreadystatechange = function() {
 
 function execPost() {
 	var textBoxValue = document.getElementById('others_id').value;
-	var param = "others_id="+textBoxValue;
-	req.open('POST', '../php/user_search.php', true);
-	// POST 送信の場合は Content-Type は固定.
+	var param = "action=getUserSearch&others_id="+textBoxValue;
+	req.open('POST', '../php/DAO.php', true);
 	req.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
 	req.send(param);
 }
 
 function followOther(){
 	var other_id = this.getAttribute("data-userid");
-	console.log(other_id);
 	var textBoxValue = other_id;
-	var param = "user_id="+textBoxValue;
-	req.open('POST', '../php/followEnd.php', true);
+	var param = "action=setFollowUser&user_id="+textBoxValue;
+	req.open('POST', '../php/DAO.php', true);
 	// POST 送信の場合は Content-Type は固定.
 	req.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
 	req.send(param);
-}
-
-function Base64ToImage(base64img, mimeImg, callback) {
-
 }
