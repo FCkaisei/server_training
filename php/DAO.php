@@ -133,7 +133,7 @@
             if ($stmt == false) {
                 array_push($error,'SQL ミスってるよ');
 			}
-			if($error){
+			if(!empty($error)){
 				CheckError($error);
 			} else {
                 echo $resultJson;
