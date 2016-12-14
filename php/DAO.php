@@ -35,48 +35,63 @@
 	    case 'setImage':
 	        $Dao->setImage();
 	    break;
+
+		default:
+			exit;
 	}
 
     class DAO {
         private $error = array();
+		private $pdo;
         public function __construct() {
 			if(empty($_POST)){
+				exit;
+			}
+			$dsn = 'mysql:dbname=Twitter;host=localhost';
+			$user = "develop";
+			$password = "welcomeMySQL";
+			try{
+				$this->pdo = new PDO($dsn, $user, $password);
+				$this->pdo->setAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, true);
+				$this->pdo->query('SET NAMES utf8');
+			}
+			catch(PDOException $e){
+				error_log("cant connect db",0);
 				die();
 			}
-			else{
-				error_log("ポストに中身が入ってるね");
-			}
+
+
         }
+
+		private function CheckError($Error){
+			for ($i = 0; $i < count($error); ++$i) {
+				error_log('ERROR:'.$error, 0);
+			}
+		}
 		//ツイートを取得
         public function setTweet() {
-            require_once '../baseDB/connect_db.php';
             session_start();
             $session_user_id = $_SESSION['user'];
             $tweet_text      = $_POST['tweet_text'];
-            if ($tweet_text == '') {
+            if (empty($tweet_text)) {
                 array_push($error, 'ツイートを入力しよう！');
             } else {
                 $now  = date('Y-m-d H:i:s');
-                $stmt = $pdo->prepare('INSERT INTO tweet_data(user_id,user_tweet,user_tweet_time)VALUES(:user_id, :tweet_text, :timer)');
+                $stmt = $this->pdo->prepare('INSERT INTO tweet_data(user_id,user_tweet,user_tweet_time)VALUES(:user_id, :tweet_text, :timer)');
                 $stmt->bindValue(':user_id', $session_user_id, PDO::PARAM_STR);
                 $stmt->bindValue(':tweet_text', $tweet_text, PDO::PARAM_STR);
                 $stmt->bindValue(':timer', $now, PDO::PARAM_STR);
                 $stmt->execute();
                 if ($stmt == false) {
                     array_push($error, 'DBとの接続失敗');
-                } else {
                 }
             }
-            if ($error) {
-                for ($i = 0; $i < count($error); ++$i) {
-                    error_log('ERROR:'.$error, 0);
-                }
-            }
-        }
+			if ($error) {
+				CheckError($error);
+			}
+		}
 
-        public function getTweet()
-        {
-            require_once '../baseDB/connect_db.php';
+        public function getTweet() {
             session_start();
             $user_id = $_SESSION['user'];
             $page    = $_POST['page'];
@@ -90,7 +105,7 @@
             $page    = max($page, 1);
             $lowLim  = $page * 4 - 4;
             $highLim = 5;
-            $stmt    = $pdo->prepare('SELECT tweet_data.user_tweet, tweet_data.user_id,user_data.img_base FROM tweet_data INNER JOIN user_data ON tweet_data.user_id = user_data.user_id WHERE tweet_data.user_id = ? OR tweet_data.user_id IN (SELECT user_follow_id FROM follow_data WHERE user_id LIKE ?) ORDER BY user_tweet_time DESC LIMIT ?,?');
+            $stmt    = $this->pdo->prepare('SELECT tweet_data.user_tweet, tweet_data.user_id,user_data.img_base FROM tweet_data INNER JOIN user_data ON tweet_data.user_id = user_data.user_id WHERE tweet_data.user_id = ? OR tweet_data.user_id IN (SELECT user_follow_id FROM follow_data WHERE user_id LIKE ?) ORDER BY user_tweet_time DESC LIMIT ?,?');
             $stmt->bindValue(1, $user_id, PDO::PARAM_STR);
             $stmt->bindValue(2, $user_id, PDO::PARAM_STR);
             $stmt->bindValue(3, $lowLim, PDO::PARAM_INT);
@@ -102,9 +117,7 @@
                 array_push($error, 'DBを操作できません');
             }
             if ($error) {
-                for ($i = 0; $i < count($error); ++$i) {
-                    error_log('ERROR:'.$error, 0);
-                }
+				CheckError($error);
             } else {
                 echo $resultJson;
             }
@@ -114,17 +127,17 @@
         {
             session_start();
             $tmpSess = $_SESSION['user'];
-            require_once '../baseDB/connect_db.php';
-            $stmt = $pdo->prepare('SELECT COUNT(*) FROM tweet_data WHERE user_id IN (SELECT user_follow_id FROM follow_data WHERE user_id LIKE ?) ORDER BY user_tweet_time DESC');
+            $stmt = $this->pdo->prepare('SELECT COUNT(*) FROM tweet_data WHERE user_id IN (SELECT user_follow_id FROM follow_data WHERE user_id LIKE ?) ORDER BY user_tweet_time DESC');
             $stmt->bindValue(1, $tmpSess, PDO::PARAM_STR);
             $stmt->execute();
             $result     = $stmt->fetchAll();
             $resultJson = json_encode($result);
-
             if ($stmt == false) {
-                error_log('SQL ミスってるよ', 0);
-            } else {
-                error_log('GOOD!', 0);
+                array_push($error,'SQL ミスってるよ');
+			}
+			if($error){
+				CheckError($error);
+			} else {
                 echo $resultJson;
             }
         }
@@ -133,8 +146,7 @@
         {
             session_start();
             $userId = $_SESSION['user'];
-            require_once '../baseDB/connect_db.php';
-            $stmt = $pdo->prepare(
+            $stmt = $this->pdo->prepare(
                 'SELECT follow_data.user_follow_id, user_data.img_base
 				FROM follow_data
 				INNER JOIN user_data
@@ -153,14 +165,13 @@
             $user_id   = $_SESSION['user'];
             $follow_id = $_POST['user_id'];
             require_once '../baseDB/connect_db.php';
-            $stmt = $pdo->prepare('INSERT INTO follow_data(user_id,user_follow_id)VALUES(:user_id,:follow_id)');
+            $stmt = $this->pdo->prepare('INSERT INTO follow_data(user_id,user_follow_id)VALUES(:user_id,:follow_id)');
             $stmt->bindValue(':user_id', $user_id, PDO::PARAM_STR);
             $stmt->bindValue(':follow_id', $follow_id, PDO::PARAM_STR);
             $stmt->execute();
             if ($stmt == false) {
                 error_log('フォローできませんでした', 0);
             } else {
-                error_log('GOOD! follow QED', 0);
             }
         }
 
@@ -169,7 +180,7 @@
             $session_user_id = $_SESSION['user'];
             $otherId         = $_POST['unfollow_id'];
             require_once '../baseDB/connect_db.php';
-            $stmt = $pdo->prepare('DELETE FROM follow_data WHERE user_id=? AND user_follow_id=?');
+            $stmt = $this->pdo->prepare('DELETE FROM follow_data WHERE user_id=? AND user_follow_id=?');
             $stmt->bindValue(1, $session_user_id, PDO::PARAM_STR);
             $stmt->bindValue(2, $otherId, PDO::PARAM_STR);
             $stmt->execute();
@@ -183,20 +194,16 @@
         public function getUserSearch() {
             session_start();
             $user_id = $_SESSION['user'];
-
             if (empty($user_id)) {
                 array_push($error, 'セッション切れ');
             }
-
             if (empty($_POST)) {
                 array_push($error, 'POSTを受け取っていません');
             }
-
             $othersId = $_POST['others_id'];
             if (empty($_POST)) {
                 array_push($error, 'others_idが入力されていません');
             }
-
             require_once '../baseDB/connect_db.php';
                 // 拡張子によってMIMEタイプを切り替えるための配列
             $MIMETypes = array(
@@ -207,7 +214,7 @@
                'bmp' => 'image/bmp',
             );
 
-            $stmt = $pdo->prepare('SELECT user_id,img_base,mime FROM user_data WHERE user_id LIKE ? AND user_id NOT IN (SELECT user_follow_id FROM follow_data WHERE user_id LIKE ?)');
+            $stmt = $this->pdo->prepare('SELECT user_id,img_base,mime FROM user_data WHERE user_id LIKE ? AND user_id NOT IN (SELECT user_follow_id FROM follow_data WHERE user_id LIKE ?)');
             $stmt->bindValue(1, '%'.$othersId.'%', PDO::PARAM_STR);
             $stmt->bindValue(2, $user_id, PDO::PARAM_STR);
 
@@ -222,8 +229,9 @@
         public function Login() {
             $user_id   = $_POST['formUserid'];
             $user_pass = $_POST['formPassword'];
+			//入力されたパスワードをハッシュ化
             $user_pass = hash('sha256', $user_pass)."\n";
-            if (($user_id == '') || ($user_pass == '')) {
+            if (empty($user_id) || empty($user_pass == '')) {
                 error_log('IDもしくはパスワードが未入力です', 0);
                 header('Location: ../html/login.html');
                 exit;
@@ -232,17 +240,17 @@
                 require_once '../baseDB/connect_db.php';
                 try {
                     error_log('try in', 0);
-                    $pdo = new PDO($dsn, $user, $password);
-                    $pdo->query('SET NAMES utf8');
+                    $this->pdo = new PDO($dsn, $user, $password);
+                    $this->pdo->query('SET NAMES utf8');
                 } catch (PDOException $e) {
                     error_log('tuusin_sippai', 0);
                     header('Location: ../html/login.html');
                     exit;
-                    die();
+                    exit;
                 }
 
                 $sql = 'select * from user_data';
-                $sth = $pdo->prepare($sql);
+                $sth = $this->pdo->prepare($sql);
                 $sth->execute();
                 $sqlResult = $sth->fetchAll();
 
@@ -298,7 +306,7 @@
                 }
                 $img_base64 = base64_encode(file_get_contents($_FILES['image']['tmp_name']));
                 require_once '../baseDB/connect_db.php';
-                $stmt = $pdo->prepare('UPDATE user_data SET img_base = :user_img, mime = :mime WHERE user_id = :user_id');
+                $stmt = $this->pdo->prepare('UPDATE user_data SET img_base = :user_img, mime = :mime WHERE user_id = :user_id');
                 $stmt->bindValue(':user_img', $img_base64, PDO::PARAM_STR);
                 $stmt->bindValue(':mime', $mime, PDO::PARAM_STR);
                 $stmt->bindValue(':user_id', $user_id, PDO::PARAM_STR);
