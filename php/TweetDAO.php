@@ -323,9 +323,9 @@
 					</div>
 				</div>
 			</div>
-	<?PHP
-	                if ($stmt == false) {
-	                    ?>
+<?PHP
+if ($stmt == false) {
+?>
 			<!--ツイートメイン-->
 			<div class="flex-item2">
 				画像を登録できませんでした。。。
