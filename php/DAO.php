@@ -5,7 +5,7 @@ $dao = new DAO();
 
 switch($action){
 	case "setTweet":
-		dao->setTweet();
+		$dao->setTweet();
 	break;
 }
 
