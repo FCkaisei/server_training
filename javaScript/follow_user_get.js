@@ -82,17 +82,18 @@ req.onreadystatechange = function() {
 }
 
 function getFollowUser(){
-	req.open('POST', '../php/follow_get.php', true);
+	var param = "action=getFollowUser";
+	req.open('POST', '../php/DAO.php', true);
 	req.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
-	req.send(null);
+	req.send(param);
 }
 
 function followOther(){
 	var other_id = this.getAttribute("data-userid");
 	console.log(other_id);
 	var textBoxValue = other_id;
-	var param = "unfollow_id="+textBoxValue;
-	req.open('POST', '../php/unfollow.php', true);
+	var param = "action=setUnFollowUser&unfollow_id="+textBoxValue;
+	req.open('POST', '../php/DAO.php', true);
 	req.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
 	req.send(param);
 }
