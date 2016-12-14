@@ -7,11 +7,6 @@
 
 		public function __construct($POS,$FUNC) {
 			$this->PostData = $POS;
-			switch($FUNC){
-				case "getTweet":
-					$this->getTweet();
-				break;
-			}
 			//ポストを受け取っているか
 			if(empty($this->PostData)){
 				exit;
@@ -30,6 +25,11 @@
 				$this->pdo->query('SET NAMES utf8');
 			} catch(PDOException $e){
 				exit;
+			}
+			switch($FUNC){
+				case "getTweet":
+					$this->getTweet();
+				break;
 			}
 		}
 
