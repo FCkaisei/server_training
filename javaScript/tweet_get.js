@@ -135,8 +135,8 @@ function execPost() {
 }
 
 function getTweet(){
-		var page = "page="+pageCount;
-		req.open('POST', '../php/tweet_get.php', true);
+		var page = "action=getTweet&page="+pageCount;
+		req.open('POST', '../php/DAO.php', true);
 		req.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
 		req.send(page);
 }
