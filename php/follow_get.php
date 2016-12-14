@@ -10,7 +10,7 @@
 		"SELECT follow_data.user_follow_id, user_data.img_base
 		FROM follow_data
 		INNER JOIN user_data
-		ON follow_data.user_id = user_data.user_id
+		ON follow_data.user_follow_id = user_data.user_id
 		WHERE follow_data.user_id LIKE ?"
 	);
 
