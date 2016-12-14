@@ -6,7 +6,8 @@
 			require_once('./TweetDAO.php');
 			$Tweet = new TweetDAO($_POST,$str_array[1]);
 	    break;
-		case 'Regist':
+
+		case 'Resist':
 			require_once('./ResistDAO.php');
 			$Resist = new ResistDAO($_POST,$str_array[1]);
 		break;
