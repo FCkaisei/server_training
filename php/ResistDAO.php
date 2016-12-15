@@ -1,7 +1,7 @@
 <?php
 class ResistDAO {
 	private $PostData;
-	private $this->error = array();
+	private $error = array();
 	private $pdo;
 	private $s_user_id;
 	public function __construct($POS,$FUNC) {
