@@ -42,14 +42,14 @@ class ResistDAO {
 			break;
 		}
 	}
+
 	private function resistUser(){
 		$userId = $this->PostData['input_userid'];
 		$userPass = $this->PostData['input_password'];
 		$userEmail = $this->PostData['input_email'];
 		$userToken = $this->PostData['input_token'];
 
-		require_once('../../baseDB/connect_db.php');
-		$stmt = $pdo -> prepare("SELECT user_id FROM user_data WHERE user_id = ?");
+		$stmt = $this->pdo -> prepare("SELECT user_id FROM user_data WHERE user_id = ?");
 		$stmt-> bindValue(1, $userId, PDO::PARAM_STR);
 		$stmt-> execute();
 
@@ -57,7 +57,7 @@ class ResistDAO {
 			array_push($this->error,"このユーザーIDはすでに登録されています。");
 		}
 
-		$stmt = $pdo -> prepare("SELECT * FROM user_data WHERE user_token_id = ? AND user_mail = ?");
+		$stmt = $this->pdo -> prepare("SELECT * FROM user_data WHERE user_token_id = ? AND user_mail = ?");
 		$stmt-> bindValue(1, $userToken, PDO::PARAM_STR);
 		$stmt-> bindValue(2, $userEmail, PDO::PARAM_STR);
 		$stmt-> execute();
@@ -68,10 +68,9 @@ class ResistDAO {
 
 		if(count($this->error) == 0) {
 			mysql_query("begin");
-			$data = 'yutakikuchi';
 			$userPass = hash( 'sha256', $userPass) . "\n";
-			//$stmt = $pdo -> prepare("INSERT IGNORE INTO user_data(user_id,user_pass,user_mail)VALUES(:user_id, :user_pass, :user_email)");
-			$stmt = $pdo -> prepare("UPDATE user_data SET user_id = :user_id, user_pass = :user_pass, user_mail = :user_email WHERE user_token_id = :user_token");
+			//$stmt = $this->pdo -> prepare("INSERT IGNORE INTO user_data(user_id,user_pass,user_mail)VALUES(:user_id, :user_pass, :user_email)");
+			$stmt = $this->pdo -> prepare("UPDATE user_data SET user_id = :user_id, user_pass = :user_pass, user_mail = :user_email WHERE user_token_id = :user_token");
 			$stmt-> bindValue(':user_id', $userId, PDO::PARAM_STR);
 			$stmt-> bindValue(':user_pass', $userPass, PDO::PARAM_STR);
 			$stmt-> bindValue(':user_email', $userEmail, PDO::PARAM_STR);
@@ -89,7 +88,7 @@ class ResistDAO {
 	?>
 
 	<head>
-		<link rel="stylesheet" type="text/css" href="../../CSS/main.css">
+		<link rel="stylesheet" type="text/css" href="../CSS/main.css">
 		<meta charset="utf-8">
 	</head>
 	<!--ヘッダー-->
@@ -163,7 +162,7 @@ class ResistDAO {
 		}else {
 	?>
 	<head>
-		<link rel="stylesheet" type="text/css" href="../../CSS/main.css">
+		<link rel="stylesheet" type="text/css" href="../CSS/main.css">
 		<meta charset="utf-8">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title></title>
@@ -185,7 +184,7 @@ class ResistDAO {
 				<form method="post" action="./DAO.php" class="flex-formReSize">
 					<table>
 						<caption>入力情報確認ページ</caption>
-							<input type="hidden" name="action" value="Resist-resistUser">
+							<input type="text" name="action" value="Resist-resistUser">
 
 							<input type="hidden" name="input_token" value="<?php print $userToken;?>">
 							<input type="hidden" name="input_password" value="<?php print $userPass;?>">
