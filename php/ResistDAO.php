@@ -36,9 +36,10 @@ class ResistDAO {
 				$this->resistEmail();
 			break;
 
-			case "registConfirm":
+			case "resistConfirm":
 				$this->resistConfirm();
 			break;
+
 			case "resistUser":
 				$this->resistUser();
 			break;
@@ -140,6 +141,9 @@ class ResistDAO {
 	<div>
 	<?php
 		if(count($this->error) > 0) {
+			for ($i = 0 ; $i < count($this->error); $i++) {
+				echo($this->error[$i]);
+			}
 	?>
 	</div>
 	<?php
