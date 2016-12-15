@@ -1,4 +1,7 @@
 <?php
+	/*
+		割り振りクラス.
+	*/
     $action = $_POST['action'];
 	$str_array = explode("-",$action);
     switch ($str_array[0]) {

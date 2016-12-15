@@ -196,7 +196,6 @@ $this->templateHTTP();
 
 		if(empty($email)){
 			array_push($this->error,"addressが入力されていません");
-			error_log("アドレスが入力されていません");
 		}
 		else{
 			//仮のユーザーID作成

@@ -1,8 +1,7 @@
 var req = new XMLHttpRequest();
 var callBack = function(tex) {
 	if(!tex){
-	}
-	else{
+	} else{
 		var tweetBox = document.getElementById("res");
 		tweetBox.innerHTML = "";
 			tweetBox.innerHTML += tex;

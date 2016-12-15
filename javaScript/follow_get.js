@@ -1,11 +1,8 @@
 var callBack = function(tex) {
 	if(!tex){
 		execPost();
-	}
-	else{
-		console.log(tex);
+	} else{
 		var jsonObject = JSON.parse(tex);
-	  	console.log(jsonObject);
 	  	var tweetBox = document.getElementById("tweet");
 	  	tweetBox.innerHTML = "";
 	  	for(var i = 0; i < jsonObject.length; i++){
@@ -19,8 +16,6 @@ var callBack = function(tex) {
 
 			var div_chat_box = document.createElement('div');
 			div_chat_box.className = "chat-box";
-
-
 			var div_chat_face = document.createElement('div');
 			div_chat_face.className = "chat-face";
 			var imge = document.createElement('img');

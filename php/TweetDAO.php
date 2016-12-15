@@ -6,21 +6,19 @@
 		private $s_user_id;
 		public function __construct($POS,$FUNC) {
 			$this->PostData = $POS;
-
-			//ポストを受け取っているか
+			//POSTが受け取れているか確認
 			if(empty($this->PostData)){
 				exit;
 			}
+
 			//セッションを取得
 			if(!isset($_SESSION)){
 				session_start();
 			}
 			$this->s_user_id = $_SESSION['user'];
-			//DBとの接続
 			$dsn = 'mysql:dbname=Twitter;host=localhost';
 			$user = "develop";
 			$password = "welcomeMySQL";
-
 			try{
 				$this->pdo = new PDO($dsn, $user, $password);
 				$this->pdo->setAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, true);
@@ -32,23 +30,18 @@
 				case "getTweet":
 					$this->getTweet();
 				break;
-
 				case "setTweet":
 					$this->setTweet();
 				break;
-
 				case "getLimit":
 					$this->getLimit();
 				break;
-
 				case "getFollowUser":
 					$this->getFollowUser();
 				break;
-
 				case "setImage":
 					$this->setImage();
 				break;
-
 				case "Login":
 					$this->Login();
 				break;
@@ -58,7 +51,6 @@
 				case "setUnFollowUser":
 					$this->setUnFollowUser();
 				break;
-
 				case "setFollowUser":
 					$this->setFollowUser();
 				break;
@@ -66,18 +58,19 @@
 		}
 
 		private function getTweet() {
-				$page    = $this->PostData['page'];
-
-				if (empty($this->s_user_id)) {
-					array_push($this->error,'user_idが入ってません');
-				}
-
+			$page    = $this->PostData['page'];
+			if (empty($this->s_user_id)) {
+				array_push($this->error,'user_idが入ってません');
+			}
+				//入力値が無い場合は値を1にします。
 				if ($page == '') {
 					$page = 1;
 				}
-				//ページが一より小さい場合は1
+				//ページが1よりも小さい場合も1
 				$page    = max($page, 1);
+				//表示開始位置
 				$lowLim  = $page * 4 - 4;
+				//表示件数
 				$highLim = 5;
 				$stmt    = $this->pdo->prepare('SELECT tweet_data.user_tweet, tweet_data.user_id,user_data.img_base FROM tweet_data INNER JOIN user_data ON tweet_data.user_id = user_data.user_id WHERE tweet_data.user_id = ? OR tweet_data.user_id IN (SELECT user_follow_id FROM follow_data WHERE user_id LIKE ?) ORDER BY user_tweet_time DESC LIMIT ?,?');
 				$stmt->bindValue(1, $this->s_user_id, PDO::PARAM_STR);
@@ -323,26 +316,24 @@
 				</div>
 			</div>
 <?PHP
-if ($stmt == false) {
+	if ($stmt == false) {
 ?>
 			<!--ツイートメイン-->
 			<div class="flex-item2">
 				画像を登録できませんでした。。。
 			</div>
-	<?PHP
-
-	                } else {
-	                    ?>
+<?PHP
+	} else {
+?>
 			<div class="flex-item2">
 				画像登録完了！
 			</div>
-	<?PHP
-	                    error_log('----------------GOOD! follow QED-----------------', 0);
-	                }
-	                ?>
+<?PHP
+	}
+?>
 		</div>
 	</body>
-	<?PHP
+<?PHP
 	        }
 	}
 ?>

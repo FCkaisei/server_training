@@ -3,18 +3,17 @@ var req2 = new XMLHttpRequest();
 var pageMax = 0;
 var pageCount = 1;
 var now_loading = true;
+
 window.onload = function(){
 	getTweet();
 	getLimit();
 	now_loading = false;
 };
 
-
-
 var callBack2 = function(tex) {
 	if(!tex){
-	}
-	else{
+
+	}else{
 		var jsonObject = JSON.parse(tex);
 		console.log(jsonObject);
 		pageMax = jsonObject[0][0];
@@ -35,15 +34,11 @@ var callBack2 = function(tex) {
 	}
 	now_loading = false;
 }
-
 var callBack = function(tex) {
 	if(!tex){
 		getTweet()
-	}
-	else{
+	} else{
 		var jsonObject = JSON.parse(tex);
-		console.log(jsonObject);
-
 		var tweetBox = document.getElementById("tweet");
 		tweetBox.innerHTML = "";
 		for(var i = 0; i < jsonObject.length; i++){
@@ -69,8 +64,7 @@ var callBack = function(tex) {
 			var div_imge = document.createElement('img');
 			if(!jsonObject[i]['img_base']){
 				div_imge.setAttribute("src","../CSS/bg_1.jpg");
-			}
-			else{
+			} else{
 				div_imge.setAttribute("src","data:image/"+jsonObject[i]['mime']+";base64,"+jsonObject[i]['img_base']);
 			}
 			div_imge.setAttribute("width","90");
@@ -105,7 +99,6 @@ var callBack = function(tex) {
 		}
 	}
 	document.getElementsByClassName("m-title").innerHTML = "OK";
-
 }
 
 req.onreadystatechange = function() {

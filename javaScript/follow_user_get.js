@@ -1,36 +1,24 @@
 window.onload = function(){
 		getFollowUser();
 };
-
 var callBack = function(tex) {
 	if(!tex){
 		getFollowUser();
-	}
-	else{
+	} else{
 		var jsonObject = JSON.parse(tex);
-		console.log(jsonObject);
 		var tweetBox = document.getElementById("tweet");
 		tweetBox.innerHTML = "";
 		for(var i = 0; i < jsonObject.length; i++){
-
 			var div_title = document.createElement('div');
 			div_title.className = "title";
-
 			var div_mainBox = document.createElement('div');
 			div_mainBox.className = "mainBox";
-
 			var div = document.createElement('div');
-
 			var div_chat_box = document.createElement('div');
 			div_chat_box.className = "chat-box";
-
-
 			var div_chat_face = document.createElement('div');
 			div_chat_face.className = "chat-face";
-
-
 			var imge = document.createElement('img');
-
 			if(!jsonObject[i]['img_base']){
 				imge.setAttribute("src","../CSS/bg_1.jpg");
 			}
@@ -57,7 +45,6 @@ var callBack = function(tex) {
 			 buttonElement_div.onclick = followOther;
 			 buttonElement_div.setAttribute("data-userid",jsonObject[i]["user_follow_id"]);
 			 buttonElement.appendChild(buttonElement_div);
-			 //div追加
 			 div_chat_hukidashi.appendChild(user_id);
 			 div_chat_hukidashi.appendChild(buttonElement);
 
@@ -90,7 +77,6 @@ function getFollowUser(){
 
 function followOther(){
 	var other_id = this.getAttribute("data-userid");
-	console.log(other_id);
 	var textBoxValue = other_id;
 	var param = "action=Tweet-setUnFollowUser&unfollow_id="+textBoxValue;
 	req.open('POST', '../php/DAO.php', true);
