@@ -122,7 +122,7 @@ req2.onreadystatechange = function() {
 function execPost() {
 	if(now_loading ==false){
 		var textBoxValue = document.getElementById('tweetText').value;
-		var param = "action=setTweet&tweet_text="+textBoxValue;
+		var param = "action=Tweet-setTweet&tweet_text="+textBoxValue;
 		document.getElementById('tweetText').value = "";
 		req.open('POST', '../php/DAO.php', true);
 		// POST 送信の場合は Content-Type は固定.
@@ -132,7 +132,7 @@ function execPost() {
 }
 
 function getTweet(){
-		var page = "action=getTweet&page="+pageCount;
+		var page = "action=Tweet-getTweet&page="+pageCount;
 		req.open('POST', '../php/DAO.php', true);
 		req.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
 		req.send(page);
@@ -141,7 +141,7 @@ function getTweet(){
 function get_bTweet(){
 	if(now_loading ==false){
 		pageCount = this.getAttribute("data-pageNumber");
-		var page = "action=setTweet&page="+pageCount;
+		var page = "action=Tweet-setTweet&page="+pageCount;
 		req.open('POST', '../php/DAO.php', true);
 		req.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
 		req.send(page);
@@ -149,7 +149,7 @@ function get_bTweet(){
 }
 
 function getLimit(){
-	var param = "action=getLimit";
+	var param = "action=Tweet-getLimit";
 	req2.open('POST', '../php/DAO.php', true);
 	req2.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
 	req2.send(param);

@@ -76,7 +76,7 @@ req.onreadystatechange = function() {
 
 function execPost() {
 	var textBoxValue = document.getElementById('others_id').value;
-	var param = "action=getUserSearch&others_id="+textBoxValue;
+	var param = "action=Tweet-getUserSearch&others_id="+textBoxValue;
 	req.open('POST', '../php/DAO.php', true);
 	req.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
 	req.send(param);
@@ -85,7 +85,7 @@ function execPost() {
 function followOther(){
 	var other_id = this.getAttribute("data-userid");
 	var textBoxValue = other_id;
-	var param = "action=setFollowUser&user_id="+textBoxValue;
+	var param = "action=Tweet-setFollowUser&user_id="+textBoxValue;
 	req.open('POST', '../php/DAO.php', true);
 	// POST 送信の場合は Content-Type は固定.
 	req.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
