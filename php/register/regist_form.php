@@ -1,5 +1,4 @@
 <?php
-	error_log("コレにはカイセイくんもにっこり");
 	$pre_userid = $_GET['pre_userid'];
 	$isErrorFlag = true;
 	include("../../baseDB/connect_db.php");
@@ -35,9 +34,9 @@
 	<!--ツイートメイン-->
 	<div class="flex-item-center">
 		<div class="flex-container-center">
-			<form method="post" action="./regist_confirm.php" class="flex-formReSize">
+			<form method="post" action="../DAO.php" class="flex-formReSize">
 				<input type="hidden" name="pre_userid" value="<?php print $pre_userid; ?>">
-
+					<input type="text" name="action"; value="Resist-registConfirm">
 					<div>会員情報登録フォーム</div>
 						<div class="item">ユーザーID</div>
 						<div><input type="text" size="30" name="input_user_id" value=""></div>
