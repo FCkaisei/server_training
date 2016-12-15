@@ -36,7 +36,7 @@
 		<div class="flex-container-center">
 			<form method="post" action="../DAO.php" class="flex-formReSize">
 				<input type="hidden" name="pre_userid" value="<?php print $pre_userid; ?>">
-					<input type="text" name="action"; value="Resist-resistConfirm">
+					<input type="text" name="action" value="Resist-resistConfirm">
 					<div>会員情報登録フォーム</div>
 						<div class="item">ユーザーID</div>
 						<div><input type="text" size="30" name="input_user_id" value=""></div>
