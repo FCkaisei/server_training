@@ -156,7 +156,6 @@
 	        }
 
 	        private function setFollowUser() {
-	            session_start();
 	            $follow_id = $this->PostData['user_id'];
 	            $stmt = $this->pdo->prepare('INSERT INTO follow_data(user_id,user_follow_id)VALUES(:user_id,:follow_id)');
 	            $stmt->bindValue(':user_id', $this->s_user_id, PDO::PARAM_STR);
@@ -254,8 +253,9 @@
 	                        exit;
 	                    } else {
 	                        error_log('kokomadekiteru', 0);
-
-	                        session_start();
+							if(!isset($_SESSION)){
+								session_start();
+							}
 	                        $_SESSION['user'] = $user_id;
 	                        header('Location: ../html/tweet_main.html');
 	                        exit;

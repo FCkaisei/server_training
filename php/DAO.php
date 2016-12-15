@@ -11,7 +11,8 @@
 			require_once('./ResistDAO.php');
 			$Resist = new ResistDAO($_POST,$str_array[1]);
 		break;
+
 		default:
-		exit;
+			exit;
 	}
  ?>
