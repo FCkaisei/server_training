@@ -4,6 +4,7 @@ class ResistDAO {
 	private $error = array();
 	private $pdo;
 	private $s_user_id;
+
 	public function __construct($POS,$FUNC) {
 		$this->PostData = $POS;
 
@@ -29,6 +30,7 @@ class ResistDAO {
 		} catch(PDOException $e){
 			exit;
 		}
+
 		switch($FUNC){
 			case "resistEmail":
 				$this->resistEmail();
@@ -82,24 +84,11 @@ class ResistDAO {
 			else {	//データベースへの登録作業失敗
 				mysql_query("rollback");
 				array_push($this->error, "データベースに登録できませんでした。");
-		  }
+			}
 		}
 		if(count($this->error) == 0) {
+			$this->templateHTTP();
 	?>
-
-	<head>
-		<link rel="stylesheet" type="text/css" href="../CSS/main.css">
-		<meta charset="utf-8">
-	</head>
-	<!--ヘッダー-->
-	<div class="flex-container-noheight">
-		<div class="flex-item3">
-			<div class="m-title">
-				THANK U
-			</div>
-		</div>
-	</div>
-
 	<div class="flex-container-center">
 		<!--ツイートメイン-->
 		<div class="flex-item-center">
@@ -107,7 +96,7 @@ class ResistDAO {
 				<form action="../php/login.php" method="post" class="flex-formReSize">
 						<div>登録ありがとうございます。</div>
 						<div>
-							<a href="../../html/login.html">ログイン画面へ</a>
+							<a href="../html/login.html">ログイン画面へ</a>
 						</div>
 				</form>
 			</div>
@@ -128,12 +117,7 @@ class ResistDAO {
 	<?php
 			}
 		}
-
-
 	}
-
-
-
 	private function resistConfirm(){
 		$userId = $this->PostData['input_user_id'];
 		$userName = $this->PostData['input_user_name'];
@@ -160,22 +144,8 @@ class ResistDAO {
 	</div>
 	<?php
 		}else {
-	?>
-	<head>
-		<link rel="stylesheet" type="text/css" href="../CSS/main.css">
-		<meta charset="utf-8">
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title></title>
-	</head>
-	<!--ヘッダー-->
-	<div class="flex-container-noheight">
-		<div class="flex-item3">
-			<div class="m-title">
-				つついったーログイン
-			</div>
-		</div>
-	</div>
-
+$this->templateHTTP();
+?>
 
 	<div class="flex-container-center">
 		<!--ツイートメイン-->
@@ -207,7 +177,6 @@ class ResistDAO {
 			</div>
 		</div>
 	</div>
-
 	<?php
 		}
 
@@ -248,4 +217,24 @@ class ResistDAO {
 			echo("<a href='../php/register/regist_form.php?pre_userid=".$pre_user_id."'>ユーザー本登録へ</a>") ;
 		}
 	}
+
+	private function templateHTTP(){
+		?>
+		<head>
+			<link rel="stylesheet" type="text/css" href="../CSS/main.css">
+			<meta charset="utf-8">
+			<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+			<title></title>
+		</head>
+		<!--ヘッダー-->
+		<div class="flex-container-noheight">
+			<div class="flex-item3">
+				<div class="m-title">
+					つついったーログイン
+				</div>
+			</div>
+		</div>
+		<?PHP
+	}
 }
+?>
