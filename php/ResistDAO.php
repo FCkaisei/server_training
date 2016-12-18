@@ -158,7 +158,7 @@ $this->templateHTTP();
 				<form method="post" action="./DAO.php" class="flex-formReSize">
 					<table>
 						<caption>入力情報確認ページ</caption>
-							<input type="text" name="action" value="Resist-resistUser">
+							<input type="hidden" name="action" value="Resist-resistUser">
 
 							<input type="hidden" name="input_token" value="<?php print $userToken;?>">
 							<input type="hidden" name="input_password" value="<?php print $userPass;?>">

@@ -6,15 +6,13 @@
 	$stmt-> bindValue(1, $pre_userid, PDO::PARAM_STR);
 	$stmt-> execute();
 	$result = $stmt->fetchAll();
-
 	//データ・ベースにより取得したメールアドレスを表示してみる
 	if($stmt->rowCount() > 0){
 		$isErrorFlag = false;
 		$email = $result[0][0];
 	}
 	if($isErrorFlag){
-	}
-	else{
+	} else{
 ?>
 <head>
 		<link rel="stylesheet" type="text/css" href="../../CSS/main.css">
@@ -36,7 +34,7 @@
 		<div class="flex-container-center">
 			<form method="post" action="../DAO.php" class="flex-formReSize">
 				<input type="hidden" name="pre_userid" value="<?php print $pre_userid; ?>">
-					<input type="text" name="action" value="Resist-resistConfirm">
+					<input type="hidden" name="action" value="Resist-resistConfirm">
 					<div>会員情報登録フォーム</div>
 						<div class="item">ユーザーID</div>
 						<div><input type="text" size="30" name="input_user_id" value=""></div>
