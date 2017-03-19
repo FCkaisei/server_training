@@ -1,5 +1,7 @@
 # server_training
 
+## Andorid niyoru Test branch desu
+
 ##STATUS
 ### 完了
 1. つぶやき機能
